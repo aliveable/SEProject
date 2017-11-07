@@ -13,7 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 </head>
     
-<nav class="navbar navbar-expand-lg ">
+<nav class="navbar navbar-expand-lg">
     
   <a class="navbar-brand" href="#" id="brand">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav  mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
@@ -42,11 +42,9 @@
       <li class="nav-item">
         <a class="nav-link " href="#">Disabled</a>
       </li>
-    </ul>
-      
-                        
-                            <ul class="nav navbar-nav mr-right">
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    </ul>        
+        <ul class="nav navbar-nav mr-right">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="user-avatar pull-left" style="margin-right:10px; margin-top:-5px;">
                                         <img src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" class="img-responsive img-circle" title="John Doe" alt="John Doe" width="30px" height="30px">
                                     </span>
@@ -55,75 +53,92 @@
                                     </span>
                                     <b class="caret"></b></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <div class="navbar-content">
-                                                <div class="row">
-                                                    <div class="col-md-5">
-                                                        <img src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" alt="Alternate Text" class="img-responsive" width="120px" height="120px" />
-                                                        <p class="text-center small">
-                                                            <a href="./3X6zm">Change Photo</a></p>
-                                                    </div>
-                                                    <div class="col-md-7">
+                                        
+                                        <div class="navbar-content">
+                                            
+                                            
+                                            <div class="row">
+                                                <div class="col-md-4" id="Profilepic">
+                                                    <img src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" alt="Alternate Text" class="img-responsive" width="120px" height="120px" />
+                                                    
+                                                        <span>
+                                                             <a class="small" href="#">Change Photo</a>
+                                                        </span>
+                                                       
+                                                    
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <div class="col-md-5">
                                                         <span>John Doe</span>
                                                         <p class="text-muted small">
-                                                            example@pods.tld</p>
+                                                            example@pods.tldddd</p>
                                                         <div class="divider">
                                                         </div>
                                                         <a href="./56ExR" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
                                                         <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Contacts</a>
                                                         <a href="#" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a>
                                                         <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Help!</a>
-                                                    </div>
                                                 </div>
                                             </div>
+                                            
+                                        </div>
+                                            
                                             <div class="navbar-footer">
+                                                
+                                    
                                                 <div class="navbar-footer-content">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        
                                                             <a href="#" class="btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Change Passowrd</a>
-                                                        </div>
-                                                        <div class="col-md-6">
+                                                     
                                                             <a href="#" class="btn btn-default btn-sm pull-right"><i class="fa fa-power-off" aria-hidden="true"></i> Sign Out</a>
-                                                        </div>
                                                     </div>
                                                 </div>
+                                        
+                                                
                                             </div>
-                                        </li>
+                                        
                                     </ul>
                                 </li>
-                            </ul>
-                        </div>
+        </ul>
+    </div>
             
   
 </nav>
     
     
 <body>
-    
-    
-    <div class="jumbotron text-center" id="testimg">
-      <h1>My First Bootstrap Page</h1>
-      <p>Resize this responsive page to see the effect!</p> 
-    </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <h3>Column 1</h3>
-          <p>Lorem ipsum dolor..</p>
-          <p>Ut enim ad..</p>
-        </div>
-        <div class="col-sm-4">
-          <h3>Column 2</h3>
-          <p>Lorem ipsum dolor..</p>
-          <p>Ut enim ad..</p>
-        </div>
-        <div class="col-sm-4">
-          <h3>Column 3</h3> 
-          <p>Lorem ipsum dolor..</p>
-          <p>Ut enim ad..</p>
+    <header class="intro-header">
+      <div class="container">
+        <div class="intro-message">
+          <h1>Co-Working Space</h1>
+          <hr class="intro-divider">
+          <ul class="list-inline intro-social-buttons">
+            <li class="list-inline-item">
+              <a href="#" class="btn btn-secondary btn-lg">
+                <i class="fa fa-twitter fa-fw"></i>
+                <span class="network-name">Twitter</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn btn-secondary btn-lg">
+                <i class="fa fa-github fa-fw"></i>
+                <span class="network-name">Facebook</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn btn-secondary btn-lg">
+                <i class="fa fa-linkedin fa-fw"></i>
+                <span class="network-name">Google+</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </header>
+    
 </body>
 </html>
