@@ -26,13 +26,14 @@ width:100%;
     height: auto;
 padding : 200px 0;
 }
+
 .register-padding{
     padding-left: 19%;
     
 }
 
 #padding{
-    padding-left: 3%;
+    padding-left: 30%;
 }
 
 .banner-sec{background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
