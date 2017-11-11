@@ -51,11 +51,9 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-<<<<<<< HEAD
-                                        <input type="text" name="first_name" id="phone" class="form-control input-sm floatlabel" placeholder="Phone">
-=======
+
                                         <input type="text" name="phone" id="phone" class="form-control input-sm floatlabel" placeholder="Phone">
->>>>>>> bf227278dc163cf2175db28190fccc23849af033
+
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -87,7 +85,7 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <select class="form-control" name="province" id="province">
-                                            <option value="" selected>--------- เลือกจังหวัด ---------</option>
+                                            <option value="" selected>----------------- เลือกจังหวัด ----------------</option>
                                             <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                             <option value="กระบี่">กระบี่ </option>
                                             <option value="กาญจนบุรี">กาญจนบุรี </option>
