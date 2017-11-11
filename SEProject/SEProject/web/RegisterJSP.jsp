@@ -19,21 +19,20 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
-        <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
+                <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
     </head>
 
    
 
     <body>
         <section class="regis-block">
-
-            <div class="container">
+                        <div class="container">
                 <div class="sec-topregis">
                     <h2 class="text-center">Register</h2>
                 </div>
 
                 <div class="col-md-12">
-                    <form action="RegisterServlet" method="POST">
+                    <form action="RegisterServlet" method="POST" name="register" onsubmit="return(regvalidate())">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -170,14 +169,13 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                    <input type="text" name="postal_code" id="postal_code" class="form-control input-sm floatlabel" placeholder="Postal code">
-                                </div>
+                                    <input pattern="^[0-9]{5}$" type="text" name="postal_code" id="postal_code" class="form-control input-sm floatlabel" placeholder="Postal code">                                </div>
                             </div>
 
                             <div class="row">
 
                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                    <input type="text" name="username" id="username" class="form-control input-sm floatlabel" placeholder="Username">
+                                    <input pattern="^[a-zA-Z0-9]{5,50}$" type="text" name="username" id="username" class="form-control input-sm floatlabel" placeholder="Username">
                                 </div>
 
                             </div>	
@@ -188,12 +186,12 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                                    <input pattern="^[a-zA-Z0-9]{5,50}$" type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                                    <input pattern="^[a-zA-Z0-9]{5,50}$" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
                                 </div>
                             </div>
                         </div>
@@ -206,5 +204,5 @@
                 </div>
             </div>
         </section>
-
+        <script type="text/javascript" src="JS/Register.js"></script>
     </body>
