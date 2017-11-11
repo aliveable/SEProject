@@ -5,13 +5,9 @@
         <group>
             <file>file:/D:/SEProject/SEProject/SEProject/nbproject/build-impl.xml</file>
             <file>file:/D:/SEProject/SEProject/SEProject/web/Register.html</file>
-            <file>file:/D:/SEProject/SEProject/SEProject/web/WEB-INF/web.xml</file>
-            <file>file:/D:/SEProject/SEProject/SEProject/src/java/DBConnection.java</file>
+            <file>file:/D:/SEProject/SEProject/SEProject/web/JS/Login.js</file>
             <file>file:/D:/SEProject/SEProject/SEProject/web/index.html</file>
-            <file>file:/D:/SEProject/SEProject/SEProject/src/java/controller/RegisterServlet.java</file>
-            <file>file:/D:/SEProject/SEProject/SEProject/web/META-INF/context.xml</file>
-            <file>file:/D:/SEProject/SEProject/SEProject/src/java/listener/init.java</file>
-            <file>file:/D:/SEProject/SEProject/SEProject/web/RegisterJSP.jsp</file>
+            <file>file:/D:/SEProject/SEProject/SEProject/web/Login.html</file>
         </group>
     </open-files>
 </project-private>
