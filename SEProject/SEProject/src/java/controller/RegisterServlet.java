@@ -26,21 +26,8 @@ import javax.sql.DataSource;
  */
 @WebServlet(urlPatterns = {"/RegisterServlet"})
 public class RegisterServlet extends HttpServlet {
-
-    @Resource(name = "SEDB")
-    private DataSource SEDB;
-
     
     Connection conn;
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     
     public void init(){
         conn = (Connection) getServletContext().getAttribute("connection");
@@ -61,7 +48,9 @@ public class RegisterServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
-            //stmt.executeUpdate("INSERT INTO SEdatabase.member VALUES 'Megumin99', 'Viriya666777', 'Megumin', 'Viriya', 0901456410,'test@hotmail.com', '999/444/777'");
+            stmt.executeUpdate("insert into member(Username, Password, Firstname, Lastname, Phone, Email, Address)\n" +
+"values ('aaa1','aaa2','aaa3','aaa4','aaa5','aaa6','aaa7')");
+            out.println("success");
             out.println("</body>");
             out.println("</html>");
            
