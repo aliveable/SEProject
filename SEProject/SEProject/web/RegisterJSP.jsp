@@ -22,25 +22,6 @@
         <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
     </head>
 
-    <%
-        Connection connect = null;
-        Statement s = null;
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connect = DriverManager.getConnection("jdbc:sqlserver://seprojectserver.database.windows.net:1433;database=SEdatabase;user=adminse@seprojectserver;password={Topucarry123};"
-                    + "encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
-
-            s = connect.createStatement();
-
-            String sql = "insert into member(Username, Password, Firstname, Lastname, Phone, Email, Address) "
-                    + "values ('aaa11','aaa12','aaa13','aaa14','aaa15','aaa16','aaa17')";
-
-            ResultSet rec = s.executeQuery(sql);
-        }catch(Exception e){
-            System.err.println(e);
-        }
-       
-    %>
    
 
     <body>
@@ -70,7 +51,11 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
+<<<<<<< HEAD
                                         <input type="text" name="first_name" id="phone" class="form-control input-sm floatlabel" placeholder="Phone">
+=======
+                                        <input type="text" name="phone" id="phone" class="form-control input-sm floatlabel" placeholder="Phone">
+>>>>>>> bf227278dc163cf2175db28190fccc23849af033
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -83,12 +68,12 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="Address">
+                                        <input type="text" name="address" id="address" class="form-control input-sm floatlabel" placeholder="Address">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Province">
+                                        <input type="text" name="district" id="district" class="form-control input-sm" placeholder="District">
                                     </div>
                                 </div>
                             </div>
@@ -96,12 +81,12 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="District">
+                                        <input type="text" name="sub_district" id=sub_district" class="form-control input-sm floatlabel" placeholder="Sub district">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <select class="form-control" name="province">
+                                        <select class="form-control" name="province" id="province">
                                             <option value="" selected>--------- เลือกจังหวัด ---------</option>
                                             <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                             <option value="กระบี่">กระบี่ </option>
@@ -187,14 +172,14 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                    <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="Postal code">
+                                    <input type="text" name="postal_code" id="postal_code" class="form-control input-sm floatlabel" placeholder="Postal code">
                                 </div>
                             </div>
 
                             <div class="row">
 
                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                    <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="Username">
+                                    <input type="text" name="username" id="username" class="form-control input-sm floatlabel" placeholder="Username">
                                 </div>
 
                             </div>	
