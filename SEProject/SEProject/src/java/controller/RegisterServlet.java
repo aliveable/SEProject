@@ -56,14 +56,14 @@ public class RegisterServlet extends HttpServlet {
                         stmt.executeUpdate("insert into member(Username, Password, Firstname, Lastname, Phone, Email, Address) values "
                                 + "('" + username + "', '" + password + "', '" + first_name + "', '" + last_name + "', '" + phone + "', '" + email + "', '" + address + "');");
                         rs.close();
-                        out.println("<script>alert(\"สมัครสำเร็จ\");history.go(-1);</script>");
+                        out.println("<script>alert(\"สมัครสำเร็จ\");</script>");
                     } else {
                         rs.close();
-                        out.println("<script>alert(\"รหัสผ่านไม่ตรงกัน\");history.go(-1);</script>");
+                        out.println("<script>alert(\"รหัสผ่านไม่ตรงกัน\");</script>");
                     } 
                 } else {
                     rs.close();
-                    out.println("<script>alert(\"usernameนี้มีคนใช้แล้ว\");history.go(-1);</script>");
+                    out.println("<script>alert(\"usernameนี้มีคนใช้แล้ว\");</script>");
                     
                 }
             }} catch (SQLException ex) {

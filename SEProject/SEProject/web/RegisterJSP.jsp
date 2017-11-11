@@ -19,20 +19,22 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
-                <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
+        <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
+
+
     </head>
 
-   
+
 
     <body>
         <section class="regis-block">
-                        <div class="container">
+            <div class="container">
                 <div class="sec-topregis">
                     <h2 class="text-center">Register</h2>
                 </div>
 
                 <div class="col-md-12">
-                    <form action="RegisterServlet" method="POST" name="register" onsubmit="return(regvalidate())">
+                    <form id="targetsubmit"action="RegisterServlet" method="POST" name="register">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -70,7 +72,7 @@
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="district" id="district" class="form-control input-sm" placeholder="District">
+                                        <input type="text" name="district" id="district1" class="form-control input-sm" placeholder="District">
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +80,7 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="sub_district" id=sub_district" class="form-control input-sm floatlabel" placeholder="Sub district">
+                                        <input type="text" name="sub_district" id="sub_district" class="form-control input-sm floatlabel" placeholder="Sub district">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -197,12 +199,35 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                <input type="submit" class="btn btn-block btn-lg btn-primary" value="Register" data-toggle="modal" data-target="#myModal"/>
+                                <button type="button" data-toggle="modal" id="submit" class="btn btn-block btn-lg btn-primary" value="Register">Register</button>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog" >
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Please Enter Information</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="textalert">Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </section>
-        <script type="text/javascript" src="JS/Register.js"></script>
+        <script type="text/javascript" src="JS/Register2.js"></script>
     </body>
+
+
+
+
+</html>

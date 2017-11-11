@@ -1,9 +1,9 @@
 function regvalidate(){
-        if(document.register.username.value==""){
+    if(document.register.username.value==""){
         alert("กรุณาใส่ชื่อผู้ใช้งานให้ถูกต้อง");
         return(false);
     }
-	else if(document.register.password.value==""){
+    else if(document.register.password.value==""){
         alert("กรุณาใส่รหัสผ่าน");
         return(false);
     }
