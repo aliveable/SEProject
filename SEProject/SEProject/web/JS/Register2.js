@@ -111,21 +111,5 @@ $(document).ready(function () {
            $("#submit").prop("type", "submit");
         }
     });
-    
-    $('[name="username"]').blur(function() {
-        $.ajax({
-            url: 'UsernameCheckServlet',
-            data: {
-                username : $('#username').val()
-            },
-            success: function(response) {
-                if(response == "") {
-                    $('#user_error').empty();
-                } else {
-                    $('#user_error').html(response);
-                }
-            }
-    });
-    });
 
 });
