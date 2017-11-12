@@ -178,6 +178,7 @@
 
                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
                                     <input pattern="^[a-zA-Z0-9]{5,50}$" type="text" name="username" id="username" class="form-control input-sm floatlabel" placeholder="Username">
+                                    <span class="text-danger" id="user_error"></span>
                                 </div>
 
                             </div>	
