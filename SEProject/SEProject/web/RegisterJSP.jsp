@@ -178,13 +178,10 @@
 
                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
                                     <input pattern="^[a-zA-Z0-9]{5,50}$" type="text" name="username" id="username" class="form-control input-sm floatlabel" placeholder="Username">
+                                    <span class="text-danger" id="user_error"></span>
                                 </div>
-
-                            </div>	
-
-
+                            </div>
                         </div>
-
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
@@ -203,7 +200,7 @@
                             </div>
                         </div>
                         <!-- Modal -->
-                        
+
                         <div class="modal fade" id="myModal" role="dialog" >
                             <div class="modal-dialog">
                                 <!-- Modal content-->
@@ -221,7 +218,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
