@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
                         session.invalidate();
                         session = request.getSession();
                         session.setAttribute("message", "noequals");
-                        RequestDispatcher pg = request.getRequestDispatcher("Login.html");
+                        RequestDispatcher pg = request.getRequestDispatcher("LoginJSP.jsp");
                         pg.forward(request, response);
                         return;
                     }
@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet {
                 session.invalidate();
                 session = request.getSession();
                 session.setAttribute("message", "nofound");
-                RequestDispatcher pg = request.getRequestDispatcher("Login.html");
+                RequestDispatcher pg = request.getRequestDispatcher("LoginJSP.jsp");
                 pg.forward(request, response);
                 return;
             }

@@ -1,3 +1,10 @@
+<%-- 
+    Document   : LoginJSP
+    Created on : Nov 12, 2017, 11:45:17 AM
+    Author     : khunach
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="th">
     <head>
         <title>Bootstrap Example</title>
@@ -35,19 +42,16 @@
 
 
                             <div class="form-check">
-
                                 <small><a href="RegisterJSP.jsp">Register</a></small>
-
                                 <button type="submit" class="btn btn-login float-right">Login</button>
                             </div>
-                               <% if (session.getAttribute("level") == null || session.getAttribute("level").equals("")) { %>
-                 <h4>Hello</h4>
-                  <% } else if (session.getAttribute("level").equals("-1")) { %>
-                  <h4>  Not have username</h4>
-                  <% } else if (session.getAttribute("level").equals("0")) { %>
-                  <h4>Wrong password</h4>
-                  <% } else { %>
-                  <% } %>
+                            <% if (session.getAttribute("message") == null || session.getAttribute("message").equals("")) { %>
+                            <% } else if (session.getAttribute("message").equals("nofound")) { %>
+                            <h4>  Not have username</h4>
+                            <% } else if (session.getAttribute("message").equals("noequals")) { %>
+                            <h4> Wrong password</h4>
+                            <% } else { %>
+                            <% }%>
                         </form>
 
                     </div>
@@ -94,7 +98,4 @@
                 </div>      
             </div>
         </section>
-
-        
-        
     </body>

@@ -59,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
                             + "('" + username + "', '" + password + "', '" + first_name + "', '" + last_name + "', '" + phone + "', '" + email + "', '" + address + "');");
                     rs.close();
                     session.setAttribute("type", "สมัครสมาชิกเสร็จเรียบร้อย");
-                    RequestDispatcher pg = request.getRequestDispatcher("RegisterJSP.jsp");
+                    RequestDispatcher pg = request.getRequestDispatcher("LoginJSP.jsp");
                     pg.forward(request, response);
                     return;
                 } else {
