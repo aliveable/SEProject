@@ -14,11 +14,13 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
@@ -39,6 +41,7 @@ public class RegisterServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             Statement stmt = conn.createStatement();
+            HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
                 String first_name = request.getParameter("first_name");
                 String last_name = request.getParameter("last_name");
@@ -52,66 +55,63 @@ public class RegisterServlet extends HttpServlet {
                 String confirmed_password = request.getParameter("password_confirmation");
                 ResultSet rs = stmt.executeQuery("SELECT Username FROM member WHERE Username ='" + username + "';");
                 if (!rs.next()) {
-                    if (password.equals(confirmed_password)) {
-                        stmt.executeUpdate("insert into member(Username, Password, Firstname, Lastname, Phone, Email, Address) values "
-                                + "('" + username + "', '" + password + "', '" + first_name + "', '" + last_name + "', '" + phone + "', '" + email + "', '" + address + "');");
-                        rs.close();
-                        out.println("<script>alert(\"สมัครสำเร็จ\");</script>");
-                    } else {
-                        rs.close();
-                        out.println("<script>alert(\"รหัสผ่านไม่ตรงกัน\");</script>");
-                    } 
+                    stmt.executeUpdate("insert into member(Username, Password, Firstname, Lastname, Phone, Email, Address) values "
+                            + "('" + username + "', '" + password + "', '" + first_name + "', '" + last_name + "', '" + phone + "', '" + email + "', '" + address + "');");
+                    rs.close();
+                    session.setAttribute("type", "สมัครสมาชิกเสร็จเรียบร้อย");
+                    RequestDispatcher pg = request.getRequestDispatcher("RegisterJSP.jsp");
+                    pg.forward(request, response);
+                    return;
                 } else {
                     rs.close();
-                    out.println("<script>alert(\"usernameนี้มีคนใช้แล้ว\");</script>");
-                    
+                    session.setAttribute("type", "usernameมีคนใช้เเล้ว");
+                    RequestDispatcher pg = request.getRequestDispatcher("RegisterJSP.jsp");
+                    pg.forward(request, response);
+                    return;
                 }
-            }} catch (SQLException ex) {
-                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-        /**
-         * Handles the HTTP <code>GET</code> method.
-         *
-         * @param request servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException if an I/O error occurs
-         */
-        @Override
-        protected void doGet
-        (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            processRequest(request, response);
-        }
-
-        /**
-         * Handles the HTTP <code>POST</code> method.
-         *
-         * @param request servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException if an I/O error occurs
-         */
-        @Override
-        protected void doPost
-        (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            processRequest(request, response);
-        }
-
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo
-        
-            () {
-        return "Short description";
-        }// </editor-fold>
-
     }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
