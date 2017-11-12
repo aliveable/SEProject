@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
-
-
+    
+    
     $("#submit").click(function () {
         var first_name = $("#first_name").val().trim();
         var last_name = $("#last_name").val().trim();
@@ -112,20 +112,24 @@ $(document).ready(function () {
         }
     });
     
-    $('[name="username"]').blur(function() {
+    $('#username').blur(function() {
         $.ajax({
             url: 'UsernameCheckServlet',
             data: {
                 username : $('#username').val()
             },
             success: function(response) {
-                if(response == "") {
-                    $('#user_error').empty();
-                } else {
+                if(response !== "") {
                     $('#user_error').html(response);
+                    $('#submit').prop('disabled', true);
+                }else {
+                    $('#user_error').empty();
+                    $('#submit').prop('disabled', false);
                 }
             }
+        });
     });
-    });
+    
+    $('#submit').prop('disabled', true);
 
 });
