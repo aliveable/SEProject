@@ -1,0 +1,19 @@
+body{
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    width: 100%;
+    height: 813px;
+    background-repeat: no-repeat;
+}
+
+textarea{
+    resize:none; 
+}
+
+#move{
+ margin-top: 15%; 
+}
+
+#shadow{
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+
