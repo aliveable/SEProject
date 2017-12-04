@@ -20,61 +20,61 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Service;
+import model.Services;
 
 /**
  *
- * @author khunach
+ * @author Amoeba
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "ServicesServlet", urlPatterns = {"/Services"})
+public class ServicesServlet extends HttpServlet {
 
-    private String username;
-    private String password;
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    
     private Connection conn;
-
+    
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try {
             Statement stmt = conn.createStatement();
-            try (PrintWriter out = response.getWriter()) {
-                username = request.getParameter("Username");
-                password = request.getParameter("Password");
-                HttpSession session = request.getSession();
-                String sql = "select * from member where Username = '" + username + "'";
-                ResultSet rs = stmt.executeQuery(sql);
-                if (rs.next()) {
-                    if (rs.getString(2).equals(password)) {
-                        session.invalidate();
-                        session = request.getSession();
-                        session.setAttribute("username", rs.getString(1));
-                        RequestDispatcher pg = request.getRequestDispatcher("index.html");
-                        pg.forward(request, response);
-                        return;
-                    } else {
-                        session.invalidate();
-                        session = request.getSession();
-                        session.setAttribute("message", "noequals");
-                        RequestDispatcher pg = request.getRequestDispatcher("LoginJSP.jsp");
-                        pg.forward(request, response);
-                        return;
-                    }
-                }
-                session.invalidate();
-                session = request.getSession();
-                session.setAttribute("message", "nofound");
-                RequestDispatcher pg = request.getRequestDispatcher("LoginJSP.jsp");
-                pg.forward(request, response);
-                return;
+            HttpSession session = request.getSession();
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+           int page = Integer.parseInt(request.getParameter("page"))-1;
+            ResultSet rs = stmt.executeQuery("SELECT s.Space_ID, s.Space_Name, s.Space_Address, m.Firstname, m.Lastname "
+                    + "FROM space s  "
+                    + "JOIN member m ON (m.Username = s.Username) ORDER BY Space_ID DESC OFFSET "+page*10+" ROWS FETCH NEXT 10 ROWS ONLY;");
+            Services services = new Services();
+            while(rs.next()){
+                Service service = new Service();
+                service.setSpace_id(rs.getInt("Space_ID"));
+                service.setSpace_name(rs.getString("Space_Name"));
+                service.setSpace_address(rs.getString("Space_Address"));
+                service.setName(rs.getString("Firstname")+" "+rs.getString("Lastname"));
+                services.add(service);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            session.setAttribute("services", services);
+            RequestDispatcher pg = request.getRequestDispatcher("Service.jsp");
+            pg.forward(request, response);
+            
+        }} catch (SQLException ex) {
+            Logger.getLogger(ServicesServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -53,7 +53,7 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
 
-                                        <input type="text" name="phone" id="phone" class="form-control input-sm floatlabel" placeholder="Phone">
+                                        <input pattern="^[0-9]$" type="text" name="phone" id="phone" class="form-control input-sm floatlabel" placeholder="Phone">
 
                                     </div>
                                 </div>

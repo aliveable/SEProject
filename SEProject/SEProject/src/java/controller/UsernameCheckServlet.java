@@ -36,7 +36,7 @@ public class UsernameCheckServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    Connection conn;
+    private Connection conn;
     
     @Override
     public void init() {

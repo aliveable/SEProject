@@ -30,8 +30,9 @@ import javax.sql.DataSource;
 @WebServlet(urlPatterns = {"/RegisterServlet"})
 public class RegisterServlet extends HttpServlet {
 
-    Connection conn;
+    private Connection conn;
 
+    @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
