@@ -1,3 +1,6 @@
+#paddingtable{
+    padding-top: 2%;
+}
 .navbar{
     width: 100%;
     background-color: rgba(0,0,0,0.5);
@@ -9,9 +12,25 @@
     color: white;
 }
 
+
+#inlinealign{
+    padding-left: -20px;
+}
 #brand{
     color: white
 }
+#leftalign{
+    margin-left: 15%;
+    margin-right: 20%;
+    
+}
+#leftalignpagenav{
+    padding-left: 40%;
+    padding-right: 50%;
+    text-align: center;
+    display: inline-block;
+}
+
 #testimg{
     background-image: url(/IMG/2.png);
     background-size: cover; 
@@ -51,3 +70,4 @@
       }
       .row.content {height:auto;} 
     }
+
