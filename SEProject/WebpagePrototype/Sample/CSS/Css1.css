@@ -71,3 +71,15 @@
       .row.content {height:auto;} 
     }
 
+#infopadtop{
+    padding-top: 1%;
+}
+#alignpersonalinfo{
+    margin-top: 3%;
+}
+#butmargindown{
+    margin-bottom: 5%;
+}
+.container{
+    background: #D3D3D320;
+}
