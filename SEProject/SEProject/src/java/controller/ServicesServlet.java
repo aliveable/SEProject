@@ -56,7 +56,6 @@ public class ServicesServlet extends HttpServlet {
             HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           int page = Integer.parseInt(request.getParameter("page"))-1;
             ResultSet rs = stmt.executeQuery("SELECT s.Space_ID, s.Space_Name, s.Space_Address, m.Firstname, m.Lastname "
                     + "FROM space s  "
                     + "JOIN member m ON (m.Username = s.Username);");
@@ -69,15 +68,13 @@ public class ServicesServlet extends HttpServlet {
                 service.setName(rs.getString("Firstname")+" "+rs.getString("Lastname"));
                 services.add(service);
             }
+            rs.close();
             session.setAttribute("services", services);
-            rs = stmt.executeQuery("SELECT COUNT(Space_ID) row FROM space;");
-            rs.next();
-            int num_page = rs.getInt("row");
+            int num_page = services.getServices().size();
             if(num_page%10 == 0)
                 num_page /= 10;
             else
                 num_page = (num_page/10)+1;
-            rs.close();
             session.setAttribute("num_page", num_page);
             RequestDispatcher pg = request.getRequestDispatcher("index.jsp");
             pg.forward(request, response);
