@@ -186,7 +186,7 @@
 
 
                         <select class="form-control " id="selectpad">
-                            <c:forEach var="i" begin="1" end="${sessionScope.num_page}">
+                            <%--<c:forEach var="i" begin="1" end="${sessionScope.num_page}">
                                 <c:choose>
                                     <c:when test="${i == param.page}">
                                         <option value="i" selected>${i}</option>
@@ -195,7 +195,7 @@
                                         <option value="i">${i}</option>
                                     </c:otherwise>
                                 </c:choose>
-                            </c:forEach>
+                            </c:forEach>--%>
                         </select>
                     
                 <div class="col-lg-3">
