@@ -186,11 +186,16 @@
 
 
                         <select class="form-control " id="selectpad">
-                                <option value="" selected>Please Select</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <c:forEach var="i" begin="1" end="${sessionScope.num_page}">
+                                <c:choose>
+                                    <c:when test="${i == param.page}">
+                                        <option value="i" selected>${i}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="i">${i}</option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
                         </select>
                     
                 <div class="col-lg-3">
@@ -243,9 +248,8 @@
       </a>
     </li>
     </c:if>
-    <c:forEach var="i" begin="1" end="${sessionScope.num_page}">
-        <li class="page-item"><a class="page-link" href="./Services?page=${i}">${i}</a></li>
-    </c:forEach>
+        <li class="page-item"><a class="page-link">${param.page}</a></li>
+
     <c:if test="${param.page < sessionScope.num_page}">
     <li class="page-item">
       <a class="page-link" href="./Services?page=${param.page+1}" aria-label="Next">
