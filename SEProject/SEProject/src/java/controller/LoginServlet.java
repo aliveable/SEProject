@@ -54,11 +54,9 @@ public class LoginServlet extends HttpServlet {
                         session.invalidate();
                         session = request.getSession();
                         session.setAttribute("username", rs.getString(1));
-<<<<<<< HEAD
+
                         RequestDispatcher pg = request.getRequestDispatcher("./Services?page=1");
-=======
-                        RequestDispatcher pg = request.getRequestDispatcher("Services?page=1");
->>>>>>> 773943f8e6bb39897a993ddbc901517018bf00b9
+                        
                         pg.forward(request, response);
                         rs.close();
                         return;
