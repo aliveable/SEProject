@@ -70,6 +70,14 @@ public class ServicesServlet extends HttpServlet {
                 services.add(service);
             }
             session.setAttribute("services", services);
+            rs = stmt.executeQuery("SELECT COUNT(Space_ID) row FROM space;");
+            rs.next();
+            int num_page = rs.getInt("row");
+            if(num_page%10 == 0)
+                num_page /= 10;
+            else
+                num_page = (num_page/10)+1;
+            session.setAttribute("num_page", num_page);
             RequestDispatcher pg = request.getRequestDispatcher("Service.jsp");
             pg.forward(request, response);
             

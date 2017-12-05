@@ -198,7 +198,6 @@
                 </div>
                 
             </div>
-        
 <div class="row">
     <div class="container">
         <div class="row col-lg-12">
@@ -236,22 +235,26 @@
                 
     <nav aria-label="Page navigation example" id="leftalignpagenav">
   <ul class="pagination">
+      <c:if test="${param.page > 1}"> 
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <a class="page-link" href="./Services?page=${param.page-1}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    </c:if>
+    <c:forEach var="i" begin="1" end="${sessionScope.num_page}">
+        <li class="page-item"><a class="page-link" href="./Services?page=${i}">${i}</a></li>
+    </c:forEach>
+    <c:if test="${param.page < sessionScope.num_page}">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
+      <a class="page-link" href="./Services?page=${param.page+1}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Next</span>
       </a>
     </li>
-  </ul>
+  </c:if>
+        </ul>
 </nav>
                 
 </div>
