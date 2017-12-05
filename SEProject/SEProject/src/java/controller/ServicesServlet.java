@@ -79,7 +79,7 @@ public class ServicesServlet extends HttpServlet {
                 num_page = (num_page/10)+1;
             rs.close();
             session.setAttribute("num_page", num_page);
-            RequestDispatcher pg = request.getRequestDispatcher("Service.jsp");
+            RequestDispatcher pg = request.getRequestDispatcher("index.jsp");
             pg.forward(request, response);
             
         }} catch (SQLException ex) {
