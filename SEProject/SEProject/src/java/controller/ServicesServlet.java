@@ -59,7 +59,7 @@ public class ServicesServlet extends HttpServlet {
            int page = Integer.parseInt(request.getParameter("page"))-1;
             ResultSet rs = stmt.executeQuery("SELECT s.Space_ID, s.Space_Name, s.Space_Address, m.Firstname, m.Lastname "
                     + "FROM space s  "
-                    + "JOIN member m ON (m.Username = s.Username) ORDER BY Space_ID DESC OFFSET "+page*10+" ROWS FETCH NEXT 10 ROWS ONLY;");
+                    + "JOIN member m ON (m.Username = s.Username);");
             Services services = new Services();
             while(rs.next()){
                 Service service = new Service();
