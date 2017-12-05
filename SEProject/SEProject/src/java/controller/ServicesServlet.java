@@ -77,6 +77,7 @@ public class ServicesServlet extends HttpServlet {
                 num_page /= 10;
             else
                 num_page = (num_page/10)+1;
+            rs.close();
             session.setAttribute("num_page", num_page);
             RequestDispatcher pg = request.getRequestDispatcher("Service.jsp");
             pg.forward(request, response);

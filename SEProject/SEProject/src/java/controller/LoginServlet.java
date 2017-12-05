@@ -56,6 +56,7 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("username", rs.getString(1));
                         RequestDispatcher pg = request.getRequestDispatcher("index.html");
                         pg.forward(request, response);
+                        rs.close();
                         return;
                     } else {
                         session.invalidate();
@@ -63,9 +64,11 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("message", "noequals");
                         RequestDispatcher pg = request.getRequestDispatcher("LoginJSP.jsp");
                         pg.forward(request, response);
+                        rs.close();
                         return;
                     }
                 }
+                rs.close();
                 session.invalidate();
                 session = request.getSession();
                 session.setAttribute("message", "nofound");
