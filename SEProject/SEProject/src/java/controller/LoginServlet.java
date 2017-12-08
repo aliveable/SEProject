@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author khunach
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
 public class LoginServlet extends HttpServlet {
 
     private String username;
@@ -41,30 +41,39 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try {
             Statement stmt = conn.createStatement();
+            RequestDispatcher pg = request.getRequestDispatcher("Login.jsp");
+            HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
+                
                 username = request.getParameter("Username");
                 password = request.getParameter("Password");
-                HttpSession session = request.getSession();
+                if(username != null  && password != null){
                 String sql = "select * from member where Username = '" + username + "'";
                 ResultSet rs = stmt.executeQuery(sql);
                 if (rs.next()) {
-                    if (rs.getString(2).equals(password)) {
+                    if (rs.getString("Password").equals(password)) {
                         session.invalidate();
                         session = request.getSession();
-                        session.setAttribute("username", rs.getString(1));
-
-                        RequestDispatcher pg = request.getRequestDispatcher("./Services?page=1");
-                        
-                        pg.forward(request, response);
+                        session.setAttribute("username", rs.getString("Username"));
+                        session.setAttribute("first_name", rs.getString("Firstname"));
+                        session.setAttribute("last_name", rs.getString("Lastname"));
+                        session.setAttribute("phone", rs.getString("Phone"));
+                        session.setAttribute("email", rs.getString("Email"));
+                        session.setAttribute("address", rs.getString("Address"));
+                        session.setAttribute("district", rs.getString("District"));
+                        session.setAttribute("sub_district", rs.getString("SubDistrict"));
+                        session.setAttribute("province", rs.getString("Province"));
+                        session.setAttribute("postal_code", rs.getString("PostalCode"));
+                        response.sendRedirect("./Services");
                         rs.close();
                         return;
                     } else {
                         session.invalidate();
                         session = request.getSession();
                         session.setAttribute("message", "noequals");
-                        RequestDispatcher pg = request.getRequestDispatcher("LoginJSP.jsp");
                         pg.forward(request, response);
                         rs.close();
                         return;
@@ -74,9 +83,11 @@ public class LoginServlet extends HttpServlet {
                 session.invalidate();
                 session = request.getSession();
                 session.setAttribute("message", "nofound");
-                RequestDispatcher pg = request.getRequestDispatcher("LoginJSP.jsp");
                 pg.forward(request, response);
                 return;
+                }
+                session.invalidate();
+                pg.forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);

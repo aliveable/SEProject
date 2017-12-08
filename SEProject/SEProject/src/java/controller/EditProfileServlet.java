@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,10 +20,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
-@WebServlet(urlPatterns = {"/UsernameCheckServlet"})
-public class UsernameCheckServlet extends HttpServlet {
+/**
+ *
+ * @author Amoeba
+ */
+@WebServlet(name = "EditProfileServlet", urlPatterns = {"/EditProfileServlet"})
+public class EditProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,39 +37,56 @@ public class UsernameCheckServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     private Connection conn;
-    
+
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        
+        try {
             Statement stmt = conn.createStatement();
             HttpSession session = request.getSession();
-            
-            String username = request.getParameter("username");
-            
-            ResultSet rs = stmt.executeQuery("SELECT Username FROM member WHERE Username ='" + username + "';");
-                if (rs.next()) {
+            try (PrintWriter out = response.getWriter()) {
+                String first_name = request.getParameter("first_name");
+                String last_name = request.getParameter("last_name");
+                String email = request.getParameter("email");
+                String phone = request.getParameter("phone");
+                String address = request.getParameter("address");
+                String district = request.getParameter("district");
+                String sub_district = request.getParameter("sub_district");
+                String province = request.getParameter("province");
+                String postal_code = request.getParameter("postal_code");
+                String password = request.getParameter("password");
+                String confirm_password = request.getParameter("confirm_password");
+                ResultSet rs = stmt.executeQuery("SELECT Password FROM member WHERE Username ='"+session.getAttribute("username")+"';");
+                rs.next();
+                if(password.equals(confirm_password) && password.equals(rs.getString("Password"))){
                     rs.close();
-                    response.setContentType("text/plain");
-                    response.getWriter().write("Username นี้ใช้ไม่ได้");
-                    return;
-                } else {
+                    stmt.executeUpdate("Update member SET Firstname='"+first_name+"', Lastname='"+last_name+"', Phone='"+phone+"', Email='"+email+"', "
+                            + "Address='"+address+"', District='"+district+"', SubDistrict='"+sub_district+"', Province='"+province+"', PostalCode='"
+                            +postal_code+"' WHERE Username='"+session.getAttribute("username")+"';");
+                    session.setAttribute("first_name", first_name);
+                    session.setAttribute("last_name", last_name);
+                    session.setAttribute("email", email);
+                    session.setAttribute("phone", phone);
+                    session.setAttribute("address", address);
+                    session.setAttribute("district", district);
+                    session.setAttribute("sub_district", sub_district);
+                    session.setAttribute("province", province);
+                    session.setAttribute("postal_code", postal_code);
+                    out.println("<script>alert(\"Success\");location=\"./Profile\";</script>");
+                }else{
                     rs.close();
-                    response.setContentType("text/plain");
-                    response.getWriter().write("");
-                    return;
-                }
-            
+                    out.println("<script>alert(\"Password Invalid\");history.go(-1);</script>");
+                }      
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(UsernameCheckServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

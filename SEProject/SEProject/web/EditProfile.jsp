@@ -1,80 +1,107 @@
-<html lang="en">
+<%-- 
+    Document   : EditProfile
+    Created on : Dec 8, 2017, 4:57:30 PM
+    Author     : Amoeba
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
         <title>Bootstrap Example</title>
-        <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/CSS/Css1.css">
-        <link rel="stylesheet" href="CSS/Register.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <script type="text/javascript"></script>
+
+
+        <link rel="stylesheet" href="CSS/User_profile_edit.css">
+
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+        <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+
+
+        <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-        <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
-        <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
+
     </head>
 
+
     <body>
-        <section class="regis-block">
+
+
+        <header id="brand">
+            <%@include file="navbar.jsp" %> 
+        </header>
+
+        <div class="col-lg-12" id="alignpersonalinfo">
 
             <div class="container">
-                <div class="sec-topregis">
-                    <h2 class="text-center">Register</h2>
-                </div>
+                <h1>Edit Profile</h1>
+                <hr>
+                <div class="row">
+                    <!-- left column -->
 
-                <div class="col-md-12">
-                    <form action="RegisterServlet" method="POST">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="First Name">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
-                                    </div>
+                    <!-- edit form column -->
+                    <div class="col-md-9 personal-info">
+                        <h3>Personal info</h3>
+
+                        <form action="EditProfileServlet" method="POST" id="submit" name="editprofile">
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">First name:</label>
+                                <div class="col-lg-8">
+                                    <input pattern="[a-zA-Z0-9]{5,50}" class="form-control" type="text" name="first_name" id="first_name" value="${sessionScope.first_name}">
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="Phone">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Last name:</label>
+                                <div class="col-lg-8">
+                                    <input pattern="[a-zA-Z0-9]{5,50}" class="form-control" type="text" name="last_name" id="last_name" value="${sessionScope.last_name}">
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="Address">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Province">
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Email:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="email" name="email" id="email" value="${sessionScope.email}">
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="District">
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Phone:</label>
+                                <div class="col-lg-8">
+                                    <input pattern="^[0-9]{10}$" class="form-control" type="text" name="phone" id="phone" value="${sessionScope.phone}">
                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <select class="form-control" name="province">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Address:</label>
+                                <div class="row col-lg-8">
+                                    <div class="col-lg-4">
+                                        <input pattern="^[a-zA-Z0-9]{5,50}$" class="form-control" type="text" name="address" id="address" value="${sessionScope.address}">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input pattern="^[a-zA-Z0-9]{5,50}$" class="form-control" type="text" name="district" id="district" value="${sessionScope.district}">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input pattern="^[a-zA-Z0-9]{5,50}$" class="form-control" type="text" name="sub_district" id="sub_district" value="${sessionScope.sub_district}">
+                                    </div>
+                                    <br><br><br>
+                                    <div class="col-lg-5">
+                                        <select class="form-control" name="province" id="province">
                                             <option value="" selected>--------- เลือกจังหวัด ---------</option>
                                             <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                             <option value="กระบี่">กระบี่ </option>
@@ -156,45 +183,39 @@
                                             <option value="อื่นๆ">อื่นๆ</option>
                                         </select>
                                     </div>
+                                    <div class="col-lg-4">
+                                        <input pattern="^[0-9]{5}$" class="form-control" type="text" name="postal_code" id="postal_code" value="${sessionScope.postal_code}">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                    <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="Postal code">
+                            <h2>Password Confrimation</h2>
+                            <hr>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Password:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="password" name="password" id="password" value="" placeholder="Password">
                                 </div>
                             </div>
 
-                            <div class="row">
-
-                                <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                    <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="Username">
-                                </div>
-
-                            </div>	
-
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Confirm password:</label>
+                                <div class="col-md-8">
+                                    <input  class="form-control" type="password" name="confirm_password" id="confirm_password" value="" placeholder="Confirm password">
                                 </div>
                             </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                            
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"></label>
+                                <div class="col-md-8">
+                                    <input type="submit"  class="btn btn-primary" name="submitreg" value="Save Changes"/>
+                                    <span></span>
+                                    <a href="./Profile" type="reset" class="btn btn-default">Cancel</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                <input type="submit" class="btn btn-block btn-lg btn-primary" value="Register" data-toggle="modal" data-target="#myModal"/>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </section>
-
+        </div>
     </body>
+</html>

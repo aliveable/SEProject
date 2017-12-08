@@ -9,6 +9,7 @@
     <head>
         <title>Bootstrap Example</title>
         <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="/CSS/Css1.css">
@@ -34,17 +35,17 @@
                 </div>
 
                 <div class="col-md-12">
-                    <form id="targetsubmit"action="RegisterServlet" method="POST" name="register">
+                    <form id="targetsubmit" action="RegisterServlet" method="POST" name="register">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="First Name">
+                                        <input pattern="[a-zA-Z0-9]{5,50}" type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="First Name">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                        <input pattern="[a-zA-Z0-9]{5,50}" type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +54,7 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
 
-                                        <input pattern="^[0-9]$" type="text" name="phone" id="phone" class="form-control input-sm floatlabel" placeholder="Phone">
+                                        <input pattern="[0-9]{10}" type="text" name="phone" id="phone" class="form-control input-sm floatlabel" placeholder="Phone">
 
                                     </div>
                                 </div>
@@ -170,13 +171,13 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                    <input pattern="^[0-9]{5}$" type="text" name="postal_code" id="postal_code" class="form-control input-sm floatlabel" placeholder="Postal code">                                </div>
+                                    <input pattern="[0-9]{5}" type="text" name="postal_code" id="postal_code" class="form-control input-sm floatlabel" placeholder="Postal code">                                </div>
                             </div>
 
                             <div class="row">
 
                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                                    <input pattern="^[a-zA-Z0-9]{5,50}$" type="text" name="username" id="username" class="form-control input-sm floatlabel" placeholder="Username">
+                                    <input pattern="[a-zA-Z0-9]{5,50}" type="text" name="username" id="username" class="form-control input-sm floatlabel" placeholder="Username">
                                     <span class="text-danger" id="user_error"></span>
                                 </div>
                             </div>
@@ -184,12 +185,12 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input pattern="^[a-zA-Z0-9]{5,50}$" type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                                    <input pattern="[a-zA-Z0-9]{5,50}" type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input pattern="^[a-zA-Z0-9]{5,50}$" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                                    <input pattern="[a-zA-Z0-9]{5,50}" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
                                 </div>
                             </div>
                         </div>
@@ -198,27 +199,25 @@
                                 <button type="button" data-toggle="modal" id="submit" class="btn btn-block btn-lg btn-primary" value="Register">Register</button>
                             </div>
                         </div>
-                        <!-- Modal -->
-
-                        <div class="modal fade" id="myModal" role="dialog" >
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Alert!!!</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p id="textalert">.....</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
+                    </form>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog" >
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Alert!!!</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p id="textalert">.....</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
-
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
