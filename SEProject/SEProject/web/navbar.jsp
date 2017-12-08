@@ -89,7 +89,7 @@
                         </li>
                             </c:when>
                             <c:otherwise>
-                                <a href="./Login.jsp">Login</a>
+                                <a href="./Login">Login</a>
                             </c:otherwise>
                         </c:choose>
                     </ul>
