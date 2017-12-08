@@ -1,14 +1,23 @@
-#padleft_search{
-    margin-left: 19.3%;
-}
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 8, 2017, 4:31:01 PM
+    Author     : 58070012
+*/
+
 .mainbody {
     background:#f0f0f0;
 }
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
-
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
   margin-left: -15px;
   margin-right: -15px;
@@ -24,17 +33,19 @@
   padding-right: 15px;
 }
 
-.navbar-content
-{
-    width:200px;
-    padding: 10px;
-    padding-bottom:0px;
-}
+
 .navbar-content:before, .navbar-content:after
 {
     display: table;
     
     line-height: 0;
+}
+
+.navbar-content
+{
+    width:200px;
+    padding: 10px;
+    padding-bottom:0px;
 }
 .navbar-nav.navbar-right:last-child {
     margin-right: 15px !important;
@@ -42,11 +53,11 @@
 
 .navbar-footer 
 {
-    background-color:;
-    
+    background-color:#DDD;
+    width: 100%;
 }
 
-.navbar-footer-content { padding:30px 100px 30px 30px; }
+.navbar-footer-content { padding:30px 300px 30px 30px; }
 
 span.navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='White' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
@@ -233,4 +244,3 @@ footer {
 p.copyright {
   margin: 15px 0 0;
 }
-

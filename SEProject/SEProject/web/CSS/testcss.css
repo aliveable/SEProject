@@ -23,17 +23,19 @@
   padding-right: 15px;
 }
 
-.navbar-content
-{
-    width:500px;
-    padding: 10px;
-    padding-bottom:0px;
-}
+
 .navbar-content:before, .navbar-content:after
 {
     display: table;
     
     line-height: 0;
+}
+
+.navbar-content
+{
+    width:200px;
+    padding: 10px;
+    padding-bottom:0px;
 }
 .navbar-nav.navbar-right:last-child {
     margin-right: 15px !important;

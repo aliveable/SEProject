@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 
         <link rel="stylesheet" href="/CSS/Css1.css">
-        <link rel="stylesheet" href="CSS/testcss.css">
+        <link rel="stylesheet" href="CSS/index.css">
         <link rel="stylesheet" href="CSS/herocss.css">
         <link rel="stylesheet" href="CSS/Cardcss.css">
 
@@ -103,29 +103,26 @@
                                                 example@pods.tldddd</p>
                                             <div class="divider">
                                             </div>
-                                            <a href="./56ExR" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
 
-                                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
-
-                                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
-
-                                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
+                                            <div>
+                                                <a href="./56ExR" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
+                                            </div>
+                                            
+                                            <div>
+                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
+                                            </div>
+                                            <div>
+                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
+                                            </div>
+                                            <div>
+                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
+                                            </div>
+                                            <div>
+                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Sign-out</a>
+                                            </div>
                                         </div>
 
                                     </div>
-
-                                </div>
-
-                                <div class="navbar-footer">
-
-
-                                    <div class="navbar-footer-content">
-                                        <div class="row">
-
-                                            <a href="#" class="btn btn-default btn-sm pull-right"><i class="fa fa-power-off" aria-hidden="true"></i> Sign Out</a>
-                                        </div>
-                                    </div>
-
 
                                 </div>
 
