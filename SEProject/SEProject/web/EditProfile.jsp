@@ -66,43 +66,43 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">First name:</label>
                                 <div class="col-lg-8">
-                                    <input pattern="{1,50}" class="form-control" type="text" name="first_name" id="first_name" value="${sessionScope.first_name}">
+                                    <input pattern="{1,50}" class="form-control" type="text" name="first_name" placeholder="First Name" id="first_name" value="${sessionScope.first_name}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Last name:</label>
                                 <div class="col-lg-8">
-                                    <input pattern="{1,50}" class="form-control" type="text" name="last_name" id="last_name" value="${sessionScope.last_name}">
+                                    <input pattern="{1,50}" class="form-control" type="text" name="last_name" placeholder="Last Name" id="last_name" value="${sessionScope.last_name}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Email:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" type="email" name="email" id="email" value="${sessionScope.email}">
+                                    <input class="form-control" type="email" name="email" placeholder="Email" id="email" value="${sessionScope.email}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Phone:</label>
                                 <div class="col-lg-8">
-                                    <input pattern="^[0-9]{1,10}$" class="form-control" type="text" name="phone" id="phone" value="${sessionScope.phone}">
+                                    <input pattern="^[0-9]{1,10}$" class="form-control" type="text" name="phone" placeholder="Phone" id="phone" value="${sessionScope.phone}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Address:</label>
                                 <div class="row col-lg-8">
                                     <div class="col-lg-4">
-                                        <input pattern="{1,50}" class="form-control" type="text" name="address" id="address" value="${sessionScope.address}">
+                                        <input pattern="{1,50}" class="form-control" type="text" name="address" placeholder="Address" id="address" value="${sessionScope.address}">
                                     </div>
                                     <div class="col-lg-4">
-                                        <input pattern="{1,50}" class="form-control" type="text" name="district" id="district" value="${sessionScope.district}">
+                                        <input pattern="{1,50}" class="form-control" type="text" name="district" placeholder="District" id="district" value="${sessionScope.district}">
                                     </div>
                                     <div class="col-lg-4">
-                                        <input pattern="{1,50}" class="form-control" type="text" name="sub_district" id="sub_district" value="${sessionScope.sub_district}">
+                                        <input pattern="{1,50}" class="form-control" type="text" name="sub_district" placeholder="Sub district" id="sub_district" value="${sessionScope.sub_district}">
                                     </div>
                                     <br><br><br>
                                     <div class="col-lg-5">
                                         <select class="form-control" name="province" id="province">
-                                            <option value="" selected>--------- เลือกจังหวัด ---------</option>
+                                            <option value="${sessionScope.province}" selected>${sessionScope.province}</option>
                                             <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                             <option value="กระบี่">กระบี่ </option>
                                             <option value="กาญจนบุรี">กาญจนบุรี </option>
@@ -184,7 +184,7 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-4">
-                                        <input pattern="^[0-9]{5}$" class="form-control" type="text" name="postal_code" id="postal_code" value="${sessionScope.postal_code}">
+                                        <input pattern="^[0-9]{5}$" class="form-control" type="text" name="postal_code" placeholder="Postal code" id="postal_code" value="${sessionScope.postal_code}">
                                     </div>
                                 </div>
                             </div>
@@ -195,15 +195,7 @@
                                 <div class="col-md-8">
                                     <input class="form-control" type="password" name="password" id="password" value="" placeholder="Password">
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Confirm password:</label>
-                                <div class="col-md-8">
-                                    <input  class="form-control" type="password" name="confirm_password" id="confirm_password" value="" placeholder="Confirm password">
-                                </div>
-                            </div>
-                            
+                            </div>                            
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
                                 <div class="col-md-8">
