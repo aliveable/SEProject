@@ -157,17 +157,18 @@
             </div>
             
         </div>
-        <div class="col" style="padding-top: 2%;">
-            <div class="row ">
-                <div class="col-lg-5 ">
-                    <h3 class="text-center" style="float: right">Status : _________________</h3>
-                </div>
-            </div>
-            
-        </div>
+        
 
         <div class="col-lg-12" style="padding-top: 2%">
-            <div class="container" >
+            <div class="container" style=";border: 1px solid black; padding: 2%">
+                <div class="col" style="padding-top: 1%;padding-bottom: 1%">
+                    <div class="row ">
+                        <div class="col-lg-5 ">
+                            <h3 class="text-center" style="float: left">Status : _________________</h3>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="row">
                     <div class="col-lg-5" style="background: #D3D3D320">
                         <h2>Name</h2>
@@ -271,12 +272,106 @@
             
                 <br>
                 <br>
+                <hr>
+            <div class="container" style="background: #D3D3D320">
+                <div class="container">
+                    <h2>Package</h2>
+                    
+                </div>
+                <hr>
                 
+                <div class="container" >
+                    <div class="row">
+                    
+                        <div  class="col col-lg-12" style="border:1px #555 solid;overflow-y: scroll;max-height: 350px">
+                            
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <img src="http://placekitten.com/220/200" value="1">
+                                </div>
+                                <div class="col-lg-7">
+                                    <br>
+                                    
+                                        <li>Name  : <span>Test1</span></li>
+                                        <li>Price : <span>20$</span></li>
+                                    
+                                    <div>
+                                        <label>Description</label>
+                                        <li>asdadsadadasdasdasd
+                                        asdasdasdasd
+                                        asdadsasdasd</li>
+                                    </div>
 
+
+                                    
+                                </div>
+                                
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <img src="http://placekitten.com/220/200" value="1">
+                                </div>
+                                <div class="col-lg-7">
+                                    <br>
+                                    
+                                        <li>Name  : <span>Test1</span></li>
+                                        <li>Price : <span>20$</span></li>
+                                    
+                                    <div>
+                                        <label>Description</label>
+                                        <li>asdadsadadasdasdasd
+                                        asdasdasdasd
+                                        asdadsasdasd</li>
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+                            
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <img src="http://placekitten.com/220/200" value="1">
+                                </div>
+                                <div class="col-lg-7">
+                                    <br>
+                                    
+                                        <li>Name  : <span>Test1</span></li>
+                                        <li>Price : <span>20$</span></li>
+                                    
+                                    <div>
+                                        <label>Description</label>
+                                        <li>asdadsadadasdasdasd
+                                        asdasdasdasd
+                                        asdadsasdasd</li>
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="container" style="float: left">
+                            <div class="form-group"  >
+                                <button type="button" class="btn btn-success" style="margin-top: 1%;margin-left: -3%;margin-bottom: 20px">Edit</button>
+                            </div>
+                        </div>
+
+                </div>
+                <br>
+                <br>
+                
+            </div>
+                <br>
+                
         </div>
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script src='JS/gallery.js'></script>
-        
+        <script>
+            $('#pak1').css("border", "3px solid bule");
+        </script>
         <script>
             
            $('.container-gallery').gallery({
@@ -312,7 +407,8 @@
                 }
           });
           
+          
         </script>
-
+        <br>
     </body>
 </html>
