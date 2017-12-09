@@ -100,24 +100,41 @@
                                             <p class="text-muted small">
                                                 example@pods.tldddd</p>
                                             <div class="divider">
-                                            </div>
+                                             <li>
+                                                <div>
 
-                                            <div>
-                                                <a href="./56ExR" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
-                                            </div>
+                                                    <a href="./56ExR" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
 
-                                            <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
-                                            </div>
-                                            <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
-                                            </div>
-                                            <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
-                                            </div>
-                                            <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Sign-out</a>
-                                            </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
+
+                                                </div>
+                                            </li>
+                                            <li>     
+                                                <div>
+
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
+
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
+
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Sign-out</a>
+
+                                                </div>
+                                            </li>
                                         </div>
 
                                     </div>

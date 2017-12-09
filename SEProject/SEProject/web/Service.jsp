@@ -104,23 +104,41 @@
                                                 example@pods.tldddd</p>
                                             <div class="divider">
                                             </div>
+                                            <li>
+                                                <div>
 
-                                            <div>
-                                                <a href="./56ExR" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
-                                            </div>
-                                            
-                                            <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
-                                            </div>
-                                            <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
-                                            </div>
-                                            <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
-                                            </div>
-                                            <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Sign-out</a>
-                                            </div>
+                                                    <a href="./56ExR" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
+
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
+
+                                                </div>
+                                            </li>
+                                            <li>     
+                                                <div>
+
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
+
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
+
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div>
+
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Sign-out</a>
+
+                                                </div>
+                                            </li>
                                         </div>
 
                                     </div>
@@ -128,31 +146,31 @@
                                 </div>
 
                             </ul>
-                            
+
                         </li>
                     </ul>
                 </div>
-                
+
             </nav>
-            
-            
+
+
         </header>
         <section class="content-section-a">
 
             <div class="container col-lg-10" id="paddingtop">
-                
+
                 <div class="container">
                     <div class="row justify-content-md-center">
                         <div class="col col-lg-6 text-center">
                             <h2> <a href="#">เพิ่มการให้บริการ</a> </h2>
                         </div>
-                        
+
                         <div class="col col-lg-6">
                             <h2> <a href="#">ตรวจสอบหลักฐานและอนุมัติ</a> </h2>
                         </div>
-                        
+
                     </div>
-                    
+
                 </div>
 
                 <hr>
