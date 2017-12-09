@@ -60,9 +60,9 @@ public class RegisterServlet extends HttpServlet {
                 ResultSet rs = stmt.executeQuery("SELECT Username FROM member WHERE Username ='" + username + "';");
                 if (!rs.next()) {
                     stmt.executeUpdate("insert into member(Username, Password, Firstname, Lastname, Phone, Email, Address, District, SubDistrict, Province, PostalCode) "
-                            + "values ('" + username + "', '" + password + "', '" + first_name + "', '" + last_name +
-                            "', '" + phone + "', '" + email + "', '" + address + "', '"+district+"', '"+ sub_district +
-                            "', '" + province + "', '"+ postal_code + "');");
+                            + "values (N'" + username + "', N'" + password + "', N'" + first_name + "', N'" + last_name +
+                            "', N'" + phone + "', N'" + email + "', N'" + address + "', N'"+district+"', N'"+ sub_district +
+                            "', N'" + province + "', N'"+ postal_code + "');");
                     rs.close();
                     session.setAttribute("type", "สมัครสมาชิกเสร็จเรียบร้อย");
                     response.sendRedirect("Login");

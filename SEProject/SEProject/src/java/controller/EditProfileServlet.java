@@ -67,8 +67,8 @@ public class EditProfileServlet extends HttpServlet {
                 rs.next();
                 if(password.equals(confirm_password) && password.equals(rs.getString("Password"))){
                     rs.close();
-                    stmt.executeUpdate("Update member SET Firstname='"+first_name+"', Lastname='"+last_name+"', Phone='"+phone+"', Email='"+email+"', "
-                            + "Address='"+address+"', District='"+district+"', SubDistrict='"+sub_district+"', Province='"+province+"', PostalCode='"
+                    stmt.executeUpdate("Update member SET Firstname=N'"+first_name+"', Lastname=N'"+last_name+"', Phone=N'"+phone+"', Email=N'"+email+"', "
+                            + "Address=N'"+address+"', District=N'"+district+"', SubDistrict=N'"+sub_district+"', Province=N'"+province+"', PostalCode=N'"
                             +postal_code+"' WHERE Username='"+session.getAttribute("username")+"';");
                     session.setAttribute("first_name", first_name);
                     session.setAttribute("last_name", last_name);

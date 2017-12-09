@@ -40,12 +40,12 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input pattern="[a-zA-Z0-9]{5,50}" type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="First Name">
+                                        <input pattern="{1, 50}" type="text" name="first_name" id="first_name" class="form-control input-sm floatlabel" placeholder="First Name">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input pattern="[a-zA-Z0-9]{5,50}" type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                        <input pattern="{1, 50}" type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
                                     </div>
                                 </div>
                             </div>

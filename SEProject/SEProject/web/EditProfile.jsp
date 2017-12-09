@@ -66,13 +66,13 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">First name:</label>
                                 <div class="col-lg-8">
-                                    <input pattern="[a-zA-Z0-9]{5,50}" class="form-control" type="text" name="first_name" id="first_name" value="${sessionScope.first_name}">
+                                    <input pattern="{1,50}" class="form-control" type="text" name="first_name" id="first_name" value="${sessionScope.first_name}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Last name:</label>
                                 <div class="col-lg-8">
-                                    <input pattern="[a-zA-Z0-9]{5,50}" class="form-control" type="text" name="last_name" id="last_name" value="${sessionScope.last_name}">
+                                    <input pattern="{1,50}" class="form-control" type="text" name="last_name" id="last_name" value="${sessionScope.last_name}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,20 +84,20 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Phone:</label>
                                 <div class="col-lg-8">
-                                    <input pattern="^[0-9]{10}$" class="form-control" type="text" name="phone" id="phone" value="${sessionScope.phone}">
+                                    <input pattern="^[0-9]{1,10}$" class="form-control" type="text" name="phone" id="phone" value="${sessionScope.phone}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Address:</label>
                                 <div class="row col-lg-8">
                                     <div class="col-lg-4">
-                                        <input pattern="^[a-zA-Z0-9]{5,50}$" class="form-control" type="text" name="address" id="address" value="${sessionScope.address}">
+                                        <input pattern="{1,50}" class="form-control" type="text" name="address" id="address" value="${sessionScope.address}">
                                     </div>
                                     <div class="col-lg-4">
-                                        <input pattern="^[a-zA-Z0-9]{5,50}$" class="form-control" type="text" name="district" id="district" value="${sessionScope.district}">
+                                        <input pattern="{1,50}" class="form-control" type="text" name="district" id="district" value="${sessionScope.district}">
                                     </div>
                                     <div class="col-lg-4">
-                                        <input pattern="^[a-zA-Z0-9]{5,50}$" class="form-control" type="text" name="sub_district" id="sub_district" value="${sessionScope.sub_district}">
+                                        <input pattern="{1,50}" class="form-control" type="text" name="sub_district" id="sub_district" value="${sessionScope.sub_district}">
                                     </div>
                                     <br><br><br>
                                     <div class="col-lg-5">
