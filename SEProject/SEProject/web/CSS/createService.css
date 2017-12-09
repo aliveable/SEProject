@@ -237,7 +237,11 @@ footer {
 p.copyright {
   margin: 15px 0 0;
 }
+
 #editor{
-    max-height: 200px;
+    max-height: 500px;
+}
+.container {
+    background: #D3D3D3;
 }
 

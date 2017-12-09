@@ -24,10 +24,9 @@
 
         <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="/CSS/Css1.css">
-        <link rel="stylesheet" href="CSS/createService.css">
-        <link rel="stylesheet" href="CSS/herocss.css">
-        <link rel="stylesheet" href="CSS/Cardcss.css">
+        <link rel="stylesheet" type="text/css" href="CSS/Css1.css">
+        <link rel="stylesheet" type="text/css" href="CSS/createService.css">
+
 
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -137,10 +136,10 @@
 
         <br>
         <br>
-        <div class="container">
+        <div class="container" style="background: #D3D3D320">
 
-            <div class="form-group">
-                <h1>Create Service</h1>
+            <div class="form-group" >
+                <h1 style="padding-top: 2%">Create Service</h1>
             </div>
             <hr>
 
@@ -150,7 +149,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Name:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="Kunach">
+                            <input class="form-control" type="text" value="">
                         </div>
                     </div>
 
@@ -160,11 +159,11 @@
 
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <input class="form-control" type="text" value="232 ladkrabang">
+                                    <input class="form-control" type="text" value="">
                                 </div>
                                 <br>
                                 <div class="col-lg-4">
-                                    <input class="form-control" type="text" value="Ladkrabang">
+                                    <input class="form-control" type="text" value="">
                                 </div>
                                 <br>
                             </div>
@@ -172,7 +171,7 @@
 
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <input class="form-control" type="text" value="Ladkrabang">
+                                    <input class="form-control" type="text" value="">
                                 </div>
                                 <br>
                                 <div class="col-lg-5">
@@ -275,9 +274,9 @@
         </div>
         <br>
 
-        <div class="container">
+        <div class="container" style="background: #D3D3D320">
             <div class="form-group">
-                <h1>Description</h1>
+                <h1 style="padding-top: 2%">Description</h1>
             </div>
             <hr>
             <div class="col-lg-12">
@@ -285,26 +284,63 @@
                 <div class="form-group">
                     <div id="toolbar">
                         <button class="ql-bold">Bold</button>
-                        <button class="ql-italic">Italic</button>
+                        <span class="ql-formats">
+                            <select class="ql-size">
+                                <option value="10px">Small</option>
+                                <option selected>Normal</option>
+                                <option value="18px">Large</option>
+                                <option value="32px">Huge</option>
+                            </select>
+                        </span>
                     </div>
 
                     <!-- Create the editor container -->
 
-                    <div id="editor">
-                        <p>Hello World!</p>
+                    <div id="editor" style="height: 500px">
+
                     </div>
                     <br>
 
                     <!-- Include the Quill library -->
                 </div>
             </div>
+            
+
         </div>
+        
+        <div class="container">
+            
+            <div class="row">
+                <div class="col align-self-start">
+                   
+                </div>
+                <div class="col align-self-center">
+                    
+                </div>
+                <div class="col align-self-end">
+                    <button class="btn btn-primary" type="submit" style="float: right">Save Profile</button>
+                </div>
+            </div>
+                
+        </div>
+        <br>
+        <br>
 
         <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
         <!-- Initialize Quill editor -->
         <script>
-            var editor = new Quill('#editor', {
-                modules: {toolbar: '#toolbar'},
+            var BackgroundClass = Quill.import('attributors/class/background');
+            var ColorClass = Quill.import('attributors/class/color');
+            var SizeStyle = Quill.import('attributors/style/size');
+            Quill.register(BackgroundClass, true);
+            Quill.register(ColorClass, true);
+            Quill.register(SizeStyle, true);
+
+            var quill = new Quill('#editor', {
+                modules: {
+                    toolbar: '#toolbar'
+                },
+                placeholder: 'Example',
                 theme: 'snow'
             });
         </script>
