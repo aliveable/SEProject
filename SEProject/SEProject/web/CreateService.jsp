@@ -48,125 +48,22 @@
     <body>
 
         <header id="brand">
-            <nav class="navbar navbar-expand-lg" id="header">
-
-                <a class="navbar-brand" href="#" >Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav  mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">Disabled</a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav mr-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-                                <span class="user-name">
-                                    John Doe
-                                </span>
-
-                                <b class="caret"></b></a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-
-                                <div class="navbar-content">
-
-
-                                    <div class="row">
-
-
-                                        <div class="col-md-7">
-                                            <span>John Doe</span>
-                                            <p class="text-muted small">
-                                                example@pods.tldddd</p>
-                                            <div class="divider">
-                                             <li>
-                                                <div>
-
-                                                    <a href="./56ExR" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
-
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div>
-
-                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
-
-                                                </div>
-                                            </li>
-                                            <li>     
-                                                <div>
-
-                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
-
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div>
-
-                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
-
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div>
-
-                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Sign-out</a>
-
-                                                </div>
-                                            </li>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </ul>
-
-                        </li>
-                    </ul>
-                </div>
-
-            </nav>
-
+            <%@include file="navbar.jsp"%>
         </header>
 
         <br>
         <br>
-        <div class="container" style="background: #D3D3D320">
-
-            <div class="form-group" >
-                <h1 style="padding-top: 2%">Create Service</h1>
-            </div>
-            <hr>
-
-            <div class="col-lg-12">
-                <form class="form-horizontal" role="form">
-
+        <form action="CreateServiceServlet" method="POST" class="form-horizontal" role="form">
+            <div class="container" style="background: #D3D3D320">
+                <div class="form-group" >
+                    <h1 style="padding-top: 2%">Create Service</h1>
+                </div>
+                <hr>
+                <div class="col-lg-12">               
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Name:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" type="text" name="name" id="name" value="" placeholder="name">
                         </div>
                     </div>
 
@@ -176,11 +73,11 @@
 
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <input class="form-control" type="text" value="">
+                                    <input class="form-control" type="text" value="" name="address" id="address" placeholder="Address" >
                                 </div>
                                 <br>
                                 <div class="col-lg-4">
-                                    <input class="form-control" type="text" value="">
+                                    <input class="form-control" type="text" value="" name="district" id="district" placeholder="District">
                                 </div>
                                 <br>
                             </div>
@@ -188,7 +85,7 @@
 
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <input class="form-control" type="text" value="">
+                                    <input class="form-control" type="text" value="" name="sub_district" id="sub_district" placeholder="Sub district">
                                 </div>
                                 <br>
                                 <div class="col-lg-5">
@@ -280,66 +177,57 @@
 
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <input class="form-control" type="text" value="10520">
+                                    <input class="form-control" type="text" value="" name="postal_code" id="postal_code" placeholder="Postal code">
                                 </div>
                             </div>
                             <br>
                         </div>
-                    </div>
-                </form>
-            </div>  
-        </div>
-        <br>
-
-        <div class="container" style="background: #D3D3D320">
-            <div class="form-group">
-                <h1 style="padding-top: 2%">Description</h1>
+                    </div>                
+                </div>  
             </div>
-            <hr>
-            <div class="col-lg-12">
-                <!-- Create the toolbar container -->
+            <br>
+            <div class="container" style="background: #D3D3D320">
                 <div class="form-group">
-                    <div id="toolbar">
-                        <button class="ql-bold">Bold</button>
-                        <span class="ql-formats">
-                            <select class="ql-size">
-                                <option value="10px">Small</option>
-                                <option selected>Normal</option>
-                                <option value="18px">Large</option>
-                                <option value="32px">Huge</option>
-                            </select>
-                        </span>
+                    <h1 style="padding-top: 2%">Description</h1>
+                </div>
+                <hr>
+                <div class="col-lg-12">
+                    <!-- Create the toolbar container -->
+                    <div class="form-group">
+                        <div id="toolbar">
+                            <button class="ql-bold">Bold</button>
+                            <span class="ql-formats">
+                                <select class="ql-size">
+                                    <option value="10px">Small</option>
+                                    <option selected>Normal</option>
+                                    <option value="18px">Large</option>
+                                    <option value="32px">Huge</option>
+                                </select>
+                            </span>
+                        </div>
+                        <!-- Create the editor container -->
+                        <div id="editor" style="height: 500px">
+                        </div>
+                        <br>
+                        <!-- Include the Quill library -->
                     </div>
-
-                    <!-- Create the editor container -->
-
-                    <div id="editor" style="height: 500px">
-
-                    </div>
-                    <br>
-
-                    <!-- Include the Quill library -->
                 </div>
             </div>
-            
+            <div class="container">
 
-        </div>
-        
-        <div class="container">
-            
-            <div class="row">
-                <div class="col align-self-start">
-                   
-                </div>
-                <div class="col align-self-center">
-                    
-                </div>
-                <div class="col align-self-end">
-                    <button class="btn btn-primary" type="submit" style="float: right">Save Profile</button>
-                </div>
+                <div class="row">
+                    <div class="col align-self-start">
+
+                    </div>
+                    <div class="col align-self-center">
+
+                    </div>
+                    <div class="col align-self-end">
+                        <button class="btn btn-primary" type="submit" style="float: right">Save Profile</button>
+                    </div>
+                </div>                
             </div>
-                
-        </div>
+        </form>
         <br>
         <br>
 
