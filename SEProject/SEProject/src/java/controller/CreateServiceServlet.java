@@ -58,11 +58,11 @@ public class CreateServiceServlet extends HttpServlet {
                 String sub_district = request.getParameter("sub_district");
                 String province = request.getParameter("province");
                 String postal_code = request.getParameter("postal_code");
-                String desc = "test";               
+                String desc = request.getParameter("contents");
                 stmt.executeUpdate("INSERT INTO space "
                         + "(Username, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, Space_Province, Space_PostalCode, Space_Status)"
-                        + "VALUES ('"+session.getAttribute("username")+"', N'"+name+"', N'"+desc+"', N'"+address+"', N'"+district+"', N'"
-                        +sub_district+"', N'"+province+"', '"+postal_code+"', 'Incomplete');");
+                        + "VALUES ('" + session.getAttribute("username") + "', N'" + name + "', N'" + desc + "', N'" + address + "', N'" + district + "', N'"
+                        + sub_district + "', N'" + province + "', '" + postal_code + "', 'Incomplete');");
                 response.sendRedirect("CreateService.jsp");
             }
         } catch (SQLException ex) {

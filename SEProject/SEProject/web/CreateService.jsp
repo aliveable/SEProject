@@ -53,7 +53,7 @@
 
         <br>
         <br>
-        <form action="CreateServiceServlet" method="POST" class="form-horizontal" role="form">
+        <form action="CreateServiceServlet" method="POST" class="form-horizontal" role="form" id="createService">
             <div class="container" style="background: #D3D3D320">
                 <div class="form-group" >
                     <h1 style="padding-top: 2%">Create Service</h1>
@@ -248,7 +248,13 @@
                 placeholder: 'Example',
                 theme: 'snow'
             });
+            
+            $(document).ready(function () {
+                $("#createService").submit(function () {
+                    $(this).append("<input type='hidden' name='contents' value='"+
+                         JSON.stringify(quill.getContents())+"' />");
+                });
+            });
         </script>
-
     </body>
 </html>
