@@ -40,6 +40,7 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try {
             Statement stmt = conn.createStatement();
             HttpSession session = request.getSession();
@@ -48,20 +49,23 @@ public class RegisterServlet extends HttpServlet {
                 String last_name = request.getParameter("last_name");
                 String phone = request.getParameter("phone");
                 String email = request.getParameter("email");
-                String address = request.getParameter("address") + " " + request.getParameter("district")
-                        + " " + request.getParameter("sub_district") + " " + request.getParameter("province")
-                        + " " + request.getParameter("postal_code");
+                String address = request.getParameter("address");
+                String district = request.getParameter("district");
+                String sub_district = request.getParameter("sub_district");
+                String province = request.getParameter("province");
+                String postal_code = request.getParameter("postal_code");
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 String confirmed_password = request.getParameter("password_confirmation");
                 ResultSet rs = stmt.executeQuery("SELECT Username FROM member WHERE Username ='" + username + "';");
                 if (!rs.next()) {
-                    stmt.executeUpdate("insert into member(Username, Password, Firstname, Lastname, Phone, Email, Address) values "
-                            + "('" + username + "', '" + password + "', '" + first_name + "', '" + last_name + "', '" + phone + "', '" + email + "', '" + address + "');");
+                    stmt.executeUpdate("insert into member(Username, Password, Firstname, Lastname, Phone, Email, Address, District, SubDistrict, Province, PostalCode) "
+                            + "values (N'" + username + "', N'" + password + "', N'" + first_name + "', N'" + last_name +
+                            "', N'" + phone + "', N'" + email + "', N'" + address + "', N'"+district+"', N'"+ sub_district +
+                            "', N'" + province + "', N'"+ postal_code + "');");
                     rs.close();
                     session.setAttribute("type", "สมัครสมาชิกเสร็จเรียบร้อย");
-                    RequestDispatcher pg = request.getRequestDispatcher("LoginJSP.jsp");
-                    pg.forward(request, response);
+                    response.sendRedirect("Login");
                     return;
                 } else {
                     rs.close();

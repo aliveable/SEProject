@@ -8,12 +8,10 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,10 +19,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
-@WebServlet(urlPatterns = {"/UsernameCheckServlet"})
-public class UsernameCheckServlet extends HttpServlet {
+/**
+ *
+ * @author Amoeba
+ */
+@WebServlet(name = "ProfileServlet", urlPatterns = {"/Profile"})
+public class ProfileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,40 +36,16 @@ public class UsernameCheckServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    private Connection conn;
-    
-    @Override
-    public void init() {
-        conn = (Connection) getServletContext().getAttribute("connection");
-    }
-    
+
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            Statement stmt = conn.createStatement();
-            HttpSession session = request.getSession();
-            
-            String username = request.getParameter("username");
-            
-            ResultSet rs = stmt.executeQuery("SELECT Username FROM member WHERE Username ='" + username + "';");
-                if (rs.next()) {
-                    rs.close();
-                    response.setContentType("text/plain");
-                    response.getWriter().write("Username นี้ใช้ไม่ได้");
-                    return;
-                } else {
-                    rs.close();
-                    response.setContentType("text/plain");
-                    response.getWriter().write("");
-                    return;
-                }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(UsernameCheckServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            RequestDispatcher pg = request.getRequestDispatcher("Profile.jsp");
+            try (PrintWriter out = response.getWriter()) {
+                    pg.forward(request, response);
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

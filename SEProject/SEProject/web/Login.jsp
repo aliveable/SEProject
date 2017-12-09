@@ -9,6 +9,7 @@
     <head>
         <title>Bootstrap Example</title>
         <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="/CSS/Css1.css">
@@ -29,7 +30,7 @@
                 <div class="row">
                     <div class="col-md-4 login-sec">
                         <h2 class="text-center">Login Now</h2>
-                        <form class="login-form" action="LoginServlet" method="POST">
+                        <form class="login-form" action="Login" method="POST">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="text-uppercase">Username</label>
                                 <input type="text" name="Username" class="form-control" placeholder="">
