@@ -15,8 +15,7 @@
 
     <link rel="stylesheet" href="/CSS/Css1.css">
     <link rel="stylesheet" href="CSS/testcss.css">
-    <link rel="stylesheet" href="CSS/herocss.css">
-    <link rel="stylesheet" href="CSS/Cardcss.css">
+   
     <link rel="stylesheet" href="CSS/User_profile.css">
 
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>

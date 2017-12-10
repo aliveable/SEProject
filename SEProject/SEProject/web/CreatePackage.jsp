@@ -14,7 +14,7 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 
@@ -43,6 +43,8 @@
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        
+        <script type="text/javascript" src="JS/CreatepackageModal.js"></script>
 
     </head>
 
@@ -99,6 +101,7 @@
                             <!-- Include the Quill library -->
                         </div>
                     </div>
+                    
                     <div class="container" style="margin-left: 1%;padding-bottom: 1%">
                         <div class="row"> 
                             <div>
@@ -118,19 +121,13 @@
                 <br>
                 <br>
                 <br>
-                <div class="container" style="background: #D3D3D320">
+                
+                <div id="addItemContainer" class="container addinc" style="background: #D3D3D320">
                     <h1 style="padding-top: 1%;">Include</h1>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-11" style="">
-                            <ul style="font-size: 1.8em;"><div style="word-wrap: break-word">Test:____________________________________asdasdasdadasdadsdfsdfsdfsdfsdfsdfsdf</div></ul>
-                        </div>
-
-                        <div class="col-md-1">
-                            <button id="edititem2" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>
-                        </div>
+                    <div class="row" id="addItemContainer">
+                    
                     </div>
-
 
                     <br>
                     <div class="">
@@ -138,20 +135,15 @@
                     </div>
                     <br>
                 </div>
+                
                 <br>
                 <br>
-                <div class="container" style="background: #D3D3D320">
+                <div id="addItemContainerOptional" class="container" style="background: #D3D3D320">
                     <h1 style="padding-top: 1%;">Optional</h1>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-11" style="">
-                            <ul style="font-size: 1.8em;"> <div style="word-wrap: break-word">Test:____________________________________asdasddfsdfsdfsdfsdfasdasdas</div> </ul>
-                        </div>
-
-                        <div class="col-md-1" style="float: right">
-                            <button id="edititemOptional1" type="button" class="btn btn-success" style="margin-left: 2%;float: right"> Edit</button>
-                        </div>
+                    <div class="row" id="addItemContainerOptional">
                     </div>
+                    
                     <br>
                     <div class="">
                         <button id="additemoptional" type="button" class="btn btn-success" style="margin-left: 2%">Add item</button>
@@ -167,6 +159,7 @@
                 <br>
                 <br>
             </div>
+            <!----------------------------------------------------------------------------------------------------------------------------->
 
             <div class="modal fade" id="editmodalinclude" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -181,7 +174,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="recipient-name" class="form-control-label">Privilage:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
+                                    <input type="text" class="form-control" id="recipient-name-include-edit">
                                 </div>
                             </form>
                         </div>
@@ -207,18 +200,18 @@
                             <form>
                                 <div class="form-group">
                                     <label for="recipient-name" class="form-control-label">Privilege:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
+                                    <input type="text" class="form-control" id="recipient-name-include-add">
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addItem()">Add</button>
 
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-------------------------------------------------------------------------------------------------------------------------------->
             <div class="modal fade" id="editmodaloptional" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -231,16 +224,16 @@
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Optional:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
+                                    <label  class="form-control-label">Optional:</label>
+                                    <input type="text" class="form-control" id="recipient-name-edit">
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Price:</label>
-                                    <input type="text" class="form-control" id="recipient-Price">
+                                    <label  class="form-control-label">Price:</label>
+                                    <input type="text" class="form-control" id="recipient-price-edit">
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Max:</label>
-                                    <input type="text" class="form-control" id="recipient-max">
+                                    <label  class="form-control-label">Max:</label>
+                                    <input type="text" class="form-control" id="recipient-max-edit">
                                 </div>
                             </form>
                         </div>
@@ -270,7 +263,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="form-control-label">Price:</label>
-                                    <input type="text" class="form-control" id="recipient-Price">
+                                    <input type="text" class="form-control" id="recipient-price">
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="form-control-label">Max:</label>
@@ -279,16 +272,11 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
-
+                            <button onClick="addItemOptional()" id="addmodalbtn" type="submit" class="btn btn-success" data-dismiss="modal">Add</button>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <script type="text/javascript" src="JS/CreatepackageModal.js"></script>
-
-
 
         </form>
         <br>
@@ -318,6 +306,8 @@
                             JSON.stringify(quill.getContents()) + "' />");
                 });
             });
+            
+            
         </script>
     </body>
 </html>

@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<link rel="stylesheet" href="CSS/newcssNavbar.css">
 
     <nav class="navbar navbar-expand-lg" id="header">
 
@@ -43,7 +44,7 @@
                             <c:when test="${sessionScope.username != null}">
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">                 
-                                <span class="user-name">
+                                <span class="user-name" style="color: white">
                                     ${sessionScope.first_name} ${sessionScope.last_name}
                                 </span>
 
@@ -57,27 +58,27 @@
 
 
                                         <div class="col-md-7">
-                                            <span>${sessionScope.first_name} ${sessionScope.last_name}</span>
-                                            <p class="text-muted small">
+                                            <span style="color: white">${sessionScope.first_name} ${sessionScope.last_name}</span>
+                                            <p style="color: white;font-size: 0.9em" class="text-muted small">
                                                 ${sessionScope.email}</p>
                                             <div class="divider">
                                             </div>
 
                                             <div>
-                                                <a href="./Profile" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
+                                                <a style="color: white" href="./Profile" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
                                             </div>
                                             
                                             <div>
-                                                <a href="./MyService" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
+                                                <a style="color: white" href="./MyService" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
                                             </div>
                                             <div>
-                                                <a href="./Services" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
+                                                <a style="color: white" href="./Services" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
                                             </div>
                                             <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
+                                                <a style="color: white"href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
                                             </div>
                                             <div>
-                                                <a href="./Logout" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Sign-out</a>
+                                                <a style="color: white"href="./Logout" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Sign-out</a>
                                             </div>
                                         </div>
                                                     
