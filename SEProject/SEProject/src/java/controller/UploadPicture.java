@@ -17,10 +17,10 @@ import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-@WebServlet(name = "uploadPicture", urlPatterns = {"/uploadPicture"})
+@WebServlet(name = "UploadPicture", urlPatterns = {"/UploadPicture"})
 public class UploadPicture extends HttpServlet {
 
-    private final int MAX_FILE_SIZE = 40 * 1024;
+    private final int MAX_FILE_SIZE = 5 * 1024 * 1024;
     private String filePath;
     private File file;
 
@@ -58,7 +58,6 @@ public class UploadPicture extends HttpServlet {
 
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setFileSizeMax(MAX_FILE_SIZE);
-        testAlert(response, "out no file");
 
         try {
             List fileItems = upload.parseRequest(request);
