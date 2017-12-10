@@ -172,7 +172,8 @@
                         </div>
                         <div class="container" style="float: left">
                             <div class="form-group"  >
-                                <button type="button" class="btn btn-success" style="margin-top: 1%">Edit</button>
+                                <button type="button" class="btn btn-success" style="margin-top: 1%"
+                                        onclick="window.location.href='EditServicePicture'">Edit</button>
                             </div>
                         </div>
 
