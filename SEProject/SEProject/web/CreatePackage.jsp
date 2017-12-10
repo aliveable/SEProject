@@ -122,11 +122,11 @@
                     <h1 style="padding-top: 1%;">Include</h1>
                     <hr>
                     <div class="row">
-                        <div class="col-md-7" style="">
-                            <ul style="font-size: 1.8em;overflow-x: scroll">Test:____________________________________</ul>
+                        <div class="col-md-11" style="">
+                            <ul style="font-size: 1.8em;"><div style="word-wrap: break-word">Test:____________________________________asdasdasdadasdadsdfsdfsdfsdfsdfsdfsdf</div></ul>
                         </div>
 
-                        <div class="">
+                        <div class="col-md-1">
                             <button id="edititem2" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>
                         </div>
                     </div>
@@ -144,17 +144,17 @@
                     <h1 style="padding-top: 1%;">Optional</h1>
                     <hr>
                     <div class="row">
-                        <div class="col-md-7" style="">
-                            <ul style="font-size: 1.8em;overflow-x: scroll">Test:____________________________________</ul>
+                        <div class="col-md-11" style="">
+                            <ul style="font-size: 1.8em;"> <div style="word-wrap: break-word">Test:____________________________________asdasddfsdfsdfsdfsdfasdasdas</div> </ul>
                         </div>
 
-                        <div class="">
-                            <button id="edititemOptional1" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>
+                        <div class="col-md-1" style="float: right">
+                            <button id="edititemOptional1" type="button" class="btn btn-success" style="margin-left: 2%;float: right"> Edit</button>
                         </div>
                     </div>
                     <br>
                     <div class="">
-                        <button id="additemoptional" type="button" class="btn btn-success" style="margin-left: 2%"> Add item</button>
+                        <button id="additemoptional" type="button" class="btn btn-success" style="margin-left: 2%">Add item</button>
                     </div>
                     <br>
                 </div>
