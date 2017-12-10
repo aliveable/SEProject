@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -49,7 +50,7 @@ public class CreateServiceServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         try {
-            Statement stmt = conn.createStatement();
+            PreparedStatement stmt = null;
             HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
                 String name = request.getParameter("name");
@@ -59,11 +60,19 @@ public class CreateServiceServlet extends HttpServlet {
                 String province = request.getParameter("province");
                 String postal_code = request.getParameter("postal_code");
                 String desc = request.getParameter("contents");
-                stmt.executeUpdate("INSERT INTO space "
+                stmt = conn.prepareStatement("INSERT INTO space "
                         + "(Username, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, Space_Province, Space_PostalCode, Space_Status)"
-
-                        + "VALUES ('" + session.getAttribute("username") + "', N'" + name + "', N'" + desc + "', N'" + address + "', N'" + district + "', N'"
-                        + sub_district + "', N'" + province + "', '" + postal_code + "', 'Incomplete');");
+                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                stmt.setString(1, (String) session.getAttribute("username"));
+                stmt.setString(2, name);
+                stmt.setString(3, desc);
+                stmt.setString(4, address);
+                stmt.setString(5, district);
+                stmt.setString(6, sub_district);
+                stmt.setString(7, province);
+                stmt.setString(8, postal_code);
+                stmt.setString(9, "Incomplete");
+                stmt.executeUpdate();
                 response.sendRedirect("CreateService.jsp");  
             }
         } catch (SQLException ex) {
