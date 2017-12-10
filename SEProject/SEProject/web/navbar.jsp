@@ -68,7 +68,7 @@
                                             </div>
                                             
                                             <div>
-                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
+                                                <a href="./MyService" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
                                             </div>
                                             <div>
                                                 <a href="./Services" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>

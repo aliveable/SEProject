@@ -9,13 +9,13 @@ package model;
  *
  * @author Amoeba
  */
-public class Service {
+public class ShowService {
     private int space_id;
     private String space_name;
     private String space_address;
     private String name;
 
-    public Service() {
+    public ShowService() {
     }
 
     public int getSpace_id() {

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -23,12 +24,13 @@ import javax.servlet.http.HttpSession;
 import model.ShowService;
 import model.ShowServices;
 
+
 /**
  *
  * @author Amoeba
  */
-@WebServlet(name = "ServicesServlet", urlPatterns = {"/Services"})
-public class ServicesServlet extends HttpServlet {
+@WebServlet(name = "MyServiceServlet", urlPatterns = {"/MyService"})
+public class MyServiceServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,7 +43,7 @@ public class ServicesServlet extends HttpServlet {
      */
     
     private Connection conn;
-    
+
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
@@ -52,14 +54,15 @@ public class ServicesServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            Statement stmt = conn.createStatement();
+            Statement stmt = conn.createStatement();        
             HttpSession session = request.getSession();
+            RequestDispatcher pg = request.getRequestDispatcher("MyService.jsp");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            
             ResultSet rs = stmt.executeQuery("SELECT s.Space_ID, s.Space_Name, s.Space_Address, s.Space_Province, s.Space_District, s.Space_SubDistrict,"
                     + " m.Firstname, m.Lastname "
                     + "FROM space s  "
-                    + "JOIN member m ON (m.Username = s.Username);");
+                    + "JOIN member m ON (m.Username = s.Username) WHERE m.Username='"+session.getAttribute("username")+"';");
             ShowServices services = new ShowServices();
             while(rs.next()){
                 ShowService service = new ShowService();
@@ -70,18 +73,11 @@ public class ServicesServlet extends HttpServlet {
                 services.add(service);
             }
             rs.close();
-            session.setAttribute("services", services);
-            int num_page = services.getServices().size();
-            if(num_page%10 == 0)
-                num_page /= 10;
-            else
-                num_page = (num_page/10)+1;
-            session.setAttribute("num_page", num_page);
-            RequestDispatcher pg = request.getRequestDispatcher("index.jsp");
+            session.setAttribute("my_service", services);
             pg.forward(request, response);
             
         }} catch (SQLException ex) {
-            Logger.getLogger(ServicesServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MyServiceServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

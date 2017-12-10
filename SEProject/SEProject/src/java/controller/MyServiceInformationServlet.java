@@ -20,15 +20,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ShowService;
-import model.ShowServices;
+import model.ServiceDesc;
 
 /**
  *
  * @author Amoeba
  */
-@WebServlet(name = "ServicesServlet", urlPatterns = {"/Services"})
-public class ServicesServlet extends HttpServlet {
+@WebServlet(name = "MyServiceInformationServlet", urlPatterns = {"/MyServiceInformation"})
+public class MyServiceInformationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,9 +38,9 @@ public class ServicesServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
+
     private Connection conn;
-    
+
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
@@ -51,37 +50,31 @@ public class ServicesServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        try {
+        try {        
             Statement stmt = conn.createStatement();
             HttpSession session = request.getSession();
+            RequestDispatcher pg = request.getRequestDispatcher("MyServiceInformation.jsp");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            ResultSet rs = stmt.executeQuery("SELECT s.Space_ID, s.Space_Name, s.Space_Address, s.Space_Province, s.Space_District, s.Space_SubDistrict,"
-                    + " m.Firstname, m.Lastname "
-                    + "FROM space s  "
-                    + "JOIN member m ON (m.Username = s.Username);");
-            ShowServices services = new ShowServices();
-            while(rs.next()){
-                ShowService service = new ShowService();
-                service.setSpace_id(rs.getInt("Space_ID"));
-                service.setSpace_name(rs.getString("Space_Name"));
-                service.setSpace_address(rs.getString("Space_Address")+" "+rs.getString("Space_District")+rs.getString("Space_SubDistrict")+" "+rs.getString("Space_Province"));
-                service.setName(rs.getString("Firstname")+" "+rs.getString("Lastname"));
-                services.add(service);
-            }
+            out.println("test");
+            ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
+                    + "Space_Province, Space_PostalCode, Space_Status "
+                    + "FROM space WHERE Space_ID="+request.getParameter("id")+";");
+            rs.next();
+            ServiceDesc desc = new ServiceDesc();
+            desc.setAddress(rs.getString("Space_Address"));
+            desc.setDesc(rs.getString("Space_Desc"));
+            desc.setDistrict(rs.getString("Space_District"));
+            desc.setId(rs.getInt("Space_ID"));
+            desc.setName(rs.getString("Space_Name"));
+            desc.setPostal_code(rs.getString("Space_PostalCode"));
+            desc.setProvince(rs.getString("Space_Province"));
+            desc.setStatus(rs.getString("Space_Status"));
+            desc.setSub_district(rs.getString("Space_SubDistrict"));
             rs.close();
-            session.setAttribute("services", services);
-            int num_page = services.getServices().size();
-            if(num_page%10 == 0)
-                num_page /= 10;
-            else
-                num_page = (num_page/10)+1;
-            session.setAttribute("num_page", num_page);
-            RequestDispatcher pg = request.getRequestDispatcher("index.jsp");
+            session.setAttribute("desc", desc);
             pg.forward(request, response);
-            
         }} catch (SQLException ex) {
-            Logger.getLogger(ServicesServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MyServiceInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
