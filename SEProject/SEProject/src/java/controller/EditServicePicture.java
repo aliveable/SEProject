@@ -2,6 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,11 +18,35 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/EditServicePicture"})
 public class EditServicePicture extends HttpServlet {
 
+    private Connection conn;
+
+    @Override
+    public void init() throws ServletException {
+        conn = (Connection) getServletContext().getAttribute("connection");
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println("sdfds");
+            try {
+                Statement stmt = conn.createStatement();
+
+                String sql = "SELECT Space_Pic_Path FROM space_pic WHERE Space_ID = " + request.getParameter("id") + ";";
+
+                ResultSet rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    request.setAttribute("pic", rs.getString("Space_Pic_Path"));
+                }
+                
+                request.setAttribute("test", "test123222");
+                //out.println(request.getParameter("test"));
+                RequestDispatcher rd = request.getRequestDispatcher("editServicePicture.jsp");
+                rd.forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

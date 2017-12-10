@@ -172,8 +172,9 @@
                         </div>
                         <div class="container" style="float: left">
                             <div class="form-group"  >
-                                <button type="button" class="btn btn-success" style="margin-top: 1%"
-                                        onclick="window.location.href='EditServicePicture'">Edit</button>
+                                <form action="EditServicePicture" method="post">
+                                    <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${requestScope.ids}">Edit</button>
+                                </form>
                             </div>
                         </div>
 
@@ -282,7 +283,7 @@
             <script src="//code.jquery.com/jquery.min.js"></script>
             <script src='JS/gallery.js'></script>
             <script>
-                $('#pak1').css("border", "3px solid bule");
+                                            $('#pak1').css("border", "3px solid bule");
             </script>
             <script>
 

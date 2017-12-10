@@ -38,42 +38,43 @@ public class MyServiceInformationServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     private Connection conn;
 
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        try {        
+        try {
             Statement stmt = conn.createStatement();
             HttpSession session = request.getSession();
             RequestDispatcher pg = request.getRequestDispatcher("MyServiceInformation.jsp");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("test");
-            ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
-                    + "Space_Province, Space_PostalCode, Space_Status "
-                    + "FROM space WHERE Space_ID="+request.getParameter("id")+";");
-            rs.next();
-            ServiceDesc desc = new ServiceDesc();
-            desc.setAddress(rs.getString("Space_Address"));
-            desc.setDesc(rs.getString("Space_Desc"));
-            desc.setDistrict(rs.getString("Space_District"));
-            desc.setId(rs.getInt("Space_ID"));
-            desc.setName(rs.getString("Space_Name"));
-            desc.setPostal_code(rs.getString("Space_PostalCode"));
-            desc.setProvince(rs.getString("Space_Province"));
-            desc.setStatus(rs.getString("Space_Status"));
-            desc.setSub_district(rs.getString("Space_SubDistrict"));
-            rs.close();
-            session.setAttribute("desc", desc);
-            pg.forward(request, response);
-        }} catch (SQLException ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println("test");
+                ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
+                        + "Space_Province, Space_PostalCode, Space_Status "
+                        + "FROM space WHERE Space_ID=" + request.getParameter("id") + ";");
+                rs.next();
+                ServiceDesc desc = new ServiceDesc();
+                desc.setAddress(rs.getString("Space_Address"));
+                desc.setDesc(rs.getString("Space_Desc"));
+                desc.setDistrict(rs.getString("Space_District"));
+                desc.setId(rs.getInt("Space_ID"));
+                desc.setName(rs.getString("Space_Name"));
+                desc.setPostal_code(rs.getString("Space_PostalCode"));
+                desc.setProvince(rs.getString("Space_Province"));
+                desc.setStatus(rs.getString("Space_Status"));
+                desc.setSub_district(rs.getString("Space_SubDistrict"));
+                rs.close();
+                session.setAttribute("desc", desc);
+                request.setAttribute("ids", request.getParameter("id"));
+                pg.forward(request, response);
+            }
+        } catch (SQLException ex) {
             Logger.getLogger(MyServiceInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

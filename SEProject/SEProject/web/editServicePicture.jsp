@@ -9,7 +9,8 @@
     </head>
 
     <body>
-        <h3>File Upload:</h3>
+        <h3>XXX </h3>
+        ${requestScope.test} <br>
         Select a file to upload: <br>
         <form action="EditServicePicture" method="post" enctype="multipart/form-data">
             <input id="input-upload" type="file" name="file" accept="image/*" multiple />
