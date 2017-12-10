@@ -13,22 +13,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ShowService;
-import model.ShowServices;
 
 /**
  *
  * @author Amoeba
  */
-@WebServlet(name = "ServicesServlet", urlPatterns = {"/Services"})
-public class ServicesServlet extends HttpServlet {
+@WebServlet(name = "EditServiceServlet", urlPatterns = {"/EditServiceServlet"})
+public class EditServiceServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,14 +36,13 @@ public class ServicesServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     private Connection conn;
-    
+
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -54,36 +50,24 @@ public class ServicesServlet extends HttpServlet {
         try {
             Statement stmt = conn.createStatement();
             HttpSession session = request.getSession();
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            ResultSet rs = stmt.executeQuery("SELECT s.Space_ID, s.Space_Name, s.Space_Address, s.Space_Province, s.Space_District, s.Space_SubDistrict,"
-                    + " m.Firstname, m.Lastname "
-                    + "FROM space s  "
-                    + "JOIN member m ON (m.Username = s.Username);");
-            ShowServices services = new ShowServices();
-            while(rs.next()){
-                ShowService service = new ShowService();
-                service.setSpace_id(rs.getInt("Space_ID"));
-                service.setSpace_name(rs.getString("Space_Name"));
-                service.setSpace_address(rs.getString("Space_Address")+" "+rs.getString("Space_District")+rs.getString("Space_SubDistrict")+" "+rs.getString("Space_Province"));
-                service.setName(rs.getString("Firstname")+" "+rs.getString("Lastname"));
-                services.add(service);
+            try (PrintWriter out = response.getWriter()) {
+                String name = request.getParameter("name");
+                String address = request.getParameter("address");
+                String district = request.getParameter("district");
+                String sub_district = request.getParameter("sub_district");
+                String province = request.getParameter("province");
+                String postal_code = request.getParameter("postal_code");
+                String desc = request.getParameter("contents");
+                String id = request.getParameter("id");
+                String status = "Incomplete";
+                stmt.executeUpdate("Update space SET Space_Name=N'" + name + "', Space_Desc=N'" + desc + "', Space_Address='" + address + "', Space_District=N'" + district + "', "
+                        + "Space_SubDistrict=N'" + sub_district + "', Space_Province=N'" + province + "', Space_PostalCode=N'" + postal_code + "', Space_Status=N'" + status + "'"
+                        + " WHERE Space_ID="+id+";");
+                out.println("<script>alert(\"Success\");location=\"./MyService\";</script>");
             }
-            rs.close();
-            session.setAttribute("services", services);
-            int num_page = services.getServices().size();
-            if(num_page%10 == 0)
-                num_page /= 10;
-            else
-                num_page = (num_page/10)+1;
-            session.setAttribute("num_page", num_page);
-            RequestDispatcher pg = request.getRequestDispatcher("index.jsp");
-            pg.forward(request, response);
-            
-        }} catch (SQLException ex) {
-            Logger.getLogger(ServicesServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+        } catch (SQLException ex) {
+            Logger.getLogger(EditProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

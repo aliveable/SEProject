@@ -12,18 +12,18 @@ import java.util.List;
  *
  * @author Amoeba
  */
-public class Services {
-    private List<Service> services = new ArrayList<Service>();  
+public class ShowServices {
+    private List<ShowService> services = new ArrayList<ShowService>();  
 
-    public List<Service> getServices() {
+    public List<ShowService> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(List<ShowService> services) {
         this.services = services;
     }
         
-    public void add(Service service){
+    public void add(ShowService service){
         this.services.add(service);
     }
     
