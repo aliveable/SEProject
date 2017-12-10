@@ -61,9 +61,10 @@ public class CreateServiceServlet extends HttpServlet {
                 String desc = request.getParameter("contents");
                 stmt.executeUpdate("INSERT INTO space "
                         + "(Username, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, Space_Province, Space_PostalCode, Space_Status)"
+
                         + "VALUES ('" + session.getAttribute("username") + "', N'" + name + "', N'" + desc + "', N'" + address + "', N'" + district + "', N'"
                         + sub_district + "', N'" + province + "', '" + postal_code + "', 'Incomplete');");
-                response.sendRedirect("CreateService.jsp");
+                response.sendRedirect("CreateService.jsp");  
             }
         } catch (SQLException ex) {
             Logger.getLogger(CreateServiceServlet.class.getName()).log(Level.SEVERE, null, ex);
