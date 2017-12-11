@@ -32,6 +32,8 @@ public class EditServicePicture extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             ServiceDesc desc = (ServiceDesc) session.getAttribute("desc");
+            
+            String[] pics = new String[5];
 
             Statement stmt = conn.createStatement();
 
@@ -40,7 +42,6 @@ public class EditServicePicture extends HttpServlet {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                request.setAttribute("pic", rs.getString("Space_Pic_Path"));
             }
             rs.close();
 

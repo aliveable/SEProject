@@ -85,9 +85,7 @@ public class UploadPicture extends HttpServlet {
                     i++;
                 }
             }
-            
-            session.setAttribute("serviceInformation_id", desc.getId());
-            response.sendRedirect("MyServiceInformation");
+            response.sendRedirect("MyServiceInformation?id="+desc.getId());
         } catch (FileUploadBase.FileSizeLimitExceededException ex) {
             //out.println("too large");
         } catch (Exception ex) {
