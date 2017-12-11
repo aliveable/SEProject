@@ -119,7 +119,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach var="row" items="${sessionScope.services.getServices()}">
+                                                <c:forEach var="row" items="${requestScope.services.getServices()}">
                                                     <tr>
                                                         <td>${row.space_id}</td>
                                                         <td>${row.space_name}</td>
