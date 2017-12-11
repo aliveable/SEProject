@@ -149,7 +149,7 @@
                             <ul>
                                 <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
                                     <li>${row.space_text}</li>
-                                    </c:forEach>
+                                </c:forEach>
                             </ul>
                         </div>
                         <br>
@@ -166,11 +166,6 @@
                             <c:forEach var="pic" items="${sessionScope.desc.getPics()}">
                                 <img src="${pic}">
                             </c:forEach>
-                            <!--img src="http://placekitten.com/220/200" value="1">
-                            <img src="http://placekitten.com/180/200" value="2">
-                            <img src="http://placekitten.com/130/200" value="3">
-                            <img src="http://placekitten.com/270/200" value="4"-->
-
 
                         </div>
                         <div class="container" style="float: left">
