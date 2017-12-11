@@ -53,66 +53,93 @@
         </header>
         <br>
 
-        <div class="container" style="margin-top: 2%;padding-top: 1%">
-            <h1>Package Information</h1>
-        </div>
-        <br>
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
-            <label style="font-size: 1.5em">Gallery</label>
-            <hr>
-            <div class="container-gallery" style="overflow-y: scroll; max-height: 400px">
-                <img src="http://placekitten.com/220/200" value="1">
-                <img src="http://placekitten.com/180/200" value="2">
-                <img src="http://placekitten.com/130/200" value="3">
-                <img src="http://placekitten.com/270/200" value="4">
+        <div class="container" style="border: 2px solid #D3D3D370;padding-bottom: 1%">
+            <div class="container text-center" style="margin-top: 2%;padding-top: 1%">
+                <h1>Package Information</h1>
             </div>
-        </div>
-        <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
-            <center>
-                <h1>Package name:</h1>  
-            </center>
-        </div>
-
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Description </label>
             <hr>
-            <div style="max-height: 300px;overflow-y: scroll">
-                skldflkdnflknfllknl
-                
+            <br>
+
+            <div class="container" style="background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
+                <label style="font-size: 2em">Gallery</label>
+                <hr>
+                <div class="container-gallery" style="overflow-y: scroll; max-height: 800px">
+                    <img src="http://placekitten.com/220/200" value="1">
+                    <img src="http://placekitten.com/180/200" value="2">
+                    <img src="http://placekitten.com/130/200" value="3">
+                    <img src="http://placekitten.com/270/200" value="4">
+                </div>
             </div>
-        </div>
-
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">
-            Price:_______Baht/Hr<br>
-            You must reserve___hour(s) before the time.<br>
-            Open: _____ Close: _____<br>
-            </label>
-        </div>
-
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">What's Include </label>
             <hr>
-            <div style="overflow-y: scroll; max-height: 300px">
-                <ul>
-                    <li>Test1</li>
-                    <li>Test2</li>
-                    <li>Test3</li>
-                    <li>Test4</li>
-                </ul>
+            <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
+                <center>
+                    <h1>Package name</h1>  
+                </center>
             </div>
-        </div>
 
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Option </label>
-            <hr>
-            <div style="overflow-y: scroll; max-height: 300px">
-                <ul>
-                    <li>Test1</li>
-                    <li>Test2</li>
-                    <li>Test3</li>
-                    <li>Test4</li>
-                </ul>
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1.5%">
+                <div >
+                    <h3>Description</h3>
+                    <hr>
+                    <div style="max-height: 300px;overflow-y: scroll;">
+
+                        <style>
+                            #toolbar {
+                                display: none;
+                            }
+                        </style>
+
+                        <div id="toolbar">
+                            <button class="ql-bold">Bold</button>
+                            <span class="ql-formats">
+                                <select class="ql-size">
+                                    <option value="10px">Small</option>
+                                    <option selected>Normal</option>
+                                    <option value="18px">Large</option>
+                                    <option value="32px">Huge</option>
+                                </select>
+                            </span>
+                        </div>
+                        <!-- Create the editor container -->
+                        <div id="editor" style="height: 500px">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
+                <label style="font-size: 1.5em">
+                    Price:_______Baht/Hr<br>
+                    You must reserve___hour(s) before the time.<br>
+                    Open: _____ Close: _____<br>
+                </label>
+            </div>
+
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%;">
+                <label style="font-size: 1.5em">What's Include </label>
+                <hr>
+                <div style="overflow-y: scroll; max-height: 300px">
+                    <ul>
+                        <li>Test1</li>
+                        <li>Test2</li>
+                        <li>Test3</li>
+                        <li>Test4</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%;">
+                <label style="font-size: 1.5em">Option </label>
+                <hr>
+                <div style="overflow-y: scroll; max-height: 300px">
+                    <ul>
+                        <li>Test1</li>
+                        <li>Test2</li>
+                        <li>Test3</li>
+                        <li>Test4</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -128,8 +155,8 @@
         <script>
 
             $('.container-gallery').gallery({
-                height: 200,
-                width: 200,
+                height: 700,
+                width: 500,
                 items: 6,
                 480: {
                     items: 2,
