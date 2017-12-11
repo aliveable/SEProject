@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.RightToRecive;
+import model.RightToRecives;
 import model.ServiceDesc;
 
 /**
@@ -56,8 +58,9 @@ public class MyServiceInformationServlet extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 String id;
                 id = request.getParameter("id");
-                if(session.getAttribute("serviceInformation_id") != null)
+                if (session.getAttribute("serviceInformation_id") != null) {
                     id = (String) session.getAttribute("serviceInformation_id");
+                }
                 session.removeAttribute("serviceInformation_id");
                 ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
                         + "Space_Province, Space_PostalCode, Space_Status "
@@ -73,7 +76,17 @@ public class MyServiceInformationServlet extends HttpServlet {
                 desc.setProvince(rs.getString("Space_Province"));
                 desc.setStatus(rs.getString("Space_Status"));
                 desc.setSub_district(rs.getString("Space_SubDistrict"));
+
+                rs = stmt.executeQuery("SELECT *"
+                        + "FROM space_list  "
+                        + "WHERE Space_ID='" + id + "';");
+                RightToRecives righttorecives = new RightToRecives();
+                while (rs.next()) {
+                    RightToRecive righttorecive = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getNString("Space_Text"));
+                    righttorecives.add(righttorecive);
+                }
                 rs.close();
+                request.setAttribute("RTR", righttorecives);
                 session.setAttribute("desc", desc);
                 pg.forward(request, response);
             }

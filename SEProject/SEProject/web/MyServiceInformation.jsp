@@ -147,18 +147,17 @@
 
                         <div style="overflow-y: scroll; max-height: 300px">
                             <ul>
-                                <li>Test1</li>
-                                <li>Test2</li>
-                                <li>Test3</li>
-                                <li>Test4</li>
+                                <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
+                                    <li>${row.space_text}</li>
+                                </c:forEach>
                             </ul>
 
                         </div>
                         <br>
                         <div class="form-group"  >
                             <form action="getEditRTR" method="post">
-                                    <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${requestScope.desc.getId()}">Edit</button>
-                                </form>
+                                <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${sessionScope.desc.getId()}">Edit</button>
+                            </form>
                         </div>
                         <hr>
                         <h3>Picture</h3>
