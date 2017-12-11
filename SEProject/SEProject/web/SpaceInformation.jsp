@@ -70,7 +70,7 @@
             </div>
             <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
                 <center>
-                    <h1>AAA Factory</h1>  
+                    <h1>${requestScope.spInfo.getName()}</h1>  
                 </center>
             </div>
 
@@ -83,24 +83,24 @@
 
                         <div style="max-height: 300px;overflow-y: scroll">
                             <div style="padding-left: 2%">
-                                <span>${sessionScope.desc.getAddress()}</span>
+                                <span>${requestScope.spInfo.getAddress()}</span>
                             </div>
 
                             <div style="padding-left: 2%">
-                                <span>District : ${sessionScope.desc.getDistrict()}</span> 
+                                <span>District : ${requestScope.spInfo.getDistrict()}</span> 
                             </div>
 
                             <div style="padding-left: 2%">
-                                <span>Sub-District : ${sessionScope.desc.getSub_district()}</span>
+                                <span>Sub-District : ${requestScope.spInfo.getSub_district()}</span>
                             </div>
                             <div style="padding-left: 2%">
-                                <span>Province : ${sessionScope.desc.getProvince()}</span>
+                                <span>Province : ${requestScope.spInfo.getProvince()}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+                            
             <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1.5%">
                 <div >
                     <h3>Description</h3>
@@ -153,21 +153,21 @@
 
                         <div class="form-group">
 
-                            <label class="col-lg-3 control-label" name="first_name">First name:</label><span>${sessionScope.first_name}</span>
+                            <label class="col-lg-3 control-label" name="first_name">First name:</label><span>${requestScope.spInfo.getFirst_name()}</span>
                             <div class="col-lg-8">
 
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Last name:</label><span>${sessionScope.last_name}</span>
+                            <label class="col-lg-3 control-label">Last name:</label><span>${requestScope.spInfo.getLast_name()}</span>
                             <div class="col-lg-8">
 
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Email:</label><span>${sessionScope.email}</span>
+                            <label class="col-lg-3 control-label">Email:</label><span>${requestScope.spInfo.getEmail()}</span>
                             <div class="col-lg-8">
 
                             </div>
@@ -175,39 +175,30 @@
 
                         <div class="form-group">
 
-                            <label class="col-lg-3 control-label">Address:</label><span>${requestScope.address}</span> 
-                            <span>District: </span><span>${requestScope.district}</span> 
+                            <label class="col-lg-3 control-label">Address:</label><span>${requestScope.spInfo.getProvider_address()}</span> 
+                            <span>District: </span><span>${requestScope.spInfo.getProvider_district()}</span> 
 
                             <label class="col-lg-11 control-label">
                                 <label class="col-lg-3 control-label"></label>
-                                <span> Sub-District:</span> <span>${requestScope.sub_district}</span>
+                                <span> Sub-District:</span> <span>${requestScope.spInfo.getProvider_sub_district()}</span>
                             </label>
                             <label class="col-lg-11 control-label">
                                 <label class="col-lg-3 control-label"></label>
-                                <span>Province:</span> <span>${requestScope.province}</span>
+                                <span>Province:</span> <span>${requestScope.spInfo.getProvider_province()}</span>
                             </label>
                             <label class="col-lg-11 control-label">
                                 <label class="col-lg-3 control-label"></label>
-                                <span>Zip-Code:</span> <span>${requestScope.postal_code}</span>
+                                <span>Zip-Code:</span> <span>${requestScope.spInfo.getProvider_postal_code()}</span>
                             </label>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Phone:</label><span>${requestScope.phone}</span>
+                            <label class="col-lg-3 control-label">Phone:</label><span>${requestScope.spInfo.getPhone()}</span>
                         </div>
-                        <input hidden="" type="text" name="phone" value="${requestScope.phone}">
-                        <input hidden="" type="text" name="address" value="${requestScope.address}">
-                        <input hidden="" type="text" name="district" value="${requestScope.district}">
-                        <input hidden="" type="text" name="sub_district" value="${requestScope.sub_district}">
-                        <input hidden="" type="text" name="province" value="${requestScope.province}">
-                        <input hidden="" type="text" name="postal_code" value="${requestScope.postal_code}">
-
                     </form>
 
                 </div>
             </div>
-        </div>
-
-
+        </div>                     
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script src='JS/gallery.js'></script>
         <script>
@@ -249,21 +240,21 @@
             });
         </script>
         <script>
-            var BackgroundClass = Quill.import('attributors/class/background');
-            var ColorClass = Quill.import('attributors/class/color');
-            var SizeStyle = Quill.import('attributors/style/size');
-            Quill.register(BackgroundClass, true);
-            Quill.register(ColorClass, true);
-            Quill.register(SizeStyle, true);
-            var quill = new Quill('#editor', {
-                modules: {
-                    toolbar: '#toolbar'
-                },
-                theme: 'snow'
-            });
-            quill.setContents(${sessionScope.desc.getDesc()});
-            quill.disable();
-        </script>
+                var BackgroundClass = Quill.import('attributors/class/background');
+                var ColorClass = Quill.import('attributors/class/color');
+                var SizeStyle = Quill.import('attributors/style/size');
+                Quill.register(BackgroundClass, true);
+                Quill.register(ColorClass, true);
+                Quill.register(SizeStyle, true);
+                var quill = new Quill('#editor', {
+                    modules: {
+                        toolbar: '#toolbar'
+                    },
+                    theme: 'snow'
+                });
+                quill.setContents(${requestScope.spInfo.getDesc()});
+                quill.disable();
+            </script>
         <br>
     </body>
 </html>

@@ -8,9 +8,9 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -20,16 +20,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.RightToRecive;
-import model.RightToRecives;
-import model.ServiceDesc;
+import model.SpaceInfo;
 
 /**
  *
  * @author Amoeba
  */
-@WebServlet(name = "MyServiceInformationServlet", urlPatterns = {"/MyServiceInformation"})
-public class MyServiceInformationServlet extends HttpServlet {
+@WebServlet(name = "SpaceInformationServlet", urlPatterns = {"/SpaceInformation"})
+public class SpaceInformationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,57 +50,41 @@ public class MyServiceInformationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            Statement stmt = conn.createStatement();
+            PreparedStatement stmt = null;
             HttpSession session = request.getSession();
-            RequestDispatcher pg = request.getRequestDispatcher("MyServiceInformation.jsp");
+            RequestDispatcher pg = request.getRequestDispatcher("SpaceInformation.jsp");
             try (PrintWriter out = response.getWriter()) {
-                String id;
-                id = request.getParameter("id");
-                session.removeAttribute("serviceInformation_id");
-                ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
-                        + "Space_Province, Space_PostalCode, Space_Status "
-                        + "FROM space WHERE Space_ID=" + id + ";");
+                String id = request.getParameter("id");
+                
+                stmt = conn.prepareStatement("SELECT s.Space_Name, s.Space_Address, s.Space_District, s.Space_SubDistrict, s.Space_Province, s.Space_Desc, "
+                        + "m.Firstname, m.Lastname, m.Phone, m.Email, m.Address, m.District, m.SubDistrict, m.Province, m.PostalCode "
+                        + "FROM space s JOIN member m ON (m.Username = s.Username )"
+                        + "WHERE Space_ID=?;");                
+                stmt.setString(1, id);                
+                ResultSet rs = stmt.executeQuery();
                 rs.next();
-                ServiceDesc desc = new ServiceDesc();
-                desc.setAddress(rs.getString("Space_Address"));
-                desc.setDesc(rs.getString("Space_Desc"));
-                desc.setDistrict(rs.getString("Space_District"));
-                desc.setId(rs.getInt("Space_ID"));
-                desc.setName(rs.getString("Space_Name"));
-                desc.setPostal_code(rs.getString("Space_PostalCode"));
-                desc.setProvince(rs.getString("Space_Province"));
-                desc.setStatus(rs.getString("Space_Status"));
-                desc.setSub_district(rs.getString("Space_SubDistrict"));
-
-                rs = stmt.executeQuery("SELECT *"
-                        + "FROM space_list  "
-                        + "WHERE Space_ID=" + id + ";");
-                RightToRecives righttorecives = new RightToRecives();
-                while (rs.next()) {
-                    RightToRecive righttorecive = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getNString("Space_Text"));
-                    righttorecives.add(righttorecive);
-                }
+                SpaceInfo spInfo = new SpaceInfo();
+                spInfo.setAddress(rs.getString("Space_Address"));
+                spInfo.setDesc(rs.getString("Space_Desc"));
+                spInfo.setDistrict(rs.getString("Space_District"));
+                spInfo.setEmail(rs.getString("Email"));
+                spInfo.setFirst_name(rs.getString("Firstname"));
+                spInfo.setLast_name(rs.getString("Lastname"));
+                spInfo.setName(rs.getString("Space_Name"));
+                spInfo.setPhone(rs.getString("Phone"));
+                spInfo.setProvider_address(rs.getString("Address"));
+                spInfo.setProvider_district(rs.getString("District"));
+                spInfo.setProvider_postal_code(rs.getString("PostalCode"));
+                spInfo.setProvider_province(rs.getString("Province"));
+                spInfo.setProvider_sub_district(rs.getString("SubDistrict"));
+                spInfo.setProvince(rs.getString("Space_Province"));
+                spInfo.setSub_district(rs.getString("Space_SubDistrict"));
+                request.setAttribute("spInfo", spInfo);
                 rs.close();
-
-                String sql = "SELECT Space_Pic_Path FROM space_pic WHERE Space_ID = " + desc.getId() + ";";
-
-                rs = stmt.executeQuery(sql);
-
-                String[] pics = new String[5];
-                int i = 0;
-                while (rs.next()) {
-                    pics[i] = rs.getString("Space_Pic_Path");
-                    i++;
-                }
-                rs.close();
-                desc.setPics(pics);
-
-                request.setAttribute("RTR", righttorecives);
-                session.setAttribute("desc", desc);
                 pg.forward(request, response);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MyServiceInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SpaceInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
