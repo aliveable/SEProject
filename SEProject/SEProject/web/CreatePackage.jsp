@@ -44,7 +44,7 @@
 
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
         
-        <script type="text/javascript" src="JS/CreatepackageModal.js"></script>
+        
 
     </head>
 
@@ -281,6 +281,8 @@
         </form>
         <br>
         <br>
+        
+        <script type="text/javascript" src="JS/CreatepackageModal.js"></script>
 
         <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
         <!-- Initialize Quill editor -->

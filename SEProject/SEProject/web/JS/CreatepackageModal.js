@@ -27,27 +27,34 @@ $(document).ready(function () {
 
     });
 
-    $('.addinc').on('click', '#edititem2',function(){
-//        alert($(this).closest('button').index());
-    
+   
+
+    $('#addItemContainer div').on('click', function (){
+        var buttonindex = $(this).index();
+        alert(buttonindex);
     });
+    
+  
     
 });
 
 function edittiem(ind){
     alert("fuck");
+    $('#additemincludemodel').modal('show');`   `
     $('#recipient-name-include-add').val(keepInclude[ind]);
+            
 }
 
 function addItem() {
 
-    $('#addItemContainer.row:last').after('<div class="row">' +
-            '<div class="col-md-11" id="addcomplete" style="">' +
-            '<ul style="font-size: 1.8em;"><div style="word-wrap: break-word">' + $('#recipient-name-include-add').val() + '</div></ul>' +
-            '</div>' +
-            '<div class="col-md-1">' +
-            '<button id="edititem2" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>' +
-            '</div>' +
+    $('#addItemContainer.row:last').after(
+            '<div id="parent" class="row">' +
+                '<div class="col-md-11" id="addcomplete" style="">' +
+                    '<ul style="font-size: 1.8em;"><div style="word-wrap: break-word">' + $('#recipient-name-include-add').val() + '</div></ul>' +
+                '</div>' +
+                '<div id="buttonclick" class="col-md-1">' +
+                    '<button id="edititem2" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>' +
+                '</div>' +
             '</div>');
     keepInclude.push($('#recipient-name-include-add').val());
 }
