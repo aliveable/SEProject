@@ -156,7 +156,7 @@
                         </div>
                         <br>
                         <div class="form-group"  >
-                            <button type="button" class="btn btn-success" style="margin-bottom: 1%">Edit</button>
+                            <a href="editRightToRecive.jsp" type="button" class="btn btn-success" style="margin-top: 1%;margin-left: -3%;margin-bottom: 20px">Edit</a>
                         </div>
                         <hr>
                         <h3>Picture</h3>
