@@ -100,7 +100,7 @@
                                                             <td>${row.space_name}</td>
                                                             <td>${row.space_address}</td>
                                                             <td>${row.name}</td>                                                      
-                                                            <td><button class="btn btn-primary" name="id" value="${row.space_id}" type="submit" style="float: right">ดูรายละเอียด</button></td>
+                                                            <td><button class="btn btn-success" name="id" value="${row.space_id}" type="submit" style="float: right">ดูรายละเอียด</button></td>
                                                         </tr>
                                                     </c:forEach>
                                                 </tbody>

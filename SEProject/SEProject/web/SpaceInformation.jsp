@@ -60,7 +60,7 @@
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
             <label style="font-size: 1.5em">Gallery</label>
             <hr>
-            <div class="container-gallery" style="overflow-y: scroll; max-height: 400px">
+            <div class="container-gallery" style="overflow-y: scroll; max-height: 650px">
                 <img src="http://placekitten.com/220/200" value="1">
                 <img src="http://placekitten.com/180/200" value="2">
                 <img src="http://placekitten.com/130/200" value="3">
@@ -131,10 +131,10 @@
             </div>
         </div>
 
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">What's Include </label>
+        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
+            <label style="font-size: 1.5em;">What's Include </label>
             <hr>
-            <div style="overflow-y: scroll; max-height: 300px">
+            <div style="overflow-y: scroll; max-height: 300px;margin-bottom: 1.5%">
                 <ul>
                     <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
                         <li>${row.space_text}</li>
@@ -148,7 +148,33 @@
             <label style="font-size: 1.5em">Provider Info </label>
             <hr>
             <div style="max-height: 350px;overflow-y: scroll">
-                <label class="col-lg-3 control-label">Address:</label><span>${requestScope.address}</span> 
+                <form action="Edit_Profile" method="POST" class="form-horizontal" role="form">
+                        
+                              <div class="form-group">
+                                  
+                                  <label class="col-lg-3 control-label" name="first_name">First name:</label><span>${sessionScope.first_name}</span>
+                                <div class="col-lg-8">
+
+                                </div>
+                              </div>
+                            
+                          <div class="form-group">
+                              <label class="col-lg-3 control-label">Last name:</label><span>${sessionScope.last_name}</span>
+                            <div class="col-lg-8">
+               
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-lg-3 control-label">Email:</label><span>${sessionScope.email}</span>
+                            <div class="col-lg-8">
+              
+                            </div>
+                          </div>
+
+                            <div class="form-group">
+                                
+                                <label class="col-lg-3 control-label">Address:</label><span>${requestScope.address}</span> 
                                 <span>District: </span><span>${requestScope.district}</span> 
                                 
                                 <label class="col-lg-11 control-label">
@@ -173,6 +199,8 @@
                                 <input hidden="" type="text" name="sub_district" value="${requestScope.sub_district}">
                                 <input hidden="" type="text" name="province" value="${requestScope.province}">
                                 <input hidden="" type="text" name="postal_code" value="${requestScope.postal_code}">
+                          
+                        </form>
                             
             </div>
         </div>
@@ -187,9 +215,9 @@
         <script>
 
             $('.container-gallery').gallery({
-                height: 200,
-                width: 200,
-                items: 6,
+                height: 500,
+                width: 500,
+                items: 5,
                 480: {
                     items: 2,
                     height: 400,
