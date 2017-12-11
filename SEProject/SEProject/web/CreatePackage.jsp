@@ -154,7 +154,7 @@
                                 <label style="font-size: 1.5em">เวลาเปิดทำการ</label>
                             </div>
                             <div style="padding-left: 1%">
-                                <input type="time" name="open_time">
+                                <input class="form-control" type="time" name="open_time">
 
                             </div>
                             <div style="padding-left: 1%">
@@ -165,7 +165,7 @@
                                 <label style="font-size: 1.5em">เวลาปิดทำการ</label>
                             </div>
                             <div style="padding-left: 1%">
-                                <input type="time" name="close_time">
+                                <input class="form-control" type="time" name="close_time">
 
                             </div>
                             <div style="padding-left: 1%">

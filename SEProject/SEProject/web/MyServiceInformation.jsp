@@ -151,7 +151,6 @@
                                     <li>${row.space_text}</li>
                                 </c:forEach>
                             </ul>
-
                         </div>
                         <br>
                         <div class="form-group"  >
