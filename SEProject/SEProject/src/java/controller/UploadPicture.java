@@ -27,7 +27,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class UploadPicture extends HttpServlet {
 
     private final int MAX_FILE_SIZE = 5 * 1024 * 1024;
-    private String folderPath;
     private File file;
     private Connection conn;
 
@@ -43,7 +42,8 @@ public class UploadPicture extends HttpServlet {
         HttpSession session = request.getSession();
         ServiceDesc desc = (ServiceDesc) session.getAttribute("desc");
 
-        folderPath = getServletContext().getRealPath("/") + "ServicePicture" + File.separator;
+        String folderPath = "ServicePicture";
+        String realPath = getServletContext().getRealPath("/") + folderPath + File.separator ;
 
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (!isMultipart) {
@@ -51,10 +51,12 @@ public class UploadPicture extends HttpServlet {
             return;
         }
 
-        File picturePath = new File(folderPath);
+        File picturePath = new File(realPath);
         if (!picturePath.exists()) {
             picturePath.mkdirs();
-        }
+        } /*try(PrintWriter out = response.getWriter()) {
+            out.println(realPath);
+        }*/
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
 
@@ -75,19 +77,17 @@ public class UploadPicture extends HttpServlet {
                     String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                     String fileName = fi.getName();
                     String[] fileType = fileName.split("[.]");
-                    String filePath = folderPath + timeStamp + i + "." + fileType[fileType.length - 1];
+                    String filePath = timeStamp + i + "." + fileType[fileType.length - 1];
 
-                    file = new File(filePath);
+                    file = new File(realPath + filePath);
                     fi.write(file);
 
-                    String sql = "INSERT INTO space_pic VALUES (" + desc.getId() + ", '" + filePath + "');";
+                    String sql = "INSERT INTO space_pic VALUES (" + desc.getId() + ", '" + folderPath + "/" + filePath + "');";
                     stmt.executeUpdate(sql);
                     i++;
                 }
             }
-            
-            session.setAttribute("serviceInformation_id", desc.getId());
-            response.sendRedirect("MyServiceInformation");
+            response.sendRedirect("MyServiceInformation?id="+desc.getId());
         } catch (FileUploadBase.FileSizeLimitExceededException ex) {
             //out.println("too large");
         } catch (Exception ex) {

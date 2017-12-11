@@ -52,85 +52,135 @@
             <%@include file="navbar.jsp"%>
         </header>
         <br>
-
-        <div class="container" style="margin-top: 2%;padding-top: 1%">
+        <div class="container text-center" style="margin-top: 2%;padding-top: 1%">
             <h1>Package Information</h1>
         </div>
+        <hr>
         <br>
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
-            <label style="font-size: 1.5em">Gallery</label>
-            <hr>
-            <div class="container-gallery" style="overflow-y: scroll; max-height: 400px">
-                <img src="http://placekitten.com/220/200" value="1">
-                <img src="http://placekitten.com/180/200" value="2">
-                <img src="http://placekitten.com/130/200" value="3">
-                <img src="http://placekitten.com/270/200" value="4">
+        <br>
+        <div class="container" style="border: 2px solid #00000030;padding-bottom: 1.5%;padding-top: 1%">
+            
+            <br>
+            <div class="container" style="background: #D3D3D320;padding-bottom: 1%">
+                <label style="font-size: 2em;padding-top: 1%">Gallery</label>
+                <hr>
+                <div class="container-gallery" style="overflow-y: scroll; max-height: 850px">
+                    <img src="http://placekitten.com/220/200" value="1">
+                    <img src="http://placekitten.com/180/200" value="2">
+                    <img src="http://placekitten.com/130/200" value="3">
+                    <img src="http://placekitten.com/270/200" value="4">
+                </div>
             </div>
-        </div>
-        <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
-            <center>
-                <h1>Package name:</h1>  
-            </center>
-        </div>
-
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Description </label>
             <hr>
-            <div style="max-height: 300px;overflow-y: scroll">
-                skldflkdnflknfllknl
-                
+            <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
+                <center>
+                    <h1>Package name</h1>  
+                </center>
             </div>
-        </div>
 
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">
-            Price:_______Baht/Hr<br>
-            You must reserve___hour(s) before the time.<br>
-            Open: _____ Close: _____<br>
-            </label>
-        </div>
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1.5%">
+                <div >
+                    <h3>Description</h3>
+                    <hr>
+                    <div style="max-height: 300px;overflow-y: scroll;">
 
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">What's Include </label>
-            <hr>
-            <div style="overflow-y: scroll; max-height: 300px">
-                <ul>
-                    <li>Test1</li>
-                    <li>Test2</li>
-                    <li>Test3</li>
-                    <li>Test4</li>
-                </ul>
+                        <style>
+                            #toolbar {
+                                display: none;
+                            }
+                        </style>
+
+                        <div id="toolbar">
+                            <button class="ql-bold">Bold</button>
+                            <span class="ql-formats">
+                                <select class="ql-size">
+                                    <option value="10px">Small</option>
+                                    <option selected>Normal</option>
+                                    <option value="18px">Large</option>
+                                    <option value="32px">Huge</option>
+                                </select>
+                            </span>
+                        </div>
+                        <!-- Create the editor container -->
+                        <div id="editor" style="height: 500px">
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
 
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Option </label>
-            <hr>
-            <div style="overflow-y: scroll; max-height: 300px">
-                <ul>
-                    <li>Test1</li>
-                    <li>Test2</li>
-                    <li>Test3</li>
-                    <li>Test4</li>
-                </ul>
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
+                <label style="font-size: 1.5em">
+                    Price:_______Baht/Hr<br>
+                    You must reserve___hour(s) before the time.<br>
+                    Open: _____ Close: _____<br>
+                </label>
             </div>
+
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
+                <label style="font-size: 1.5em">What's Include </label>
+                <hr>
+                <div style="overflow-y: scroll; max-height: 300px">
+                    <ul>
+                        <li>Test1</li>
+                        <li>Test2</li>
+                        <li>Test3</li>
+                        <li>Test4</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
+                <label style="font-size: 1.5em">Option </label>
+                <hr>
+                <div id="radio" style="overflow-y: scroll; max-height: 300px">
+                    
+                    <ul>
+                        <div>
+                            <label class="custom-control custom-radio">
+                                <input id="radio1" name="radio" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Toggle this custom radio</span>
+                            </label>
+                        </div>
+                    </ul>
+                    <ul>
+                        <div>
+                            <label class="custom-control custom-radio">
+                                <input id="radio2" name="radio" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Or toggle this other custom radio</span>
+                            </label>
+                        </div>
+                    </ul>
+                    <ul>
+                        <div>
+                            <label class="custom-control custom-radio">
+                                <input id="radio3" name="radio" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Or toggle this other custom radio</span>
+                            </label>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
         </div>
-
-
 
 
 
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script src='JS/gallery.js'></script>
+        <script src="JS/PackageInformation.js"></script>
         <script>
             $('#pak1').css("border", "3px solid bule");
         </script>
         <script>
 
             $('.container-gallery').gallery({
-                height: 200,
-                width: 200,
-                items: 6,
+                height: 700,
+                width: 500,
+                items: 5,
                 480: {
                     items: 2,
                     height: 400,
@@ -153,6 +203,7 @@
                 }
             });
             $('.container-gallery').gallery({
+
                 customControls: {
                     prevButton: prevContent,
                     nextButton: nextContent
