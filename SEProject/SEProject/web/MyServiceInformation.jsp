@@ -133,9 +133,9 @@
                         <div class="col col-xs-1">   </div>
                         <div class="col col-xs-1">   </div>
                         <br>
-                        <div class="container" style="float: left">
+                        <div class="container" style="float: left">                            
                             <div class="form-group"  >
-                                <a href="EditService.jsp" type="button" class="btn btn-success" style="margin-top: 1%">Edit</a>
+                                <a type="button" href="./EditServiceDesc.jsp" class="btn btn-success" style="margin-top: 1%">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -147,16 +147,17 @@
 
                         <div style="overflow-y: scroll; max-height: 300px">
                             <ul>
-                                <li>Test1</li>
-                                <li>Test2</li>
-                                <li>Test3</li>
-                                <li>Test4</li>
+                                <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
+                                    <li>${row.space_text}</li>
+                                </c:forEach>
                             </ul>
 
                         </div>
                         <br>
                         <div class="form-group"  >
-                            <button type="button" class="btn btn-success" style="margin-bottom: 1%">Edit</button>
+                            <form action="getEditRTR" method="post">
+                                <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${sessionScope.desc.getId()}">Edit</button>
+                            </form>
                         </div>
                         <hr>
                         <h3>Picture</h3>
@@ -173,7 +174,7 @@
                         <div class="container" style="float: left">
                             <div class="form-group"  >
                                 <form action="EditServicePicture" method="post">
-                                    <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${requestScope.ids}">Edit</button>
+                                    <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${sessionScope.ids}">Edit</button>
                                 </form>
                             </div>
                         </div>
@@ -268,7 +269,7 @@
                         </div>
                         <div class="container" style="float: left">
                             <div class="form-group"  >
-                                <button type="button" class="btn btn-success" style="margin-top: 1%;margin-left: -3%;margin-bottom: 20px">Edit</button>
+                                <a href="CreatePackage.jsp" type="button" class="btn btn-success" style="margin-top: 1%;margin-left: -3%;margin-bottom: 20px">New Package</a>
                             </div>
                         </div>
 
@@ -283,7 +284,7 @@
             <script src="//code.jquery.com/jquery.min.js"></script>
             <script src='JS/gallery.js'></script>
             <script>
-                                            $('#pak1').css("border", "3px solid bule");
+                $('#pak1').css("border", "3px solid bule");
             </script>
             <script>
 

@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -36,16 +37,39 @@ public class ProfileServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private Connection conn;
 
+    @Override
+    public void init() {
+        conn = (Connection) getServletContext().getAttribute("connection");
+    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        try {
+            Statement stmt = conn.createStatement();
             RequestDispatcher pg = request.getRequestDispatcher("Profile.jsp");
+            HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
-                    pg.forward(request, response);
+               String username = (String) session.getAttribute("username");
+
+                ResultSet rs = stmt.executeQuery("SELECT Firstname, Lastname, Phone, Email, Address, District, SubDistrict, Province, PostalCode "
+                        + "FROM member WHERE Username='"+username+"';");
+                rs.next();
+                request.setAttribute("phone", rs.getString("Phone"));
+                request.setAttribute("address", rs.getString("Address"));
+                request.setAttribute("district", rs.getString("District"));
+                request.setAttribute("sub_district", rs.getString("SubDistrict"));
+                request.setAttribute("province", rs.getString("Province"));
+                request.setAttribute("postal_code", rs.getString("PostalCode"));
+                rs.close();
+                pg.forward(request, response);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

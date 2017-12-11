@@ -84,25 +84,25 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Phone:</label>
                                 <div class="col-lg-8">
-                                    <input pattern="^[0-9]{1,10}$" class="form-control" type="text" name="phone" placeholder="Phone" id="phone" value="${sessionScope.phone}">
+                                    <input pattern="^[0-9]{1,10}$" class="form-control" type="text" name="phone" placeholder="Phone" id="phone" value="${requestScope.phone}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Address:</label>
                                 <div class="row col-lg-8">
                                     <div class="col-lg-4">
-                                        <input pattern="{1,50}" class="form-control" type="text" name="address" placeholder="Address" id="address" value="${sessionScope.address}">
+                                        <input pattern="{1,50}" class="form-control" type="text" name="address" placeholder="Address" id="address" value="${requestScope.address}">
                                     </div>
                                     <div class="col-lg-4">
-                                        <input pattern="{1,50}" class="form-control" type="text" name="district" placeholder="District" id="district" value="${sessionScope.district}">
+                                        <input pattern="{1,50}" class="form-control" type="text" name="district" placeholder="District" id="district" value="${requestScope.district}">
                                     </div>
                                     <div class="col-lg-4">
-                                        <input pattern="{1,50}" class="form-control" type="text" name="sub_district" placeholder="Sub district" id="sub_district" value="${sessionScope.sub_district}">
+                                        <input pattern="{1,50}" class="form-control" type="text" name="sub_district" placeholder="Sub district" id="sub_district" value="${requestScope.sub_district}">
                                     </div>
                                     <br><br><br>
                                     <div class="col-lg-5">
                                         <select class="form-control" name="province" id="province">
-                                            <option value="${sessionScope.province}" selected>${sessionScope.province}</option>
+                                            <option value="${requestScope.province}" selected>${requestScope.province}</option>
                                             <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                             <option value="กระบี่">กระบี่ </option>
                                             <option value="กาญจนบุรี">กาญจนบุรี </option>
@@ -184,7 +184,7 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-4">
-                                        <input pattern="^[0-9]{5}$" class="form-control" type="text" name="postal_code" placeholder="Postal code" id="postal_code" value="${sessionScope.postal_code}">
+                                        <input pattern="^[0-9]{5}$" class="form-control" type="text" name="postal_code" placeholder="Postal code" id="postal_code" value="${requestScope.postal_code}">
                                     </div>
                                 </div>
                             </div>

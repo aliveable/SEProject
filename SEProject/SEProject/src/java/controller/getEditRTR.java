@@ -13,61 +13,54 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.RightToRecive;
+import model.RightToRecives;
 
 /**
  *
- * @author Amoeba
+ * @author khunach
  */
-@WebServlet(name = "EditServiceServlet", urlPatterns = {"/EditServiceServlet"})
-public class EditServiceServlet extends HttpServlet {
+@WebServlet(name = "getEditRTR", urlPatterns = {"/getEditRTR"})
+public class getEditRTR extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     private Connection conn;
 
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        try {
+        try (PrintWriter out = response.getWriter()) {
             Statement stmt = conn.createStatement();
-            HttpSession session = request.getSession();
-            try (PrintWriter out = response.getWriter()) {
-                String name = request.getParameter("name");
-                String address = request.getParameter("address");
-                String district = request.getParameter("district");
-                String sub_district = request.getParameter("sub_district");
-                String province = request.getParameter("province");
-                String postal_code = request.getParameter("postal_code");
-                String desc = request.getParameter("contents");
-                String id = request.getParameter("id");
-                String status = "Incomplete";
-                stmt.executeUpdate("Update space SET Space_Name=N'" + name + "', Space_Desc=N'" + desc + "', Space_Address='" + address + "', Space_District=N'" + district + "', "
-                        + "Space_SubDistrict=N'" + sub_district + "', Space_Province=N'" + province + "', Space_PostalCode=N'" + postal_code + "', Space_Status=N'" + status + "'"
-                        + " WHERE Space_ID="+id+";");
-                out.println("<script>alert(\"Success\");location=\"./MyService\";</script>");
+            String space_id = request.getParameter("id");
+            RequestDispatcher pg = request.getRequestDispatcher("editRightToRecive.jsp");
+            ResultSet rs = stmt.executeQuery("SELECT *"
+                    + "FROM space_list  "
+                    + "WHERE Space_ID='"+space_id+"';");
+            RightToRecives righttorecives = new RightToRecives();
+            out.println("123");
+            out.println(space_id);
+            while(rs.next()){
+                RightToRecive righttorecive = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getNString("Space_Text"));
+                righttorecives.add(righttorecive);
+                out.println(righttorecive.getSpace_text());
             }
+            rs.close();
+            request.setAttribute("RTR", righttorecives);
+            pg.forward(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(EditProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+            Logger.getLogger(getEditRTR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

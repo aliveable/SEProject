@@ -46,27 +46,20 @@ public class LoginServlet extends HttpServlet {
             Statement stmt = conn.createStatement();
             RequestDispatcher pg = request.getRequestDispatcher("Login.jsp");
             HttpSession session = request.getSession();
-            try (PrintWriter out = response.getWriter()) {
-                
+            try (PrintWriter out = response.getWriter()) {                
                 username = request.getParameter("Username");
                 password = request.getParameter("Password");
                 if(username != null  && password != null){
-                String sql = "select * from member where Username = '" + username + "'";
+                String sql = "SELECT Email, Firstname, Lastname, Password FROM member WHERE Username = '" + username + "';";
                 ResultSet rs = stmt.executeQuery(sql);
                 if (rs.next()) {
                     if (rs.getString("Password").equals(password)) {
                         session.invalidate();
                         session = request.getSession();
-                        session.setAttribute("username", rs.getString("Username"));
+                        session.setAttribute("username", username);
                         session.setAttribute("first_name", rs.getString("Firstname"));
                         session.setAttribute("last_name", rs.getString("Lastname"));
-                        session.setAttribute("phone", rs.getString("Phone"));
                         session.setAttribute("email", rs.getString("Email"));
-                        session.setAttribute("address", rs.getString("Address"));
-                        session.setAttribute("district", rs.getString("District"));
-                        session.setAttribute("sub_district", rs.getString("SubDistrict"));
-                        session.setAttribute("province", rs.getString("Province"));
-                        session.setAttribute("postal_code", rs.getString("PostalCode"));
                         response.sendRedirect("./Services");
                         rs.close();
                         return;
