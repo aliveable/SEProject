@@ -194,8 +194,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Phone:</label><span>${requestScope.phone}</span>
                         </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                     </form>
 
                 </div>
@@ -244,19 +243,14 @@
 
                                     <li>Name  : <span>Test1</span></li>
                                     <li>Price : <span>20$</span></li>
-=======
-=======
->>>>>>> parent of 2192f69... Merge
+
                         <input hidden="" type="text" name="phone" value="${requestScope.phone}">
                         <input hidden="" type="text" name="address" value="${requestScope.address}">
                         <input hidden="" type="text" name="district" value="${requestScope.district}">
                         <input hidden="" type="text" name="sub_district" value="${requestScope.sub_district}">
                         <input hidden="" type="text" name="province" value="${requestScope.province}">
                         <input hidden="" type="text" name="postal_code" value="${requestScope.postal_code}">
-<<<<<<< HEAD
->>>>>>> parent of 2192f69... Merge
-=======
->>>>>>> parent of 2192f69... Merge
+
 
                     </form>
 
@@ -265,17 +259,12 @@
         </div>
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
         </div>                     
 
         </div>                     
 
-=======
->>>>>>> parent of 2192f69... Merge
-=======
->>>>>>> parent of 2192f69... Merge
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script src='JS/gallery.js'></script>
         <script>
