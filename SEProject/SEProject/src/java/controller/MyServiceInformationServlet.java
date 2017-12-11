@@ -58,9 +58,6 @@ public class MyServiceInformationServlet extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 String id;
                 id = request.getParameter("id");
-                if (session.getAttribute("serviceInformation_id") != null) {
-                    id = (String) session.getAttribute("serviceInformation_id");
-                }
                 session.removeAttribute("serviceInformation_id");
                 ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
                         + "Space_Province, Space_PostalCode, Space_Status "
@@ -86,6 +83,20 @@ public class MyServiceInformationServlet extends HttpServlet {
                     righttorecives.add(righttorecive);
                 }
                 rs.close();
+
+                String sql = "SELECT Space_Pic_Path FROM space_pic WHERE Space_ID = " + desc.getId() + ";";
+
+                rs = stmt.executeQuery(sql);
+
+                String[] pics = new String[5];
+                int i = 0;
+                while (rs.next()) {
+                    pics[i] = rs.getString("Space_Pic_Path");
+                    i++;
+                }
+                rs.close();
+                desc.setPics(pics);
+
                 request.setAttribute("RTR", righttorecives);
                 session.setAttribute("desc", desc);
                 pg.forward(request, response);
