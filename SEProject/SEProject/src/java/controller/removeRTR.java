@@ -8,7 +8,6 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -19,15 +18,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.RightToRecive;
-import model.RightToRecives;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author khunach
  */
-@WebServlet(name = "getEditRTR", urlPatterns = {"/getEditRTR"})
-public class getEditRTR extends HttpServlet {
+@WebServlet(name = "removeRTR", urlPatterns = {"/removeRTR"})
+public class removeRTR extends HttpServlet {
 
     private Connection conn;
 
@@ -35,31 +33,23 @@ public class getEditRTR extends HttpServlet {
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        request.setCharacterEncoding("UTF-8");
+        try {
             Statement stmt = conn.createStatement();
-            String space_id = request.getParameter("id");
-            RequestDispatcher pg = request.getRequestDispatcher("editRightToRecive.jsp");
-            ResultSet rs = stmt.executeQuery("SELECT *"
-                    + "FROM space_list  "
-                    + "WHERE Space_ID='"+space_id+"';");
-            RightToRecives righttorecives = new RightToRecives();
-            out.println("123");
-            out.println(space_id);
-            while(rs.next()){
-                RightToRecive righttorecive = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getNString("Space_Text"));
-                righttorecives.add(righttorecive);
-                out.println(righttorecive.getSpace_text());
+            HttpSession session = request.getSession();
+            try (PrintWriter out = response.getWriter()) {
+                String space_list_id = request.getParameter("spacelistid");
+                String space_id = request.getParameter("id");
+                stmt.executeUpdate("DELETE FROM space_list WHERE space_list_id="+space_list_id+";");
+                out.println("yes");
+                RequestDispatcher pg = request.getRequestDispatcher("getEditRTR?id="+space_id);
+                pg.forward(request, response);
             }
-            rs.close();
-            request.setAttribute("RTR", righttorecives);
-            request.setAttribute("id", space_id);
-            pg.forward(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(getEditRTR.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -59,74 +59,33 @@
             <hr>
             <div>
                 <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
+                    <form action="editRTR?spacelistid=${row.space_list_id}&id=${row.space_id}" method="post">
                 <div class="row" style="margin-top: 1%">
                     <div class="col-md-7" style="">
-                        <ul style="font-size: 1.8em;overflow-x: scroll">${row.space_text}</ul>
+                        <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="${row.space_text}">
                     </div>
-
-                    <div class="">
-                        <button id="edititem1" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>
-                    </div>
-                </div>   
+                    <button type="submit" class="btn btn-success" style="margin-left: 2%">update</button>
+                    <a type="button" class="btn btn-success" style="margin-left: 2%" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">remove</a>
+                </div> 
+                    </form>
                 </c:forEach>
             </div>
-            <br>
+                <br>
+                <form action="newRTR?id=${requestScope.id}" method="post">
+            <div class="row" style="margin-top: 1%">
+                    <div class="col-md-7" style="">
+                        <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="">
+                    </div>
+                </div>
+                <br>
             <div class="">
-                <button id="additem" type="button" class="btn btn-success" style="margin-left: 2%"> Add item</button>
+                <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%">add Item</button>
+                <a type="button" class="btn btn-success" style="margin-left: 2%" href="./MyServiceInformation?id=${requestScope.id}">back</a>
             </div>
             <br>
-        </div>
-        
-        <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="form-control-label">Right To Receive:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Add/Change</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="modal fade" id="addmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="form-control-label">Right To Receive:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Add/Change</button>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+                </form>
+            
+        </div>        
         <script type="text/javascript" src="JS/editRightToReceiveModal.js"></script>
             
     </body>
