@@ -56,6 +56,14 @@ public class UploadPicture extends HttpServlet {
                 return;
             }
 
+            if (desc.contPics() > 5) {
+                out.println("<script>");
+                out.println("alert('You can upload only 5 picture per place');");
+                out.println("location='EditServicePicture';");
+                out.println("</script>");
+                return;
+            }
+
             File picturePath = new File(realPath);
             if (!picturePath.exists()) {
                 picturePath.mkdirs();
@@ -68,6 +76,15 @@ public class UploadPicture extends HttpServlet {
 
             try {
                 List<FileItem> fileItems = upload.parseRequest(request);
+
+                if (fileItems.size() + desc.contPics() > 5) {
+                    out.println("<script>");
+                    out.println("alert('You can upload only 5 picture per place');");
+                    out.println("location='EditServicePicture';");
+                    out.println("</script>");
+                    return;
+                }
+
                 Iterator<FileItem> iter = fileItems.iterator();
 
                 Statement stmt = conn.createStatement();
