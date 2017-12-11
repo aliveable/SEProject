@@ -1,6 +1,6 @@
 <%-- 
-    Document   : SpaceInformation
-    Created on : Dec 11, 2017, 2:34:55 PM
+    Document   : PackageInformation
+    Created on : Dec 11, 2017, 5:23:12 PM
     Author     : Littlejab
 --%>
 
@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Space Information</title>
+        <title>Bootstrap Example</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -54,7 +54,7 @@
         <br>
 
         <div class="container" style="margin-top: 2%;padding-top: 1%">
-            <h1>Space Information</h1>
+            <h1>Package Information</h1>
         </div>
         <br>
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
@@ -69,16 +69,8 @@
         </div>
         <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
             <center>
-                <h1>AAA Factory</h1>  
+                <h1>Package name:</h1>  
             </center>
-        </div>
-
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Address </label>
-            <hr>
-            <div style="max-height: 300px;overflow-y: scroll">
-                212 224 236 248
-            </div>
         </div>
 
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
@@ -86,7 +78,16 @@
             <hr>
             <div style="max-height: 300px;overflow-y: scroll">
                 skldflkdnflknfllknl
+                
             </div>
+        </div>
+
+        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
+            <label style="font-size: 1.5em">
+            Price:_______Baht/Hr<br>
+            You must reserve___hour(s) before the time.<br>
+            Open: _____ Close: _____<br>
+            </label>
         </div>
 
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
@@ -99,17 +100,23 @@
                     <li>Test3</li>
                     <li>Test4</li>
                 </ul>
-
             </div>
         </div>
 
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Provider Info </label>
+            <label style="font-size: 1.5em">Option </label>
             <hr>
-            <div style="max-height: 300px;overflow-y: scroll">
-                lakdslakdalkfalfka
+            <div style="overflow-y: scroll; max-height: 300px">
+                <ul>
+                    <li>Test1</li>
+                    <li>Test2</li>
+                    <li>Test3</li>
+                    <li>Test4</li>
+                </ul>
             </div>
         </div>
+
+
 
 
 
