@@ -3,6 +3,10 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -12,44 +16,42 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.ServiceDesc;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-@WebServlet(name = "UploadPicture", urlPatterns = {"/UploadPicture"})
+@WebServlet(urlPatterns = {"/UploadPicture"})
 public class UploadPicture extends HttpServlet {
 
     private final int MAX_FILE_SIZE = 5 * 1024 * 1024;
-    private String filePath;
+    private String folderPath;
     private File file;
+    private Connection conn;
 
-    private void testAlert(HttpServletResponse response, String message) {
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<body>");
-            out.println(message);
-            out.println("</body>");
-            out.println("<script>");
-            out.println("alert('" + message + "')");
-            out.println("</script>");
-        } catch (IOException ex) {
-            Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    @Override
+    public void init() throws ServletException {
+        conn = (Connection) getServletContext().getAttribute("connection");
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        filePath = getServletContext().getRealPath("/") + "ServicePicture" + File.separator;
+        HttpSession session = request.getSession();
+        ServiceDesc desc = (ServiceDesc) session.getAttribute("desc");
+
+        folderPath = getServletContext().getRealPath("/") + "ServicePicture" + File.separator;
 
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (!isMultipart) {
-            testAlert(response, "dose not contain multipart content");
+            //out.println("dose not contain multipart content");
             return;
         }
 
-        File picturePath = new File(filePath);
+        File picturePath = new File(folderPath);
         if (!picturePath.exists()) {
             picturePath.mkdirs();
         }
@@ -60,24 +62,34 @@ public class UploadPicture extends HttpServlet {
         upload.setFileSizeMax(MAX_FILE_SIZE);
 
         try {
-            List fileItems = upload.parseRequest(request);
-            Iterator i = fileItems.iterator();
+            List<FileItem> fileItems = upload.parseRequest(request);
+            Iterator<FileItem> iter = fileItems.iterator();
 
-            while (i.hasNext()) {
-                FileItem fi = (FileItem) i.next();
+            Statement stmt = conn.createStatement();
+
+            int i = 0;
+            while (iter.hasNext()) {
+                FileItem fi = (FileItem) iter.next();
+
                 if (!fi.isFormField()) {
+                    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                     String fileName = fi.getName();
+                    String[] fileType = fileName.split("[.]");
+                    String filePath = folderPath + timeStamp + i + "." + fileType[fileType.length - 1];
 
-                    if (fileName.lastIndexOf("\\") >= 0) {
-                        file = new File(filePath + fileName.substring(fileName.lastIndexOf("\\")));
-                    } else {
-                        file = new File(filePath + fileName.substring(fileName.lastIndexOf("\\") + 1));
-                    }
+                    file = new File(filePath);
                     fi.write(file);
+
+                    String sql = "INSERT INTO space_pic VALUES (" + desc.getId() + ", '" + filePath + "');";
+                    stmt.executeUpdate(sql);
+                    i++;
                 }
             }
+            
+            session.setAttribute("serviceInformation_id", desc.getId());
+            response.sendRedirect("MyServiceInformation");
         } catch (FileUploadBase.FileSizeLimitExceededException ex) {
-            testAlert(response, "too large");
+            //out.println("too large");
         } catch (Exception ex) {
             Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
         }
