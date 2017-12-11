@@ -56,6 +56,7 @@ public class getEditRTR extends HttpServlet {
             }
             rs.close();
             request.setAttribute("RTR", righttorecives);
+            request.setAttribute("id", space_id);
             pg.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(getEditRTR.class.getName()).log(Level.SEVERE, null, ex);

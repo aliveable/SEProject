@@ -125,7 +125,7 @@
                                                         <td>${row.space_name}</td>
                                                         <td>${row.space_address}</td>
                                                         <td>${row.name}</td>
-                                                        <td><a type="button" href="SpaceInformation?id=${row.space_id}" class="btn btn-success">ดูรายละเอียด</a></td>
+                                                        <td><a type="button" href="#" class="btn btn-success">ดูรายละเอียด</a></td>
                                                     </tr>
                                                 </c:forEach>    
                                             </tbody>

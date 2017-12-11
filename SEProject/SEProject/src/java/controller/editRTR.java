@@ -20,33 +20,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.RightToRecive;
-import model.RightToRecives;
-import model.ServiceDesc;
 
 /**
  *
- * @author Amoeba
+ * @author khunach
  */
-@WebServlet(name = "MyServiceInformationServlet", urlPatterns = {"/MyServiceInformation"})
-public class MyServiceInformationServlet extends HttpServlet {
+@WebServlet(name = "editRTR", urlPatterns = {"/editRTR"})
+public class editRTR extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     private Connection conn;
 
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -54,44 +42,17 @@ public class MyServiceInformationServlet extends HttpServlet {
         try {
             Statement stmt = conn.createStatement();
             HttpSession session = request.getSession();
-            RequestDispatcher pg = request.getRequestDispatcher("MyServiceInformation.jsp");
             try (PrintWriter out = response.getWriter()) {
-                String id;
-                id = request.getParameter("id");
-                if (session.getAttribute("serviceInformation_id") != null) {
-                    id = (String) session.getAttribute("serviceInformation_id");
-                }
-                session.removeAttribute("serviceInformation_id");
-                ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
-                        + "Space_Province, Space_PostalCode, Space_Status "
-                        + "FROM space WHERE Space_ID=" + id + ";");
-                rs.next();
-                ServiceDesc desc = new ServiceDesc();
-                desc.setAddress(rs.getString("Space_Address"));
-                desc.setDesc(rs.getString("Space_Desc"));
-                desc.setDistrict(rs.getString("Space_District"));
-                desc.setId(rs.getInt("Space_ID"));
-                desc.setName(rs.getString("Space_Name"));
-                desc.setPostal_code(rs.getString("Space_PostalCode"));
-                desc.setProvince(rs.getString("Space_Province"));
-                desc.setStatus(rs.getString("Space_Status"));
-                desc.setSub_district(rs.getString("Space_SubDistrict"));
-
-                rs = stmt.executeQuery("SELECT *"
-                        + "FROM space_list  "
-                        + "WHERE Space_ID='" + id + "';");
-                RightToRecives righttorecives = new RightToRecives();
-                while (rs.next()) {
-                    RightToRecive righttorecive = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getNString("Space_Text"));
-                    righttorecives.add(righttorecive);
-                }
-                rs.close();
-                request.setAttribute("RTR", righttorecives);
-                session.setAttribute("desc", desc);
+                String space_list_id = request.getParameter("spacelistid");
+                String space_id = request.getParameter("id");
+                String value = request.getParameter("item");
+                stmt.executeUpdate("Update space_list SET Space_Text=N'"+value+"' WHERE Space_List_ID='"+space_list_id+"';");
+                out.println("yes");
+                RequestDispatcher pg = request.getRequestDispatcher("getEditRTR?id="+space_id);
                 pg.forward(request, response);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MyServiceInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

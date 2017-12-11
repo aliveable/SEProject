@@ -4,19 +4,6 @@
  * and open the template in the editor.
  */
 $(document).ready(function () {
-    $('#edititem1').click(function (){
-        $('#editmodal').modal('show');
-        
-    });
     
-    $('#edititem2').click(function (){
-        $('#editmodal').modal('show');
-        
-    });
-    
-    $('#additem').click(function (){
-        $('#addmodal').modal('show');
-        
-    });
 });
 
