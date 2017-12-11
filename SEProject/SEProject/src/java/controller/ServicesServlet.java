@@ -70,13 +70,7 @@ public class ServicesServlet extends HttpServlet {
                 services.add(service);
             }
             rs.close();
-            session.setAttribute("services", services);
-            int num_page = services.getServices().size();
-            if(num_page%10 == 0)
-                num_page /= 10;
-            else
-                num_page = (num_page/10)+1;
-            session.setAttribute("num_page", num_page);
+            request.setAttribute("services", services);
             RequestDispatcher pg = request.getRequestDispatcher("index.jsp");
             pg.forward(request, response);
             

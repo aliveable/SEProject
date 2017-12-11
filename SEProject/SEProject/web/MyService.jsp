@@ -93,7 +93,7 @@
                                                 </thead>
                                                 <tbody>
 
-                                                    <c:forEach var="row" items="${sessionScope.my_service.getServices()}">
+                                                    <c:forEach var="row" items="${requestScope.my_service.getServices()}">
 
                                                         <tr>
                                                             <td>${row.space_id}</td>

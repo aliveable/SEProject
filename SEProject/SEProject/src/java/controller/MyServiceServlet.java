@@ -73,7 +73,7 @@ public class MyServiceServlet extends HttpServlet {
                 services.add(service);
             }
             rs.close();
-            session.setAttribute("my_service", services);
+            request.setAttribute("my_service", services);
             pg.forward(request, response);
             
         }} catch (SQLException ex) {
