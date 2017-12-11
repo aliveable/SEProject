@@ -39,11 +39,19 @@
         </div>
         <div class="col-lg-12" style="padding-top: 2%">
             <div class="container" style=";border: 1px solid black; padding: 2%">
-                Select a file to upload: <br>
+
+                <c:forEach var="pic" items="${sessionScope.desc.getPics()}">
+                    <div>
+                        <img src="${pic}">
+                        <button class="btn btn-danger" type="button">Remove</button>
+                    </div>
+                </c:forEach>
+
+                <br>Select a file to upload: <br>
                 <form action="UploadPicture" method="post" enctype="multipart/form-data">
                     <input id="input-upload" type="file" name="file" accept="image/*" multiple />
                     <br>
-                    <button type="submit" class="btn btn-success" style="margin-top: 1%">Upload</button>
+                    <button id="btn-upload" type="submit" class="btn btn-success" style="margin-top: 1%" disabled>Upload</button>
                 </form>
             </div>
         </div>

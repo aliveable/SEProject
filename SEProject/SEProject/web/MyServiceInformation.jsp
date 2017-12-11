@@ -163,11 +163,9 @@
                         <br>
                         <div class="container-gallery" style="overflow-y: scroll; max-height: 400px">
 
-                            <img src="http://placekitten.com/220/200" value="1">
-                            <img src="http://placekitten.com/180/200" value="2">
-                            <img src="http://placekitten.com/130/200" value="3">
-                            <img src="http://placekitten.com/270/200" value="4">
-
+                            <c:forEach var="pic" items="${sessionScope.desc.getPics()}">
+                                <img src="${pic}">
+                            </c:forEach>
 
                         </div>
                         <div class="container" style="float: left">
