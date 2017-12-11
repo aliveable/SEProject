@@ -295,12 +295,11 @@
         </div>
 
 
-=======
+
         </div>                     
->>>>>>> 57a2db4c3a1a05a55b05b678883a51e67448bab9
-=======
+
         </div>                     
->>>>>>> 57a2db4c3a1a05a55b05b678883a51e67448bab9
+
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script src='JS/gallery.js'></script>
         <script>
