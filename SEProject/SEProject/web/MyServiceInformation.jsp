@@ -133,9 +133,9 @@
                         <div class="col col-xs-1">   </div>
                         <div class="col col-xs-1">   </div>
                         <br>
-                        <div class="container" style="float: left">
+                        <div class="container" style="float: left">                            
                             <div class="form-group"  >
-                                <a href="EditService.jsp" type="button" class="btn btn-success" style="margin-top: 1%">Edit</a>
+                                <a type="button" href="./EditServiceDesc.jsp" class="btn btn-success" style="margin-top: 1%">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -283,7 +283,7 @@
             <script src="//code.jquery.com/jquery.min.js"></script>
             <script src='JS/gallery.js'></script>
             <script>
-                                            $('#pak1').css("border", "3px solid bule");
+                $('#pak1').css("border", "3px solid bule");
             </script>
             <script>
 
