@@ -67,30 +67,48 @@
                 <img src="http://placekitten.com/270/200" value="4">
             </div>
         </div>
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Name: </label>
-            AAA Factory    
+        <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
+            <center>
+                <h1>AAA Factory</h1>  
+            </center>
         </div>
 
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
             <label style="font-size: 1.5em">Address </label>
             <hr>
-            212 224 236 248
+            <div style="max-height: 300px;overflow-y: scroll">
+                212 224 236 248
+            </div>
         </div>
 
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
             <label style="font-size: 1.5em">Description </label>
             <hr>
+            <div style="max-height: 300px;overflow-y: scroll">
+                skldflkdnflknfllknl
+            </div>
         </div>
 
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
             <label style="font-size: 1.5em">What's Include </label>
             <hr>
+            <div style="overflow-y: scroll; max-height: 300px">
+                <ul>
+                    <li>Test1</li>
+                    <li>Test2</li>
+                    <li>Test3</li>
+                    <li>Test4</li>
+                </ul>
+
+            </div>
         </div>
 
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
             <label style="font-size: 1.5em">Provider Info </label>
             <hr>
+            <div style="max-height: 300px;overflow-y: scroll">
+                lakdslakdalkfalfka
+            </div>
         </div>
 
 
