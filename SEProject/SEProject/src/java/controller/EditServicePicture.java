@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.ServiceDesc;
 
 @WebServlet(urlPatterns = {"/EditServicePicture"})
 public class EditServicePicture extends HttpServlet {
@@ -28,25 +29,25 @@ public class EditServicePicture extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            try {
-                Statement stmt = conn.createStatement();
+        try {
+            HttpSession session = request.getSession();
+            ServiceDesc desc = (ServiceDesc) session.getAttribute("desc");
 
-                String sql = "SELECT Space_Pic_Path FROM space_pic WHERE Space_ID = " + request.getParameter("id") + ";";
+            Statement stmt = conn.createStatement();
 
-                ResultSet rs = stmt.executeQuery(sql);
+            String sql = "SELECT Space_Pic_Path FROM space_pic WHERE Space_ID = " + desc.getId() + ";";
 
-                while (rs.next()) {
-                    request.setAttribute("pic", rs.getString("Space_Pic_Path"));
-                }
-                
-                request.setAttribute("test", "test123222");
-                //out.println(request.getParameter("test"));
-                RequestDispatcher rd = request.getRequestDispatcher("editServicePicture.jsp");
-                rd.forward(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                request.setAttribute("pic", rs.getString("Space_Pic_Path"));
             }
+            rs.close();
+
+            RequestDispatcher rd = request.getRequestDispatcher("editServicePicture.jsp");
+            rd.forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

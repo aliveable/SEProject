@@ -19,6 +19,7 @@ public class ServiceDesc {
     private String province;
     private String postal_code;
     private String status;
+    private String[] pics;
 
     public ServiceDesc() {
     }
@@ -93,6 +94,14 @@ public class ServiceDesc {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String[] getPics() {
+        return pics;
+    }
+
+    public void setPics(String[] pics) {
+        this.pics = pics;
     }
     
     
