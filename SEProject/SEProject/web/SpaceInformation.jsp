@@ -198,8 +198,7 @@
 
                 </div>
             </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1.5%">
                 <h2>Package</h2>
                 <hr>
