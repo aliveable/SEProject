@@ -58,7 +58,7 @@ public class MyServiceInformationServlet extends HttpServlet {
                 id = request.getParameter("id");
                 if(session.getAttribute("serviceInformation_id") != null)
                     id = (String) session.getAttribute("serviceInformation_id");
-                session.removeAttribute("serviceDesc_id");
+                session.removeAttribute("serviceInformation_id");
                 ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
                         + "Space_Province, Space_PostalCode, Space_Status "
                         + "FROM space WHERE Space_ID=" + id + ";");
