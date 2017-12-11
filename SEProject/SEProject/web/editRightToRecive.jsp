@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -157,24 +158,17 @@
             <h1 style="padding-top: 1%;">Right To Receive</h1>
             <hr>
             <div>
+                <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
                 <div class="row" style="margin-top: 1%">
                     <div class="col-md-7" style="">
-                        <ul style="font-size: 1.8em;overflow-x: scroll">Test:____________________________________</ul>
+                        <ul style="font-size: 1.8em;overflow-x: scroll">${row.space_text}</ul>
                     </div>
 
                     <div class="">
                         <button id="edititem1" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>
                     </div>
-                </div>
-                <div class="row" style="margin-top: 1%">
-                    <div class="col-md-7" style="">
-                        <ul style="font-size: 1.8em;overflow-x: scroll">Test:____________________________________</ul>
-                    </div>
-
-                    <div class="">
-                        <button id="edititem2" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>
-                    </div>
-                </div>
+                </div>   
+                </c:forEach>
             </div>
             <br>
             <div class="">

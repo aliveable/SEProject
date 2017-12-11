@@ -156,7 +156,9 @@
                         </div>
                         <br>
                         <div class="form-group"  >
-                            <a href="editRightToRecive.jsp" type="button" class="btn btn-success" style="margin-top: 1%;margin-left: -3%;margin-bottom: 20px">Edit</a>
+                            <form action="getEditRTR" method="post">
+                                    <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${requestScope.desc.getId()}">Edit</button>
+                                </form>
                         </div>
                         <hr>
                         <h3>Picture</h3>
