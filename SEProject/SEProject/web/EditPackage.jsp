@@ -1,14 +1,14 @@
 <%-- 
-    Document   : CreatePackage
-    Created on : Dec 10, 2017, 2:36:23 PM
-    Author     : Littlejab
+    Document   : testgalerry
+    Created on : Dec 12, 2017, 2:19:24 AM
+    Author     : 58070012
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <title>Edit Package</title>
+        <title>Bootstrap Example</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,10 +26,9 @@
 
         <link rel="stylesheet" type="text/css" href="CSS/Css1.css">
         <link rel="stylesheet" type="text/css" href="CSS/createService.css">
-
+        <link rel="stylesheet" type="text/css" href="CSS/gallery.css">
 
         <!-- jQuery library -->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <!-- Popper JS -->
@@ -38,30 +37,32 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
-
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
+        <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+        <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+
     </head>
-
     <body>
-
         <header id="brand">
             <%@include file="navbar.jsp"%>
         </header>
-
         <br>
         <br>
-        <form action="CreateServiceServlet" method="POST" class="form-horizontal" role="form" id="createService">
-            <div class="container">
+        <div class="container" style="border: 2px solid #D3D3D380;padding-bottom: 1%">
+            <div class="container text-center">
                 <h1> Edit Package </h1>
 
             </div>
+
             <hr>
             <br>
-            <div class="container" >
+            <div class="container" style=";padding-bottom: 1%">
+
                 <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;" >
                     <div class="row" style="margin-left: 1%"> 
                         <div>
@@ -118,24 +119,34 @@
                 </div>
                 <br>
                 <div class="container" style="background: #D3D3D320">
-                    <h1>Picture</h1>
+                    <label style="font-size: 1.5em;padding-top: 1%">Gallery</label>
                     <hr>
-                </div>
-                <br>
-                
-                <div class="container" style="background: #D3D3D320">
-                    <h1 style="padding-top: 1%;">Include</h1>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-7" style="">
-                            <ul style="font-size: 1.8em;overflow-x: scroll">Test:____________________________________</ul>
-                        </div>
+                    <div class="container-gallery" style="overflow-y: scroll; max-height: 850px">
 
-                        <div class="">
-                            <button id="edititem2" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>
-                        </div>
+                        <c:forEach var="pic" items="${sessionScope.desc.getPics()}">
+                            <img src="${pic}">
+                        </c:forEach>
                     </div>
 
+                    <div class="container" style="float: left">
+                        <div class="form-group"  >
+                            <form action="" method="post">
+                                <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${sessionScope.ids}">Edit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <br>
+                <br>
+                <div id="addItemContainer" class="container addinc" style="background: #D3D3D320">
+                    <h1 style="padding-top: 1%;">Include</h1>
+                    <hr>
+                    <div class="row" id="addItemContainer">
+
+                    </div>
 
                     <br>
                     <div class="">
@@ -143,161 +154,72 @@
                     </div>
                     <br>
                 </div>
+
                 <br>
                 <br>
-                <div class="container" style="background: #D3D3D320">
+                <div id="addItemContainerOptional" class="container" style="background: #D3D3D320">
                     <h1 style="padding-top: 1%;">Optional</h1>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-7" style="">
-                            <ul style="font-size: 1.8em;overflow-x: scroll">Test:____________________________________</ul>
-                        </div>
+                    <div class="row" id="addItemContainerOptional">
 
-                        <div class="">
-                            <button id="edititemOptional1" type="button" class="btn btn-success" style="margin-left: 2%"> Edit</button>
-                        </div>
                     </div>
+
                     <br>
                     <div class="">
-                        <button id="additemoptional" type="button" class="btn btn-success" style="margin-left: 2%"> Add item</button>
+                        <button id="additemoptional" type="button" class="btn btn-success" style="margin-left: 2%">Add item</button>
                     </div>
                     <br>
                 </div>
                 <br>
                 <br>
                 <div class="container">
-                    <button id="addpackagecreate" type="submit" class="btn btn-success" style="margin-left: 2%;float: right">Create</button>
-                    <button id="addpackagecancel" type="button" class="btn btn-danger" style="margin-left: 2%;float: right">Cancel</button>
-                </div>
+                    <button id="addpackagecreate" type="submit" class="btn btn-success" style="margin-left: 2%;float: right">Update</button>
+
+                </div>    
                 <br>
-                <br>
+
             </div>
 
-            <div class="modal fade" id="editmodalinclude" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Privilage:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Change</button>
+        </div>
+        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src='JS/gallery.js'></script>
+        <script>
+            $('#pak1').css("border", "3px solid bule");
+        </script>
+        <script>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+            $('.container-gallery').gallery({
+                height: 700,
+                width: 500,
+                items: 5,
+                480: {
+                    items: 2,
+                    height: 400,
+                    thmbHeight: 100},
+                768: {
 
+                    items: 3,
+                    height: 500,
+                    thmbHeight: 120
+                },
+                600: {
 
-            <div class="modal fade" id="additemincludemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Privilege:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+                    items: 4
+                },
+                992: {
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    items: 5,
+                    height: 350
+                }
+            });
+            $('.container-gallery').gallery({
 
-            <div class="modal fade" id="editmodaloptional" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Optional:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Price:</label>
-                                    <input type="text" class="form-control" id="recipient-Price">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Max:</label>
-                                    <input type="text" class="form-control" id="recipient-max">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Change</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="modal fade" id="additemoptionalmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Optional:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Price:</label>
-                                    <input type="text" class="form-control" id="recipient-Price">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Max:</label>
-                                    <input type="text" class="form-control" id="recipient-max">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <script type="text/javascript" src="JS/CreatepackageModal.js"></script>
-
-
-
-        </form>
-        <br>
-        <br>
+                customControls: {
+                    prevButton: prevContent,
+                    nextButton: nextContent
+                }
+            });
+        </script>
 
         <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
         <!-- Initialize Quill editor -->
@@ -325,4 +247,5 @@
             });
         </script>
     </body>
+    <br>
 </html>
