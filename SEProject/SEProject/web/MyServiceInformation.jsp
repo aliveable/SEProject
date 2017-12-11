@@ -65,14 +65,14 @@
                 <div class="col" style="padding-top: 1%;padding-bottom: 1%">
                     <div class="row ">
                         <div class="col-lg-5 ">
-                            <h3 class="text-center" style="float: left">Status :${requestScope.desc.getStatus()}</h3>
+                            <h3 class="text-center" style="float: left">Status :${sessionScope.desc.getStatus()}</h3>
                         </div>
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="col-lg-5" style="background: #D3D3D320">
-                        <h2>${requestScope.desc.getName()}</h2>
+                        <h2>${sessionScope.desc.getName()}</h2>
                         <hr>
                         <br>
 
@@ -82,18 +82,18 @@
                                 <hr>
                                 <div style="max-height: 300px;overflow-y: scroll">
                                     <div style="padding-left: 2%">
-                                        <span>${requestScope.desc.getAddress()}</span>
+                                        <span>${sessionScope.desc.getAddress()}</span>
                                     </div>
 
                                     <div style="padding-left: 2%">
-                                        <span>District : ${requestScope.desc.getDistrict()}</span> 
+                                        <span>District : ${sessionScope.desc.getDistrict()}</span> 
                                     </div>
 
                                     <div style="padding-left: 2%">
-                                        <span>Sub-District : ${requestScope.desc.getSub_district()}</span>
+                                        <span>Sub-District : ${sessionScope.desc.getSub_district()}</span>
                                     </div>
                                     <div style="padding-left: 2%">
-                                        <span>Province : ${requestScope.desc.getProvince()}</span>
+                                        <span>Province : ${sessionScope.desc.getProvince()}</span>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                         <div class="container" style="float: left">
                             <div class="form-group"  >
                                 <form action="EditServicePicture" method="post">
-                                    <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${requestScope.ids}">Edit</button>
+                                    <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${sessionScope.ids}">Edit</button>
                                 </form>
                             </div>
                         </div>
@@ -334,7 +334,7 @@
                     },
                     theme: 'snow'
                 });
-                quill.setContents(${requestScope.desc.getDesc()});
+                quill.setContents(${sessionScope.desc.getDesc()});
                 quill.disable();
             </script>
             <br>

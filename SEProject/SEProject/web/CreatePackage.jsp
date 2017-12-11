@@ -56,10 +56,9 @@
 
         <br>
         <br>
-        <form action="CreateServiceServlet" method="POST" class="form-horizontal" role="form" id="createService">
+        <form action="CreatePackageServlet" method="POST" class="form-horizontal" role="form" id="createService">
             <div class="container">
                 <h1> Create Package </h1>
-
             </div>
             <hr>
             <br>
@@ -70,7 +69,7 @@
                             <label style="font-size: 1.5em;">Package Name: </label>
                         </div>
                         <div style="padding-left: 1%">
-                            <input class="form-control" type="text" >
+                            <input class="form-control" type="text" name="name" >
                         </div>
                     </div>
                 </div>
@@ -108,7 +107,7 @@
                                 <label style="font-size: 1.5em">ราคา: </label>
                             </div>
                             <div style="padding-left: 1%">
-                                <input class="form-control" type="text" name="price">
+                                <input class="form-control" type="text" name="price" value="${sessionScope.desc.getId()}">
 
                             </div>
                             <div style="padding-left: 1%">
@@ -212,7 +211,7 @@
                 <br>
                 <br>
                 <div class="container">
-                    <button id="addpackagecreate" type="submit" class="btn btn-success" style="margin-left: 2%;float: right">Create</button>
+                    <button id="addpackagecreate" type="submit" class="btn btn-success" name="space_id" value="${sessionScope.desc.getId()}" style="margin-left: 2%;float: right">Create</button>
                     <button id="addpackagecancel" type="button" class="btn btn-danger" style="margin-left: 2%;float: right">Cancel</button>
                 </div>
                 <br>
@@ -303,8 +302,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="modal fade" id="additemoptionalmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -315,7 +312,6 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
                                 <div class="form-group">
                                     <label for="recipient-name" class="form-control-label">Optional:</label>
                                     <input type="text" class="form-control" id="recipient-name">
@@ -328,7 +324,6 @@
                                     <label for="recipient-name" class="form-control-label">Max:</label>
                                     <input type="text" class="form-control" id="recipient-max">
                                 </div>
-                            </form>
                         </div>
                         <div class="modal-footer">
                             <button onClick="addItemOptional()" id="addmodalbtn" type="submit" class="btn btn-success" data-dismiss="modal">Add</button>
@@ -336,7 +331,6 @@
                     </div>
                 </div>
             </div>
-
         </form>
         <br>
         <br>

@@ -55,10 +55,9 @@ public class MyServiceInformationServlet extends HttpServlet {
             RequestDispatcher pg = request.getRequestDispatcher("MyServiceInformation.jsp");
             try (PrintWriter out = response.getWriter()) {
                 String id;
-                if(session.getAttribute("serviceDesc_id") != null)
-                    id = (String) session.getAttribute("serviceDesc_id");
-                else
-                    id = request.getParameter("id");
+                id = request.getParameter("id");
+                if(session.getAttribute("serviceInformation_id") != null)
+                    id = (String) session.getAttribute("serviceInformation_id");
                 session.removeAttribute("serviceDesc_id");
                 ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
                         + "Space_Province, Space_PostalCode, Space_Status "
@@ -76,7 +75,6 @@ public class MyServiceInformationServlet extends HttpServlet {
                 desc.setSub_district(rs.getString("Space_SubDistrict"));
                 rs.close();
                 session.setAttribute("desc", desc);
-                request.setAttribute("desc", desc);
                 pg.forward(request, response);
             }
         } catch (SQLException ex) {
