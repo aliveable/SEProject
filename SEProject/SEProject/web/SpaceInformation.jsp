@@ -55,7 +55,7 @@
         <div class="container text-center" style="margin-top: 2%;padding-top: 1%;padding-bottom: 2%">
                 <h1>Space Information</h1>
             </div>
-        <div class="container" style="border: 1px solid black;padding-bottom: 1%">
+        <div class="container" style="border: 1px solid #D3D3D320;padding-bottom: 1%">
             
             <br>
             <div class="container" style="background: #D3D3D320;padding-bottom: 1%">
