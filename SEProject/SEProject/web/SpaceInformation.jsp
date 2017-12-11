@@ -74,18 +74,60 @@
         </div>
 
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Address </label>
-            <hr>
-            <div style="max-height: 300px;overflow-y: scroll">
-                212 224 236 248
+            <h3>Address</h3>
+             <hr>
+            <div style="max-height: 300px;padding-bottom: 1.5%">
+                <div >
+                  
+                   
+                    <div style="max-height: 300px;overflow-y: scroll">
+                        <div style="padding-left: 2%">
+                            <span>${sessionScope.desc.getAddress()}</span>
+                        </div>
+
+                        <div style="padding-left: 2%">
+                            <span>District : ${sessionScope.desc.getDistrict()}</span> 
+                        </div>
+
+                        <div style="padding-left: 2%">
+                            <span>Sub-District : ${sessionScope.desc.getSub_district()}</span>
+                        </div>
+                        <div style="padding-left: 2%">
+                            <span>Province : ${sessionScope.desc.getProvince()}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Description </label>
+            <div >
+                <h3>Description</h3>
             <hr>
-            <div style="max-height: 300px;overflow-y: scroll">
-                skldflkdnflknfllknl
+            <div style="max-height: 300px;overflow-y: scroll;padding-bottom: 1.5%">
+                
+                    <style>
+                        #toolbar {
+                            display: none;
+                        }
+                    </style>
+                    
+                    <div id="toolbar">
+                        <button class="ql-bold">Bold</button>
+                        <span class="ql-formats">
+                            <select class="ql-size">
+                                <option value="10px">Small</option>
+                                <option selected>Normal</option>
+                                <option value="18px">Large</option>
+                                <option value="32px">Huge</option>
+                            </select>
+                        </span>
+                    </div>
+                    <!-- Create the editor container -->
+                    <div id="editor" style="height: 500px">
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -94,10 +136,9 @@
             <hr>
             <div style="overflow-y: scroll; max-height: 300px">
                 <ul>
-                    <li>Test1</li>
-                    <li>Test2</li>
-                    <li>Test3</li>
-                    <li>Test4</li>
+                    <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
+                        <li>${row.space_text}</li>
+                        </c:forEach>
                 </ul>
 
             </div>
@@ -106,8 +147,33 @@
         <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
             <label style="font-size: 1.5em">Provider Info </label>
             <hr>
-            <div style="max-height: 300px;overflow-y: scroll">
-                lakdslakdalkfalfka
+            <div style="max-height: 350px;overflow-y: scroll">
+                <label class="col-lg-3 control-label">Address:</label><span>${requestScope.address}</span> 
+                                <span>District: </span><span>${requestScope.district}</span> 
+                                
+                                <label class="col-lg-11 control-label">
+                                    <label class="col-lg-3 control-label"></label>
+                                    <span> Sub-District:</span> <span>${requestScope.sub_district}</span>
+                                </label>
+                                <label class="col-lg-11 control-label">
+                                    <label class="col-lg-3 control-label"></label>
+                                    <span>Province:</span> <span>${requestScope.province}</span>
+                                </label>
+                                <label class="col-lg-11 control-label">
+                                    <label class="col-lg-3 control-label"></label>
+                                    <span>Zip-Code:</span> <span>${requestScope.postal_code}</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Phone:</label><span>${requestScope.phone}</span>
+                            </div>
+                                <input hidden="" type="text" name="phone" value="${requestScope.phone}">
+                                <input hidden="" type="text" name="address" value="${requestScope.address}">
+                                <input hidden="" type="text" name="district" value="${requestScope.district}">
+                                <input hidden="" type="text" name="sub_district" value="${requestScope.sub_district}">
+                                <input hidden="" type="text" name="province" value="${requestScope.province}">
+                                <input hidden="" type="text" name="postal_code" value="${requestScope.postal_code}">
+                            
             </div>
         </div>
 
