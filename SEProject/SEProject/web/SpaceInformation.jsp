@@ -199,6 +199,7 @@
                 </div>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1.5%">
                 <h2>Package</h2>
                 <hr>
@@ -294,6 +295,9 @@
         </div>
 
 
+=======
+        </div>                     
+>>>>>>> 57a2db4c3a1a05a55b05b678883a51e67448bab9
 =======
         </div>                     
 >>>>>>> 57a2db4c3a1a05a55b05b678883a51e67448bab9
