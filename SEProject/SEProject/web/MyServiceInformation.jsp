@@ -65,14 +65,14 @@
                 <div class="col" style="padding-top: 1%;padding-bottom: 1%">
                     <div class="row ">
                         <div class="col-lg-5 ">
-                            <h3 class="text-center" style="float: left">Status :${sessionScope.desc.getStatus()}</h3>
+                            <h3 class="text-center" style="float: left">Status :${requestScope.desc.getStatus()}</h3>
                         </div>
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="col-lg-5" style="background: #D3D3D320">
-                        <h2>${sessionScope.desc.getName()}</h2>
+                        <h2>${requestScope.desc.getName()}</h2>
                         <hr>
                         <br>
 
@@ -82,18 +82,18 @@
                                 <hr>
                                 <div style="max-height: 300px;overflow-y: scroll">
                                     <div style="padding-left: 2%">
-                                        <span>${sessionScope.desc.getAddress()}</span>
+                                        <span>${requestScope.desc.getAddress()}</span>
                                     </div>
 
                                     <div style="padding-left: 2%">
-                                        <span>District : ${sessionScope.desc.getDistrict()}</span> 
+                                        <span>District : ${requestScope.desc.getDistrict()}</span> 
                                     </div>
 
                                     <div style="padding-left: 2%">
-                                        <span>Sub-District : ${sessionScope.desc.getSub_district()}</span>
+                                        <span>Sub-District : ${requestScope.desc.getSub_district()}</span>
                                     </div>
                                     <div style="padding-left: 2%">
-                                        <span>Province : ${sessionScope.desc.getProvince()}</span>
+                                        <span>Province : ${requestScope.desc.getProvince()}</span>
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +332,7 @@
                     },
                     theme: 'snow'
                 });
-                quill.setContents(${sessionScope.desc.getDesc()});
+                quill.setContents(${requestScope.desc.getDesc()});
                 quill.disable();
             </script>
             <br>

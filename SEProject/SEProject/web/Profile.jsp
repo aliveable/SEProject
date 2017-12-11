@@ -67,11 +67,11 @@
                       <div class="col-md-12 personal-info">
 
 
-                        <form class="form-horizontal" role="form">
+                          <form action="Edit_Profile" method="POST" class="form-horizontal" role="form">
                         
                               <div class="form-group">
                                   
-                                  <label class="col-lg-3 control-label">First name:</label><span>${sessionScope.first_name}</span>
+                                  <label class="col-lg-3 control-label" name="first_name">First name:</label><span>${sessionScope.first_name}</span>
                                 <div class="col-lg-8">
 
                                 </div>
@@ -93,26 +93,34 @@
 
                             <div class="form-group">
                                 
-                                <label class="col-lg-3 control-label">Address:</label><span>${sessionScope.address}</span> 
-                                <span>District: </span><span>${sessionScope.district}</span> 
+                                <label class="col-lg-3 control-label">Address:</label><span>${requestScope.address}</span> 
+                                <span>District: </span><span>${requestScope.district}</span> 
                                 
                                 <label class="col-lg-11 control-label">
                                     <label class="col-lg-3 control-label"></label>
-                                    <span> Sub-District:</span> <span>${sessionScope.sub_district}</span>
+                                    <span> Sub-District:</span> <span>${requestScope.sub_district}</span>
                                 </label>
                                 <label class="col-lg-11 control-label">
                                     <label class="col-lg-3 control-label"></label>
-                                    <span>Zip-Code:</span> <span>${sessionScope.postal_code}</span>
+                                    <span>Province:</span> <span>${requestScope.province}</span>
+                                </label>
+                                <label class="col-lg-11 control-label">
+                                    <label class="col-lg-3 control-label"></label>
+                                    <span>Zip-Code:</span> <span>${requestScope.postal_code}</span>
                                 </label>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">Phone:</label><span>${sessionScope.phone}</span>
+                                <label class="col-lg-3 control-label">Phone:</label><span>${requestScope.phone}</span>
                             </div>
-
+                                <input hidden="" type="text" name="phone" value="${requestScope.phone}">
+                                <input hidden="" type="text" name="address" value="${requestScope.address}">
+                                <input hidden="" type="text" name="district" value="${requestScope.district}">
+                                <input hidden="" type="text" name="sub_district" value="${requestScope.sub_district}">
+                                <input hidden="" type="text" name="province" value="${requestScope.province}">
+                                <input hidden="" type="text" name="postal_code" value="${requestScope.postal_code}">
                             <div id="butmargindown">
-                                <a href="./Edit_Profile" type="button" class="btn btn-success">Edit Profile</a>
+                                <button type="submit" name="test" class="btn btn-success">Edit Profile</button>
                             </div>
-
                         </form>
                             
                     </div>

@@ -62,10 +62,9 @@ public class EditProfileServlet extends HttpServlet {
                 String province = request.getParameter("province");
                 String postal_code = request.getParameter("postal_code");
                 String password = request.getParameter("password");
-                String confirm_password = request.getParameter("confirm_password");
                 ResultSet rs = stmt.executeQuery("SELECT Password FROM member WHERE Username ='"+session.getAttribute("username")+"';");
                 rs.next();
-                if(password.equals(confirm_password) && password.equals(rs.getString("Password"))){
+                if(password.equals(rs.getString("Password"))){
                     rs.close();
                     stmt.executeUpdate("Update member SET Firstname=N'"+first_name+"', Lastname=N'"+last_name+"', Phone='"+phone+"', Email=N'"+email+"', "
                             + "Address=N'"+address+"', District=N'"+district+"', SubDistrict=N'"+sub_district+"', Province=N'"+province+"', PostalCode='"
@@ -73,12 +72,6 @@ public class EditProfileServlet extends HttpServlet {
                     session.setAttribute("first_name", first_name);
                     session.setAttribute("last_name", last_name);
                     session.setAttribute("email", email);
-                    session.setAttribute("phone", phone);
-                    session.setAttribute("address", address);
-                    session.setAttribute("district", district);
-                    session.setAttribute("sub_district", sub_district);
-                    session.setAttribute("province", province);
-                    session.setAttribute("postal_code", postal_code);
                     out.println("<script>alert(\"Success\");location=\"./Profile\";</script>");
                 }else{
                     rs.close();

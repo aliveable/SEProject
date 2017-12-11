@@ -70,8 +70,7 @@ public class MyServiceInformationServlet extends HttpServlet {
                 desc.setStatus(rs.getString("Space_Status"));
                 desc.setSub_district(rs.getString("Space_SubDistrict"));
                 rs.close();
-                session.setAttribute("desc", desc);
-                request.setAttribute("ids", request.getParameter("id"));
+                request.setAttribute("desc", desc);
                 pg.forward(request, response);
             }
         } catch (SQLException ex) {

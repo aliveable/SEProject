@@ -38,6 +38,12 @@ public class EditProfile extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         RequestDispatcher pg = request.getRequestDispatcher("EditProfile.jsp");
             try (PrintWriter out = response.getWriter()) {
+                    request.setAttribute("phone", request.getParameter("phone"));
+                    request.setAttribute("address", request.getParameter("address"));
+                    request.setAttribute("district", request.getParameter("district"));
+                    request.setAttribute("sub_district", request.getParameter("sub_district"));
+                    request.setAttribute("province", request.getParameter("province"));
+                    request.setAttribute("postal_code", request.getParameter("postal_code"));
                     pg.forward(request, response);
             }
     }

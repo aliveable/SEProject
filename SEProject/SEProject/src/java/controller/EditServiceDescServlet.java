@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  * @author Amoeba
  */
 @WebServlet(name = "EditServiceServlet", urlPatterns = {"/EditServiceServlet"})
-public class EditServiceServlet extends HttpServlet {
+public class EditServiceDescServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
