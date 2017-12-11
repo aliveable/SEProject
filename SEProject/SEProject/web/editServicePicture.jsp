@@ -43,7 +43,7 @@
                 <form action="UploadPicture" method="post" enctype="multipart/form-data">
                     <input id="input-upload" type="file" name="file" accept="image/*" multiple />
                     <br>
-                    <button id="btn-upload" type="submit" class="btn btn-success" style="margin-top: 1%" disabled>Upload</button>
+                    <button type="submit" class="btn btn-success" style="margin-top: 1%">Upload</button>
                 </form>
             </div>
         </div>

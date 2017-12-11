@@ -8,7 +8,6 @@ package controller;
 import java.io.IOException; 
 import java.io.PrintWriter; 
 import java.sql.Connection; 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet; 
 import java.sql.SQLException; 
 import java.sql.Statement; 
@@ -49,31 +48,23 @@ public class EditServiceDescServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8"); 
         request.setCharacterEncoding("UTF-8"); 
         try { 
-            PreparedStatement stmt = null; 
+            Statement stmt = conn.createStatement(); 
             HttpSession session = request.getSession(); 
-            try (PrintWriter out = response.getWriter()) {
-                String id = request.getParameter("id"); 
+            try (PrintWriter out = response.getWriter()) { 
                 String name = request.getParameter("name"); 
                 String address = request.getParameter("address"); 
                 String district = request.getParameter("district"); 
                 String sub_district = request.getParameter("sub_district"); 
                 String province = request.getParameter("province"); 
                 String postal_code = request.getParameter("postal_code"); 
-                String desc = request.getParameter("contents");
-                String status = "Incomplete";
-                stmt = conn.prepareStatement("Update space SET Space_Name=?, Space_Desc=?, Space_Address=?, Space_District=?, Space_SubDistrict=?, "
-                        + "Space_Province=?, Space_PostalCode=?, Space_Status=? WHERE Space_ID=?;");
-                stmt.setString(1, name);
-                stmt.setString(2, desc);
-                stmt.setString(3, address);
-                stmt.setString(4, district);
-                stmt.setString(5, sub_district);
-                stmt.setString(6, province);
-                stmt.setString(7, postal_code);
-                stmt.setString(8, status);
-                stmt.setString(9, id);
-                stmt.executeUpdate();
-                out.println("<script>alert(\"Success\");location=\"./MyServiceInformation?id="+id+"\";</script>"); 
+                String desc = request.getParameter("contents"); 
+                String id = request.getParameter("id"); 
+                String status = "Incomplete"; 
+                session.setAttribute("serviceInformation_id", id);
+                stmt.executeUpdate("Update space SET Space_Name=N'" + name + "', Space_Desc=N'" + desc + "', Space_Address='" + address + "', Space_District=N'" + district + "', " 
+                        + "Space_SubDistrict=N'" + sub_district + "', Space_Province=N'" + province + "', Space_PostalCode=N'" + postal_code + "', Space_Status=N'" + status + "'" 
+                        + " WHERE Space_ID="+id+";"); 
+                out.println("<script>alert(\"Success\");location=\"./MyServiceInformation\";</script>"); 
             } 
         } catch (SQLException ex) { 
             Logger.getLogger(EditProfileServlet.class.getName()).log(Level.SEVERE, null, ex); 

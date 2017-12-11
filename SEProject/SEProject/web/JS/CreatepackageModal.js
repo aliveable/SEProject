@@ -27,7 +27,9 @@ $(document).ready(function () {
 
     });
 
-    $('#edititem2').on('click', function (){
+   
+
+    $('#addItemContainer div').on('click', function (){
         var buttonindex = $(this).index();
         alert(buttonindex);
     });
