@@ -39,13 +39,16 @@
         </div>
         <div class="col-lg-12" style="padding-top: 2%">
             <div class="container" style=";border: 1px solid black; padding: 2%">
-
-                <c:forEach var="pic" items="${sessionScope.desc.getPics()}">
-                    <div>
-                        <img src="${pic}">
-                        <button class="btn btn-danger" type="button">Remove</button>
-                    </div>
-                </c:forEach>
+                <form id="form-remove" action="RemoveServicePicture" method="post">
+                    <c:forEach var="pic" items="${sessionScope.desc.getPics()}">
+                        <c:if test = "${pic != null}">
+                            <div>
+                                <img src="${pic}">
+                                <button class="btn btn-danger" type="submit" name="path" value="${pic}" onclick="return removeConfirm(this.value)">Remove</button>
+                            </div><br>
+                        </c:if>
+                    </c:forEach>
+                </form>
 
                 <br>Select a file to upload: <br>
                 <form action="UploadPicture" method="post" enctype="multipart/form-data">
