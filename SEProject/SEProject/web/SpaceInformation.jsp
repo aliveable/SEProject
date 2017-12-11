@@ -52,159 +52,160 @@
             <%@include file="navbar.jsp"%>
         </header>
         <br>
-
-        <div class="container" style="margin-top: 2%;padding-top: 1%">
-            <h1>Space Information</h1>
-        </div>
-        <br>
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
-            <label style="font-size: 1.5em">Gallery</label>
-            <hr>
-            <div class="container-gallery" style="overflow-y: scroll; max-height: 650px">
-                <img src="http://placekitten.com/220/200" value="1">
-                <img src="http://placekitten.com/180/200" value="2">
-                <img src="http://placekitten.com/130/200" value="3">
-                <img src="http://placekitten.com/270/200" value="4">
+        <div class="container text-center" style="margin-top: 2%;padding-top: 1%;padding-bottom: 2%">
+                <h1>Space Information</h1>
             </div>
-        </div>
-        <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
-            <center>
-                <h1>AAA Factory</h1>  
-            </center>
-        </div>
+        <div class="container" style="border: 1px solid black;padding-bottom: 1%">
+            
+            <br>
+            <div class="container" style="background: #D3D3D320;padding-bottom: 1%">
+                <label style="font-size: 1.5em;padding-top: 1%">Gallery</label>
+                <hr>
+                <div class="container-gallery" style="overflow-y: scroll; max-height: 850px">
+                    <img src="http://placekitten.com/220/200" value="1">
+                    <img src="http://placekitten.com/180/200" value="2">
+                    <img src="http://placekitten.com/130/200" value="3">
+                    <img src="http://placekitten.com/270/200" value="4">
+                </div>
+            </div>
+            <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
+                <center>
+                    <h1>AAA Factory</h1>  
+                </center>
+            </div>
 
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <h3>Address</h3>
-             <hr>
-            <div style="max-height: 300px;padding-bottom: 1.5%">
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
+                <h3>Address</h3>
+                <hr>
+                <div style="max-height: 300px;padding-bottom: 1.5%">
+                    <div >
+
+
+                        <div style="max-height: 300px;overflow-y: scroll">
+                            <div style="padding-left: 2%">
+                                <span>${sessionScope.desc.getAddress()}</span>
+                            </div>
+
+                            <div style="padding-left: 2%">
+                                <span>District : ${sessionScope.desc.getDistrict()}</span> 
+                            </div>
+
+                            <div style="padding-left: 2%">
+                                <span>Sub-District : ${sessionScope.desc.getSub_district()}</span>
+                            </div>
+                            <div style="padding-left: 2%">
+                                <span>Province : ${sessionScope.desc.getProvince()}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1.5%">
                 <div >
-                  
-                   
-                    <div style="max-height: 300px;overflow-y: scroll">
-                        <div style="padding-left: 2%">
-                            <span>${sessionScope.desc.getAddress()}</span>
-                        </div>
+                    <h3>Description</h3>
+                    <hr>
+                    <div style="max-height: 300px;overflow-y: scroll;">
 
-                        <div style="padding-left: 2%">
-                            <span>District : ${sessionScope.desc.getDistrict()}</span> 
-                        </div>
+                        <style>
+                            #toolbar {
+                                display: none;
+                            }
+                        </style>
 
-                        <div style="padding-left: 2%">
-                            <span>Sub-District : ${sessionScope.desc.getSub_district()}</span>
+                        <div id="toolbar">
+                            <button class="ql-bold">Bold</button>
+                            <span class="ql-formats">
+                                <select class="ql-size">
+                                    <option value="10px">Small</option>
+                                    <option selected>Normal</option>
+                                    <option value="18px">Large</option>
+                                    <option value="32px">Huge</option>
+                                </select>
+                            </span>
                         </div>
-                        <div style="padding-left: 2%">
-                            <span>Province : ${sessionScope.desc.getProvince()}</span>
+                        <!-- Create the editor container -->
+                        <div id="editor" style="height: 500px">
                         </div>
                     </div>
+
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
+                <label style="font-size: 1.5em;">What's Include </label>
+                <hr>
+                <div style="overflow-y: scroll; max-height: 300px;margin-bottom: 1.5%">
+                    <ul>
+                        <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
+                            <li>${row.space_text}</li>
+                            </c:forEach>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1.5%">
+                <label style="font-size: 1.5em">Provider Info </label>
+                <hr>
+                <div style="max-height: 350px;overflow-y: scroll">
+                    <form action="Edit_Profile" method="POST" class="form-horizontal" role="form">
+
+                        <div class="form-group">
+
+                            <label class="col-lg-3 control-label" name="first_name">First name:</label><span>${sessionScope.first_name}</span>
+                            <div class="col-lg-8">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Last name:</label><span>${sessionScope.last_name}</span>
+                            <div class="col-lg-8">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Email:</label><span>${sessionScope.email}</span>
+                            <div class="col-lg-8">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="col-lg-3 control-label">Address:</label><span>${requestScope.address}</span> 
+                            <span>District: </span><span>${requestScope.district}</span> 
+
+                            <label class="col-lg-11 control-label">
+                                <label class="col-lg-3 control-label"></label>
+                                <span> Sub-District:</span> <span>${requestScope.sub_district}</span>
+                            </label>
+                            <label class="col-lg-11 control-label">
+                                <label class="col-lg-3 control-label"></label>
+                                <span>Province:</span> <span>${requestScope.province}</span>
+                            </label>
+                            <label class="col-lg-11 control-label">
+                                <label class="col-lg-3 control-label"></label>
+                                <span>Zip-Code:</span> <span>${requestScope.postal_code}</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Phone:</label><span>${requestScope.phone}</span>
+                        </div>
+                        <input hidden="" type="text" name="phone" value="${requestScope.phone}">
+                        <input hidden="" type="text" name="address" value="${requestScope.address}">
+                        <input hidden="" type="text" name="district" value="${requestScope.district}">
+                        <input hidden="" type="text" name="sub_district" value="${requestScope.sub_district}">
+                        <input hidden="" type="text" name="province" value="${requestScope.province}">
+                        <input hidden="" type="text" name="postal_code" value="${requestScope.postal_code}">
+
+                    </form>
+
                 </div>
             </div>
         </div>
-
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <div >
-                <h3>Description</h3>
-            <hr>
-            <div style="max-height: 300px;overflow-y: scroll;padding-bottom: 1.5%">
-                
-                    <style>
-                        #toolbar {
-                            display: none;
-                        }
-                    </style>
-                    
-                    <div id="toolbar">
-                        <button class="ql-bold">Bold</button>
-                        <span class="ql-formats">
-                            <select class="ql-size">
-                                <option value="10px">Small</option>
-                                <option selected>Normal</option>
-                                <option value="18px">Large</option>
-                                <option value="32px">Huge</option>
-                            </select>
-                        </span>
-                    </div>
-                    <!-- Create the editor container -->
-                    <div id="editor" style="height: 500px">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
-            <label style="font-size: 1.5em;">What's Include </label>
-            <hr>
-            <div style="overflow-y: scroll; max-height: 300px;margin-bottom: 1.5%">
-                <ul>
-                    <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
-                        <li>${row.space_text}</li>
-                        </c:forEach>
-                </ul>
-
-            </div>
-        </div>
-
-        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
-            <label style="font-size: 1.5em">Provider Info </label>
-            <hr>
-            <div style="max-height: 350px;overflow-y: scroll">
-                <form action="Edit_Profile" method="POST" class="form-horizontal" role="form">
-                        
-                              <div class="form-group">
-                                  
-                                  <label class="col-lg-3 control-label" name="first_name">First name:</label><span>${sessionScope.first_name}</span>
-                                <div class="col-lg-8">
-
-                                </div>
-                              </div>
-                            
-                          <div class="form-group">
-                              <label class="col-lg-3 control-label">Last name:</label><span>${sessionScope.last_name}</span>
-                            <div class="col-lg-8">
-               
-                            </div>
-                          </div>
-
-                          <div class="form-group">
-                              <label class="col-lg-3 control-label">Email:</label><span>${sessionScope.email}</span>
-                            <div class="col-lg-8">
-              
-                            </div>
-                          </div>
-
-                            <div class="form-group">
-                                
-                                <label class="col-lg-3 control-label">Address:</label><span>${requestScope.address}</span> 
-                                <span>District: </span><span>${requestScope.district}</span> 
-                                
-                                <label class="col-lg-11 control-label">
-                                    <label class="col-lg-3 control-label"></label>
-                                    <span> Sub-District:</span> <span>${requestScope.sub_district}</span>
-                                </label>
-                                <label class="col-lg-11 control-label">
-                                    <label class="col-lg-3 control-label"></label>
-                                    <span>Province:</span> <span>${requestScope.province}</span>
-                                </label>
-                                <label class="col-lg-11 control-label">
-                                    <label class="col-lg-3 control-label"></label>
-                                    <span>Zip-Code:</span> <span>${requestScope.postal_code}</span>
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Phone:</label><span>${requestScope.phone}</span>
-                            </div>
-                                <input hidden="" type="text" name="phone" value="${requestScope.phone}">
-                                <input hidden="" type="text" name="address" value="${requestScope.address}">
-                                <input hidden="" type="text" name="district" value="${requestScope.district}">
-                                <input hidden="" type="text" name="sub_district" value="${requestScope.sub_district}">
-                                <input hidden="" type="text" name="province" value="${requestScope.province}">
-                                <input hidden="" type="text" name="postal_code" value="${requestScope.postal_code}">
-                          
-                        </form>
-                            
-            </div>
-        </div>
-
 
 
         <script src="//code.jquery.com/jquery.min.js"></script>
@@ -215,7 +216,7 @@
         <script>
 
             $('.container-gallery').gallery({
-                height: 500,
+                height: 700,
                 width: 500,
                 items: 5,
                 480: {
@@ -240,6 +241,7 @@
                 }
             });
             $('.container-gallery').gallery({
+
                 customControls: {
                     prevButton: prevContent,
                     nextButton: nextContent
