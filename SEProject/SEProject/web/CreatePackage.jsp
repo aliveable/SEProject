@@ -105,16 +105,74 @@
                     <div class="container" style="margin-left: 1%;padding-bottom: 1%">
                         <div class="row"> 
                             <div>
-                                <label style="font-size: 1.5em">Price: </label>
+                                <label style="font-size: 1.5em">ราคา: </label>
                             </div>
                             <div style="padding-left: 1%">
-                                <input class="form-control" type="text" >
+                                <input class="form-control" type="text" name="price">
 
                             </div>
                             <div style="padding-left: 1%">
-                                <label style="font-size: 1.5em" >Baht/Hr.</label>
+                                <label style="font-size: 1.5em" >บาทต่อคนในหนึ่งชม </label>
+                            </div>
+                            &nbsp;&nbsp;&nbsp;
+                            <div>
+                                <label style="font-size: 1.5em">ต้องชำระเงินภายใน</label>
+                            </div>
+                            <div style="padding-left: 1%">
+                                <input class="form-control" type="number" name="under" min="1" value="1">
+
+                            </div>
+                            <div style="padding-left: 1%">
+                                <label style="font-size: 1.5em" >ชม</label>
                             </div>
                         </div>
+                    
+                    <div class="row">
+                        <div>
+                                <label style="font-size: 1.5em">ต้องจองก่อน</label>
+                            </div>
+                            <div style="padding-left: 1%">
+                                <input class="form-control" type="number" name="before" min="0" value="0">
+
+                            </div>
+                            <div style="padding-left: 1%">
+                                <label style="font-size: 1.5em" >ชมก่อนถึงเวลา</label>
+                            </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div>
+                                <label style="font-size: 1.5em">รองรับได้สูงสุด</label>
+                            </div>
+                            <div style="padding-left: 1%">
+                                <input class="form-control" type="number" name="max" min="1" value="1">
+
+                            </div>
+                            <div style="padding-left: 1%">
+                                <label style="font-size: 1.5em">คน</label>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                                <label style="font-size: 1.5em">เวลาเปิดทำการ</label>
+                            </div>
+                            <div style="padding-left: 1%">
+                                <input type="time" name="open_time">
+
+                            </div>
+                            <div style="padding-left: 1%">
+                                <label style="font-size: 1.5em"></label>
+                            </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div>
+                                <label style="font-size: 1.5em">เวลาปิดทำการ</label>
+                            </div>
+                            <div style="padding-left: 1%">
+                                <input type="time" name="close_time">
+
+                            </div>
+                            <div style="padding-left: 1%">
+                                <label style="font-size: 1.5em"></label>
+                            </div>
+                    </div>
                     </div>
                 </div>
 
@@ -126,7 +184,7 @@
                     <h1 style="padding-top: 1%;">Include</h1>
                     <hr>
                     <div class="row" id="addItemContainer">
-                    
+                        
                     </div>
 
                     <br>
@@ -142,6 +200,7 @@
                     <h1 style="padding-top: 1%;">Optional</h1>
                     <hr>
                     <div class="row" id="addItemContainerOptional">
+                        
                     </div>
                     
                     <br>

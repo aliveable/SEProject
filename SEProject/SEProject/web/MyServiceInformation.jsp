@@ -268,7 +268,7 @@
                         </div>
                         <div class="container" style="float: left">
                             <div class="form-group"  >
-                                <button type="button" class="btn btn-success" style="margin-top: 1%;margin-left: -3%;margin-bottom: 20px">Edit</button>
+                                <a href="CreatePackage.jsp" type="button" class="btn btn-success" style="margin-top: 1%;margin-left: -3%;margin-bottom: 20px">New Package</a>
                             </div>
                         </div>
 
