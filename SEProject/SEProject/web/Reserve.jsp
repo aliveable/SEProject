@@ -116,7 +116,7 @@
                     <br>
                     <br>
                     <div class="container" style="background: #D3D3D320">
-                        <label style="font-size: 1.5em">Total Price:_____________Bath</label>
+                        <label style="font-size: 1.5em">Total Price:_____________Baht</label>
                         
                     </div>
                     <br>
