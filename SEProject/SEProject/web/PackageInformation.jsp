@@ -132,12 +132,18 @@
             <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1%;">
                 <label style="font-size: 1.5em">Option </label>
                 <hr>
-                <div style="overflow-y: scroll; max-height: 300px">
-                    <ul>
+                <div  style="overflow-y: scroll; max-height: 300px">
+                    
                         <c:forEach var="var" items="${requestScope.opt.getIncludes()}">
-                        <li>${var.package_text} ${var.package_list_price}</li>
+                            <div class="container form-group">
+                                <label class="custom-control custom-checkbox">
+                                    <input id="radio1" name="radio" type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">${var.package_text} Price : ${var.package_list_price}</span>
+                                </label>
+                            </div>
                         </c:forEach>
-                    </ul>
+                    
                 </div>
             </div>
         </div>
