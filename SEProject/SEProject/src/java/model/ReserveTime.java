@@ -10,5 +10,9 @@ package model;
  * @author khunach
  */
 class ReserveTime {
-    
+    private int reserve_time_id;
+    private int reserve_id;
+    private String reserve_time_firsthour;
+    private String reserve_time_lasthour;
+    private int reserve_size; 
 }
