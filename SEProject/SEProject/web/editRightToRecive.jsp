@@ -57,7 +57,7 @@
         <div class="container" style="background: #D3D3D320">
             <h1 style="padding-top: 1%;">Right To Receive</h1>
             <hr>
-            <div>
+            <div style="padding-bottom: 2%">
                 <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
                     <form action="editRTR?spacelistid=${row.space_list_id}&id=${row.space_id}" method="post">
 
@@ -67,29 +67,35 @@
                                     <div class="col-lg-2">
                                         <h2>Message</h2>
                                     </div>
-                                    <div class="col-md-7" style="">
+                                    <div class="col-md-6" style="">
                                         <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="${row.space_text}">
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="submit" class="btn btn-success" style=";font-size: 1.8em">Update</button>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <a role="button" class="btn btn-success text-center" style="margin-left: 2%;height: 82%;font-size: 1.8em" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">Remove</a>
                                     </div>
                                 </div>
                             </div>
                         </div>           
-
-                            <button type="submit" class="btn btn-success" style="width: 17%;font-size: 1.8em">Update</button>
-                            <a role="button" class="btn btn-success text-center" style="margin-left: 2%;padding-top: 1.5%;width: 17%;font-size: 1.7em" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">Remove</a>
-                        </div> 
+ 
+                        
 
                     </form>
                 </c:forEach>
+                </div> 
             </div>
             <br>
-            <form action="newRTR?id=${requestScope.id}" method="post">
+            <div class="container" style="background: #D3D3D320;padding-top: 2%">
+                <form action="newRTR?id=${requestScope.id}" method="post">
                 <div class="row" style="margin-top: 1%">
                     <div class="container col-lg-12">
                         <div class="row">
                             <div class="col-lg-2">
                                 <h2>Message</h2>
                             </div>
-                            <div class="col-lg-7" style="">
+                            <div class="col-lg-5" style="">
                                 <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="">
                             </div>
                             
@@ -106,6 +112,8 @@
                 </div>
                 <br>
             </form>
+            </div>
+                <br>
 
         </div>        
         <script type="text/javascript" src="JS/editRightToReceiveModal.js"></script>
