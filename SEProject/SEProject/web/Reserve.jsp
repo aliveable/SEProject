@@ -17,13 +17,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-        
-        
+
+
 
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-        
+
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0-RC3/css/bootstrap-datepicker.css" rel="stylesheet">
 
         <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
@@ -47,9 +47,10 @@
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-        
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0-RC3/js/bootstrap-datepicker.js"></script>
 
+        <script type="text/javascript" src="JS/reserve.js"></script>
         <script type="text/javascript" src="JS/CreatepackageModal.js"></script>
 
     </head>
@@ -85,10 +86,6 @@
                             <input id="Day" class="form-control" type="text" placeholder="Day" data-provide="datepicker">
                         </div>
 
-                        <div style="padding-left: 1%">
-                            <button id="addpackagecreate" type="submit" class="btn btn-success" >Select</button>
-                        </div>
-
                     </div>
 
                 </div>
@@ -120,13 +117,13 @@
                                 </div>
 
                                 <div class="container col-lg-4">
-                                    <input class="form-control" type="text">
+                                    <input id="input-people" class="form-control" type="text">
                                 </div>
 
                             </div>
 
                             <div style="margin-top: 1%">
-                                <button id="addpackagecreate" type="submit" class="btn btn-success" >Select</button>
+                                <button id="addpackagecreate" type="button" class="btn btn-success" >Select</button>
                             </div>
 
                         </div>
@@ -136,21 +133,8 @@
 
                             <h1>Selected Time</h1>
                             <hr>
-                            <div class="container col-lg-12">
-                                <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1.5%">
-                                    <div class="col-lg-4">
-                                        <label style="font-size: 1.6em" >9:00 - 10:00</label> 
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <label style="font-size: 1.6em">5</label> <label style="font-size: 1.6em">People</label> 
-
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <button  id="addpackagecreate" type="submit" class="btn btn-danger mr-right" style="float: right">Remove</button>
-                                    </div>
-                                </div>
+                            <div class="container col-lg-12" id="reserve-list">
+                                
                             </div>
 
 
@@ -331,18 +315,18 @@
 
 
         </script>
-        
+
         <script type="text/javascript">
-            $(document).ready(function (){
-               
-                
+            $(document).ready(function () {
+
+
                 $('#Date').datepicker({
                     minViewMode: 0,
                     format: 'DD/mm/yyyy'
                 });
-              
+
             });
-            
+
         </script>
     </body>
 </html>
