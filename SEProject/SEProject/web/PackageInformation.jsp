@@ -73,7 +73,7 @@
             <hr>
             <div class="container" style="margin-top: 2%;padding-top: 1%;float: ">
                 <center>
-                    <h1>Package name</h1>  
+                    <h1>${requestScope.pkInfo.getName()}</h1>  
                 </center>
             </div>
 
@@ -110,9 +110,9 @@
 
             <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%">
                 <label style="font-size: 1.5em">
-                    Price:_______Baht/Hr<br>
-                    You must reserve___hour(s) before the time.<br>
-                    Open: _____ Close: _____<br>
+                    Price: ${requestScope.pkInfo.getPrice()} Baht/Hr<br>
+                    You must reserve ${requestScope.pkInfo.getReserve_before()} hour(s) before the time.<br>
+                    Open: ${requestScope.pkInfo.getOpen()} Close: ${requestScope.pkInfo.getClose()} <br>
                 </label>
             </div>
 
@@ -199,7 +199,7 @@
                 },
                 theme: 'snow'
             });
-            quill.setContents(${sessionScope.desc.getDesc()});
+            quill.setContents(${requestScope.pkInfo.getDesc()});
             quill.disable();
         </script>
         <br>
