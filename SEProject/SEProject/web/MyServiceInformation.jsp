@@ -249,7 +249,7 @@
                                         </div>
                                     </div>
                                     <div class="container text-right" style="margin-top: 1%">
-                                        <a href="Edit?package=${row.package_id}" role="button" class="btn btn-success">Edit Package</a>
+                                        <a href="editPackage?id=${row.package_id}" role="button" class="btn btn-success">Edit Package</a>
                                     </div>
                                     <hr>
                                 </div>

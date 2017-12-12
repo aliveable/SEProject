@@ -22,6 +22,22 @@ public class PackageInfo {
     private String size;
     private int package_id;
 
+    public PackageInfo() {
+    }
+    
+    public PackageInfo(int package_id, String name, String desc, String price, String reserve_before, String open, String close, String size) {
+        this.name = name;
+        this.desc = desc;
+        this.price = price;
+        this.reserve_before = reserve_before;
+        this.open = open;
+        this.close = close;
+        this.size = size;
+        this.package_id = package_id;
+    }
+    
+    
+
     public String getName() {
         return name;
     }

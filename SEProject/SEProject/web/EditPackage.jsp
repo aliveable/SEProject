@@ -69,54 +69,99 @@
                             <label style="font-size: 1.5em;">Package Name: </label>
                         </div>
                         <div style="padding-left: 1%">
-                            <input class="form-control" type="text" >
+                            <input class="form-control" type="text" value="${package.name}">
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="container" style="background: #D3D3D320">
-                    <div class="form-group">
-                        <h1 style="padding-top: 2%">Description</h1>
-                    </div>
-                    <hr>
-                    <div class="col-lg-12">
-                        <!-- Create the toolbar container -->
-                        <div class="form-group">
-                            <div id="toolbar">
-                                <button class="ql-bold">Bold</button>
-                                <span class="ql-formats">
-                                    <select class="ql-size">
-                                        <option value="10px">Small</option>
-                                        <option selected>Normal</option>
-                                        <option value="18px">Large</option>
-                                        <option value="32px">Huge</option>
-                                    </select>
-                                </span>
-                            </div>
-                            <!-- Create the editor container -->
-                            <div id="editor" style="height: 500px">
-                            </div>
-                            <br>
-                            <!-- Include the Quill library -->
-                        </div>
-                    </div>
-                    <div class="container" style="margin-left: 1%;padding-bottom: 1%">
-                        <div class="row"> 
-                            <div>
-                                <label style="font-size: 1.5em">Price: </label>
-                            </div>
-                            <div style="padding-left: 1%">
-                                <input class="form-control" type="text" >
-
-                            </div>
-                            <div style="padding-left: 1%">
-                                <label style="font-size: 1.5em" >Baht/Hr.</label>
-                            </div>
-                        </div>
-                    </div>
-
-
+                <div class="form-group">
+                    <h1 style="padding-top: 2%">Description</h1>
                 </div>
+                <hr>
+                <div class="col-lg-12">
+                    <!-- Create the toolbar container -->
+                    <div class="form-group">
+                        <div id="toolbar">
+                            <button class="ql-bold">Bold</button>
+                            <span class="ql-formats">
+                                <select class="ql-size">
+                                    <option value="10px">Small</option>
+                                    <option selected>Normal</option>
+                                    <option value="18px">Large</option>
+                                    <option value="32px">Huge</option>
+                                </select>
+                            </span>
+                        </div>
+                        <!-- Create the editor container -->
+                        <div id="editor" style="height: 500px">
+                        </div>
+                        <br>
+                        <!-- Include the Quill library -->
+                    </div>
+                </div>
+            </div>
+                    <div class="container" style="margin-left: 1%;padding-bottom: 1%">
+                            <div class="row"> 
+                                <div>
+                                    <label style="font-size: 1.5em">ราคา: </label>
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <input class="form-control" type="text" name="price" value="${package.price}">
+
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <label style="font-size: 1.5em" >บาทต่อคนในหนึ่งชม </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div>
+                                    <label style="font-size: 1.5em">ต้องจองก่อน</label>
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <input class="form-control" type="number" name="before" min="0" value="${package.reserve_before}">
+
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <label style="font-size: 1.5em" >ชมก่อนถึงเวลา</label>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;
+                                <div>
+                                    <label style="font-size: 1.5em">รองรับได้สูงสุด</label>
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <input class="form-control" type="number" name="max" min="1" value="${package.size}">
+
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <label style="font-size: 1.5em">คน</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <label style="font-size: 1.5em">เวลาเปิดทำการ</label>
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <input class="form-control" type="time" name="open_time" value="package.open">
+
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <label style="font-size: 1.5em"></label>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;
+                                <div>
+                                    <label style="font-size: 1.5em">เวลาปิดทำการ</label>
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <input class="form-control" type="time" name="close_time" value="package.close">
+
+                                </div>
+                                <div style="padding-left: 1%">
+                                    <label style="font-size: 1.5em"></label>
+                                </div>
+                            </div>
+                        </div>
                 <br>
                 <div class="container" style="background: #D3D3D320">
                     <label style="font-size: 1.5em;padding-top: 1%">Gallery</label>
@@ -238,11 +283,11 @@
                 placeholder: 'Example',
                 theme: 'snow'
             });
-
+            quill.setContents(${requestScope.package.desc});
             $(document).ready(function () {
                 $("#createService").submit(function () {
-                    $(this).append("<input type='hidden' name='contents' value='" +
-                            JSON.stringify(quill.getContents()) + "' />");
+                    $(this).append("<input type='hidden' name='contents' value='"+
+                         JSON.stringify(quill.getContents())+"' />");
                 });
             });
         </script>
