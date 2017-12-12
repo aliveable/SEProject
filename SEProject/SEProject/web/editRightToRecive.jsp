@@ -31,7 +31,7 @@
 
         <!-- jQuery library -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <!-- Popper JS -->
@@ -40,7 +40,7 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
-        
+
 
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
@@ -60,36 +60,55 @@
             <div>
                 <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
                     <form action="editRTR?spacelistid=${row.space_list_id}&id=${row.space_id}" method="post">
-                        
+
                         <div class="row text-center" style="margin-top: 1%;text-align: center">
-                            <div class="col-md-7" style="">
-                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="${row.space_text}">
+                            <div class="container col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <h2>Message</h2>
+                                    </div>
+                                    <div class="col-md-7" style="">
+                                        <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="${row.space_text}">
+                                    </div>
+                                </div>
                             </div>
+                        </div>           
 
                             <button type="submit" class="btn btn-success" style="width: 17%;font-size: 1.8em">Update</button>
                             <a role="button" class="btn btn-success text-center" style="margin-left: 2%;padding-top: 1.5%;width: 17%;font-size: 1.7em" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">Remove</a>
                         </div> 
-                        
+
                     </form>
                 </c:forEach>
             </div>
-                <br>
-                <form action="newRTR?id=${requestScope.id}" method="post">
-            <div class="row" style="margin-top: 1%">
-                    <div class="col-md-7" style="">
-                        <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="">
+            <br>
+            <form action="newRTR?id=${requestScope.id}" method="post">
+                <div class="row" style="margin-top: 1%">
+                    <div class="container col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <h2>Message</h2>
+                            </div>
+                            <div class="col-lg-7" style="">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="">
+                            </div>
+                            
+                        </div>
+                        
+                        
                     </div>
+                    
                 </div>
                 <br>
                 <div class="row" style="margin-left: -2%">
-                <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%">add Item</button>
-                <a role="button" class="btn btn-success" style="margin-left: 2%" href="./MyServiceInformation?id=${requestScope.id}">back</a>
-            </div>
-            <br>
-                </form>
-            
+                    <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%">add Item</button>
+                    <a role="button" class="btn btn-success" style="margin-left: 2%" href="./MyServiceInformation?id=${requestScope.id}">back</a>
+                </div>
+                <br>
+            </form>
+
         </div>        
         <script type="text/javascript" src="JS/editRightToReceiveModal.js"></script>
-            
+
     </body>
 </html>
