@@ -24,7 +24,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 @WebServlet(urlPatterns = {"/UploadPicture"})
-public class UploadPicture extends HttpServlet {
+public class UploadServicePicture extends HttpServlet {
 
     private final int MAX_FILE_SIZE = 5 * 1024 * 1024;
     private File file;

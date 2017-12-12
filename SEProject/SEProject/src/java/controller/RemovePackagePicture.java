@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.ServiceDesc;
 
-@WebServlet(urlPatterns = {"/RemoveServicePicture"})
-public class RemoveServicePicture extends HttpServlet {
+@WebServlet(name = "RemovePackagePicture", urlPatterns = {"/RemovePackagePicture"})
+public class RemovePackagePicture extends HttpServlet {
 
     private Connection conn;
 
@@ -34,14 +34,15 @@ public class RemoveServicePicture extends HttpServlet {
 
             Statement stmt = conn.createStatement();
 
-            String sql = "DELETE FROM space_pic WHERE Space_Pic_Path = '" + request.getParameter("path") + "';";
+            String sql = "DELETE FROM package_pic WHERE Package_Pic_Path = '" + request.getParameter("path") + "';";
 
             stmt.executeUpdate(sql);
 
-            response.sendRedirect("EditServicePicture");
+            response.sendRedirect("EditPackagePicture");
         } catch (SQLException ex) {
             Logger.getLogger(RemoveServicePicture.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.PackageInfo;
 
-@WebServlet(name = "EditPackagePicture", urlPatterns = {"/EditPackagePicture"})
+@WebServlet(urlPatterns = {"/EditPackagePicture"})
 public class EditPackagePicture extends HttpServlet {
 
     private Connection conn;
@@ -29,30 +30,32 @@ public class EditPackagePicture extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-            response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            try {
+                response.setContentType("text/html;charset=UTF-8");
 
-            HttpSession session = request.getSession();
-            PackageInfo packageItem = (PackageInfo) session.getAttribute("package");
-            Statement stmt = conn.createStatement();
+                HttpSession session = request.getSession();
+                PackageInfo packageItem = (PackageInfo) session.getAttribute("package");
+                Statement stmt = conn.createStatement();
 
-            String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Packagee_ID = " + packageItem.getPackage_id() + ";";
+                String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Package_ID = " + packageItem.getPackage_id() + ";";out.println(sql+"0");
 
-            ResultSet rs = stmt.executeQuery(sql);
+                ResultSet rs = stmt.executeQuery(sql);out.println(sql+"1");
 
-            String[] pics = new String[5];
-            int i = 0;
-            while (rs.next()) {
-                pics[i] = rs.getString("Package_Pic_Path");
-                i++;
+                String[] pics = new String[5];
+                int i = 0;
+                while (rs.next()) {
+                    pics[i] = rs.getString("Package_Pic_Path");
+                    i++;
+                }
+                rs.close();
+                packageItem.setPics(pics);
+
+                RequestDispatcher rd = request.getRequestDispatcher("editPackagePicture.jsp");
+                rd.forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
             }
-            rs.close();
-            packageItem.setPics(pics);
-
-            RequestDispatcher rd = request.getRequestDispatcher("editPackagePicture.jsp");
-            rd.forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

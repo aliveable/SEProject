@@ -39,8 +39,8 @@
         </div>
         <div class="col-lg-12" style="padding-top: 2%">
             <div class="container" style=";border: 1px solid black; padding: 2%">
-                <form id="form-remove" action="" method="post">
-                    <c:forEach var="pic" items="${sessionScope.desc.getPics()}">
+                <form id="form-remove" action="RemovePackagePicture" method="post">
+                    <c:forEach var="pic" items="${sessionScope.package.getPics()}">
                         <c:if test = "${pic != null}">
                             <div>
                                 <img src="${pic}">
@@ -51,7 +51,7 @@
                 </form>
 
                 <br>Select a file to upload: <br>
-                <form action="UploadPicture" method="post" enctype="multipart/form-data">
+                <form action="UploadPackagePicture" method="post" enctype="multipart/form-data">
                     <input id="input-upload" type="file" name="file" accept="image/*" multiple />
                     <br>
                     <button id="btn-upload" type="submit" class="btn btn-success" style="margin-top: 1%" disabled>Upload</button>

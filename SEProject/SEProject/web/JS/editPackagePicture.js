@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#input-upload').change(function () {
-        if (this.files.length > 5) {
+        if (this.files.length > 3) {
             $('#btn-upload').prop("disabled", true);
             alert('You cannot upload more than 3 pics!!!');
             $(this).val("");
