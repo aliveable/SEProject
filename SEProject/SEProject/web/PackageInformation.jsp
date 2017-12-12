@@ -64,10 +64,11 @@
                 <label style="font-size: 2em">Gallery</label>
                 <hr>
                 <div class="container-gallery" style="overflow-y: scroll; max-height: 800px">
-                    <img src="http://placekitten.com/220/200" value="1">
-                    <img src="http://placekitten.com/180/200" value="2">
-                    <img src="http://placekitten.com/130/200" value="3">
-                    <img src="http://placekitten.com/270/200" value="4">
+                    <c:forEach var="pic" items="${requestScope.pkInfo.getPics()}">
+                        <c:if test = "${pic != null}">
+                            <img src="${pic}">
+                        </c:if>
+                    </c:forEach>
                 </div>
             </div>
             <hr>

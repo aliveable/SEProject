@@ -208,7 +208,7 @@
                             <c:forEach var="row" items="${requestScope.pkInfo.getPkInfo()}">
                                 <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
                                     <div class="col-lg-3">
-                                        <img src="http://placekitten.com/220/200" value="1">
+                                        <img src="${row.getPics(0)}">
                                     </div>
                                     <div class="col-lg-9" style="background: #D3D3D330">
                                         <br>

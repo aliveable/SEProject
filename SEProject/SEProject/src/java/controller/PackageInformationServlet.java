@@ -37,14 +37,13 @@ public class PackageInformationServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     private Connection conn;
 
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -52,27 +51,41 @@ public class PackageInformationServlet extends HttpServlet {
         try {
             Statement stmt = conn.createStatement();
             RequestDispatcher pg = request.getRequestDispatcher("PackageInformation.jsp");
-        try (PrintWriter out = response.getWriter()) {
-            String package_id = request.getParameter("package");
-            ResultSet rs = stmt.executeQuery("SELECT Package_Name, Package_Desc, Package_Price, Package_Size, Package_LimitTime_Modify,"
-                    + " Package_OpenHour, Package_LastHour FROM package WHERE Package_ID="+package_id+";");
-            PackageInfo pkInfo = new PackageInfo();
-            if(rs.next()){
-                
-                pkInfo.setClose(rs.getString("Package_LastHour"));
-                pkInfo.setDesc(rs.getString("Package_Desc"));
-                pkInfo.setName(rs.getString("Package_Name"));
-                pkInfo.setOpen(rs.getString("Package_OpenHour"));
-                pkInfo.setPrice(rs.getString("Package_Price"));
-                pkInfo.setReserve_before(rs.getString("Package_LimitTime_Modify"));
-                pkInfo.setSize(rs.getString("Package_Size"));
-                request.setAttribute("pkInfo", pkInfo);
-            }else
-                pg = request.getRequestDispatcher("AuthenError.jsp");
-            rs.close();
-            pg.forward(request, response);
-            
-        }} catch (SQLException ex) {
+            try (PrintWriter out = response.getWriter()) {
+                String package_id = request.getParameter("package");
+
+                PackageInfo pkInfo = new PackageInfo();
+
+                String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Package_ID = " + package_id + ";";
+                ResultSet rs = stmt.executeQuery(sql);
+                String[] pics = new String[3];
+                int i = 0;
+                while (rs.next()) {
+                    pics[i] = rs.getString("Package_Pic_Path");
+                    i++;
+                }
+                rs.close();
+                pkInfo.setPics(pics);
+
+                rs = stmt.executeQuery("SELECT Package_Name, Package_Desc, Package_Price, Package_Size, Package_LimitTime_Modify,"
+                        + " Package_OpenHour, Package_LastHour FROM package WHERE Package_ID=" + package_id + ";");
+                if (rs.next()) {
+                    pkInfo.setClose(rs.getString("Package_LastHour"));
+                    pkInfo.setDesc(rs.getString("Package_Desc"));
+                    pkInfo.setName(rs.getString("Package_Name"));
+                    pkInfo.setOpen(rs.getString("Package_OpenHour"));
+                    pkInfo.setPrice(rs.getString("Package_Price"));
+                    pkInfo.setReserve_before(rs.getString("Package_LimitTime_Modify"));
+                    pkInfo.setSize(rs.getString("Package_Size"));
+                    request.setAttribute("pkInfo", pkInfo);
+                } else {
+                    pg = request.getRequestDispatcher("AuthenError.jsp");
+                }
+                rs.close();
+                pg.forward(request, response);
+
+            }
+        } catch (SQLException ex) {
             Logger.getLogger(PackageInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +40,7 @@ public class EditPackagePicture extends HttpServlet {
 
             ResultSet rs = stmt.executeQuery(sql);
 
-            String[] pics = new String[5];
+            String[] pics = new String[3];
             int i = 0;
             while (rs.next()) {
                 pics[i] = rs.getString("Package_Pic_Path");

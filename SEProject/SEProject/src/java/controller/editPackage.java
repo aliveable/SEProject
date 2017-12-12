@@ -55,24 +55,24 @@ public class editPackage extends HttpServlet {
 
             String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Package_ID = " + packageItem.getPackage_id() + ";";
             rs = stmt.executeQuery(sql);
-            String[] pics = new String[5];
+            String[] pics = new String[3];
             int i = 0;
             while (rs.next()) {
                 pics[i] = rs.getString("Package_Pic_Path");
                 i++;
             }
             rs.close();
-            
+
             sql = "SELECT * FROM package_list WHERE Package_ID = " + packageItem.getPackage_id() + ";";
             rs = stmt.executeQuery(sql);
             Includes inc = new Includes();
             Includes opt = new Includes();
-            while (rs.next()){
-                if (rs.getInt("Package_List_Price") == 0){
-                    Include include = new Include(rs.getInt("Package_List_ID"), rs.getInt("Package_ID"),rs.getString("Package_Text"));
+            while (rs.next()) {
+                if (rs.getInt("Package_List_Price") == 0) {
+                    Include include = new Include(rs.getInt("Package_List_ID"), rs.getInt("Package_ID"), rs.getString("Package_Text"));
                     inc.add(include);
-                }else{
-                    Include include = new Include(rs.getInt("Package_List_ID"), rs.getInt("Package_ID"),rs.getString("Package_Text"), rs.getInt("Package_List_Price"), rs.getInt("Package_List_Max"));
+                } else {
+                    Include include = new Include(rs.getInt("Package_List_ID"), rs.getInt("Package_ID"), rs.getString("Package_Text"), rs.getInt("Package_List_Price"), rs.getInt("Package_List_Max"));
                     opt.add(include);
                 }
             }
