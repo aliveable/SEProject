@@ -1,12 +1,17 @@
 $(document).ready(function () {
     $('#addpackagecreate').click(function () {
         addReserve();
+        removePeriod();
     });
-    
-    $('#reserve-list').on('click', '#removepackage', function() {
+
+    $('#reserve-list').on('click', '#removepackage', function () {
         $(this).parent().parent().remove();
     });
 });
+
+function removePeriod(){
+    $('#select_period option:selected').remove();
+}
 
 function addReserve() {
     var html = '<div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1.5%">\n' +

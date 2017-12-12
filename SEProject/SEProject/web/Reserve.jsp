@@ -103,13 +103,15 @@
                             <div class="row">
 
                                 <div class="col-lg-5">
-                                    <select class="custom-select">
+                                    <select id="select_period" class="custom-select">
                                         <option selected>Select time</option>
                                         <option value="9:00 - 10:00">9:00 - 10:00</option>
                                         <option value="10:00 - 11:00">10:00 - 11:00</option>
-                                        <option value="11.00 - 12.00">11.00 - 12.00</option>
+                                        <option value="13.00 - 12.00">13.00 - 12.00</option>
+                                        <option value="15.00 - 12.00">15.00 - 12.00</option>
+                                        <option value="19.00 - 12.00">19.00 - 12.00</option>
+                                        <option value="20.00 - 12.00">20.00 - 12.00</option>
                                     </select>
-
                                 </div>
 
                                 <div class="col-lg-3">
@@ -134,7 +136,7 @@
                             <h1>Selected Time</h1>
                             <hr>
                             <div class="container col-lg-12" id="reserve-list">
-                                
+
                             </div>
 
 
