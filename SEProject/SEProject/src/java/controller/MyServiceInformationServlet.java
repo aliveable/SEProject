@@ -92,24 +92,25 @@ public class MyServiceInformationServlet extends HttpServlet {
                         i++;
                     }
                     rs.close();
-                    rs = stmt.executeQuery("SELECT Package_Name, Package_Price, Package_Desc, Package_ID FROM package WHERE Space_ID="+id+";");
+                    rs = stmt.executeQuery("SELECT Package_Name, Package_Price, Package_Desc, Package_ID FROM package WHERE Space_ID=" + id + ";");
                     PackageInfos pkInfo = new PackageInfos();
-                while(rs.next()){
-                    PackageInfo info = new PackageInfo();
-                info.setName(rs.getString("Package_Name"));
-                info.setPrice(rs.getString("Package_Price"));
-                info.setPackage_id(rs.getInt("Package_ID"));
-                info.setDesc(rs.getString("Package_Desc"));
-                pkInfo.add(info);
-                }
+                    while (rs.next()) {
+                        PackageInfo info = new PackageInfo();
+                        info.setName(rs.getString("Package_Name"));
+                        info.setPrice(rs.getString("Package_Price"));
+                        info.setPackage_id(rs.getInt("Package_ID"));
+                        info.setDesc(rs.getString("Package_Desc"));
+                        pkInfo.add(info);
+                    }
                     request.setAttribute("pkInfo", pkInfo);
                     desc.setPics(pics);
                     request.setAttribute("RTR", righttorecives);
                     session.setAttribute("desc", desc);
-                                     
-                }else
+
+                } else {
                     pg = request.getRequestDispatcher("AuthenError.jsp");
-                pg.forward(request, response); 
+                }
+                pg.forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(MyServiceInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
