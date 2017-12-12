@@ -65,7 +65,7 @@
                         <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="${row.space_text}">
                     </div>
                     <button type="submit" class="btn btn-success" style="margin-left: 2%">update</button>
-                    <a type="button" class="btn btn-success" style="margin-left: 2%" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">remove</a>
+                    <a type="button" class="btn btn-success text-center" style="margin-left: 2%" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">remove</a>
                 </div> 
                     </form>
                 </c:forEach>
