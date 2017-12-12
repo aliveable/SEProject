@@ -30,36 +30,34 @@ public class EditPackagePicture extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try (PrintWriter out = response.getWriter()) {
-            try {
-                response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        try {
+            HttpSession session = request.getSession();
+            PackageInfo packageItem = (PackageInfo) session.getAttribute("package");
+            Statement stmt = conn.createStatement();
 
-                HttpSession session = request.getSession();
-                PackageInfo packageItem = (PackageInfo) session.getAttribute("package");
-                Statement stmt = conn.createStatement();
+            String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Package_ID = " + packageItem.getPackage_id() + ";";
 
-                String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Package_ID = " + packageItem.getPackage_id() + ";";
+            ResultSet rs = stmt.executeQuery(sql);
 
-                ResultSet rs = stmt.executeQuery(sql);
-
-                String[] pics = new String[5];
-                int i = 0;
-                while (rs.next()) {
-                    pics[i] = rs.getString("Package_Pic_Path");
-                    i++;
-                }
-                rs.close();
-                packageItem.setPics(pics);
-
-                RequestDispatcher rd = request.getRequestDispatcher("editPackagePicture.jsp");
-                rd.forward(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
+            String[] pics = new String[5];
+            int i = 0;
+            while (rs.next()) {
+                pics[i] = rs.getString("Package_Pic_Path");
+                i++;
             }
+            rs.close();
+            packageItem.setPics(pics);
+
+            RequestDispatcher rd = request.getRequestDispatcher("editPackagePicture.jsp");
+            rd.forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

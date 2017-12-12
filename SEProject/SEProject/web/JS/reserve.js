@@ -16,7 +16,7 @@ function removePeriod(){
 function addReserve() {
     var html = '<div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1.5%">\n' +
             '<div class="col-lg-4">\n' +
-            '   <label style="font-size: 1.5em" >' + $('.custom-select').val() + '</label>\n' +
+            '   <label id="label-time" style="font-size: 1.5em" >' + $('.custom-select').val() + '</label>\n' +
             '</div>\n' +
             '<div class="col-lg-4">\n' +
             '   <label style="font-size: 1.5em">' + $('#input-people').val() + '</label> <label style="font-size: 1.6em">People</label>\n' +
