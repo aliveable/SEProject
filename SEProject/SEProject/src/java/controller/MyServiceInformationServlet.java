@@ -43,7 +43,6 @@ public class MyServiceInformationServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private Connection conn;
-
     @Override
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
@@ -54,6 +53,9 @@ public class MyServiceInformationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
+            int checklist = 0;
+            int checkpic = 0;
+            int checkpackage = 0;
             Statement stmt = conn.createStatement();
             HttpSession session = request.getSession();
             RequestDispatcher pg = request.getRequestDispatcher("MyServiceInformation.jsp");
@@ -79,6 +81,7 @@ public class MyServiceInformationServlet extends HttpServlet {
                             + "WHERE Space_ID='" + id + "';");
                     RightToRecives righttorecives = new RightToRecives();
                     while (rs.next()) {
+                        checklist = 1;
                         RightToRecive righttorecive = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getNString("Space_Text"));
                         righttorecives.add(righttorecive);
                     }
@@ -88,6 +91,7 @@ public class MyServiceInformationServlet extends HttpServlet {
                     String[] pics = new String[5];
                     int i = 0;
                     while (rs.next()) {
+                        checkpic = 1;
                         pics[i] = rs.getString("Space_Pic_Path");
                         i++;
                     }
@@ -95,6 +99,7 @@ public class MyServiceInformationServlet extends HttpServlet {
                     rs = stmt.executeQuery("SELECT Package_Name, Package_Price, Package_Desc, Package_ID FROM package WHERE Space_ID=" + id + ";");
                     PackageInfos pkInfo = new PackageInfos();
                     while (rs.next()) {
+                        checkpackage = 1;
                         PackageInfo info = new PackageInfo();
                         info.setName(rs.getString("Package_Name"));
                         info.setPrice(rs.getString("Package_Price"));
@@ -119,12 +124,21 @@ public class MyServiceInformationServlet extends HttpServlet {
                         
                         info.setPics(pics2);
                     }
-
+                    if (checklist == 1 && checkpackage == 1 && checkpic == 1){
+                        stmt.executeUpdate("Update space SET Space_Status=N'complete' WHERE Space_ID='"+id+"';");
+                        desc.setStatus("complete");
+                        out.println("yes");
+                    }else{
+                        stmt.executeUpdate("Update space SET Space_Status=N'Incomplete' WHERE Space_ID='"+id+"';");
+                        desc.setStatus("Incomplete");
+                        out.println("no");
+                    }
+                    
                     request.setAttribute("pkInfo", pkInfo);
                     desc.setPics(pics);
                     request.setAttribute("RTR", righttorecives);
                     session.setAttribute("desc", desc);
-
+                    
                 } else {
                     pg = request.getRequestDispatcher("AuthenError.jsp");
                 }

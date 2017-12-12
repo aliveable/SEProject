@@ -59,7 +59,7 @@
             </div>
             <hr>
             <br>
-
+            <form action="" method="post">
             <div class="container" style="background: #D3D3D320;padding-top: 1%;padding-bottom: 1%">
                 <label style="font-size: 2em">Gallery</label>
                 <hr>
@@ -137,7 +137,7 @@
                         <c:forEach var="var" items="${requestScope.opt.getIncludes()}">
                             <div class="container form-group">
                                 <label class="custom-control custom-checkbox">
-                                    <input id="radio1" name="radio" type="checkbox" class="custom-control-input">
+                                    <input id="radio1" name="optional" type="checkbox" class="custom-control-input" value="${var.package_list_id}">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">${var.package_text} Price : ${var.package_list_price}</span>
                                 </label>
@@ -146,6 +146,8 @@
                     
                 </div>
             </div>
+                <button type="submit" class="btn btn-success">จองเวลาเลย</button>
+            </form>
         </div>
 
 
