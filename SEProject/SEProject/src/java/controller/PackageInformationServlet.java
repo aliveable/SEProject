@@ -70,7 +70,7 @@ public class PackageInformationServlet extends HttpServlet {
                 pkInfo.setPics(pics);
 
                 rs = stmt.executeQuery("SELECT Package_Name, Package_Desc, Package_Price, Package_Size, Package_LimitTime_Modify,"
-                        + " Package_OpenHour, Package_LastHour FROM package WHERE Package_ID=" + package_id + ";");
+                        + " Package_OpenHour, Package_LastHour, Package_ID FROM package WHERE Package_ID=" + package_id + ";");
                 if (rs.next()) {
                     pkInfo.setClose(rs.getString("Package_LastHour"));
                     pkInfo.setDesc(rs.getString("Package_Desc"));
@@ -79,6 +79,7 @@ public class PackageInformationServlet extends HttpServlet {
                     pkInfo.setPrice(rs.getString("Package_Price"));
                     pkInfo.setReserve_before(rs.getString("Package_LimitTime_Modify"));
                     pkInfo.setSize(rs.getString("Package_Size"));
+                    pkInfo.setPackage_id(rs.getInt("Package_Id"));
                     request.setAttribute("pkInfo", pkInfo);
                 } else {
                     pg = request.getRequestDispatcher("AuthenError.jsp");

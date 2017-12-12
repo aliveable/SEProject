@@ -103,14 +103,11 @@
                             <div class="row">
 
                                 <div class="col-lg-5">
-                                    <select id="select_period" class="custom-select">
+                                    <select id="select_period" class="custom-select" name="period">
                                         <option selected>Select time</option>
-                                        <option value="9:00 - 10:00">9:00 - 10:00</option>
-                                        <option value="10:00 - 11:00">10:00 - 11:00</option>
-                                        <option value="13.00 - 12.00">13.00 - 12.00</option>
-                                        <option value="15.00 - 12.00">15.00 - 12.00</option>
-                                        <option value="19.00 - 12.00">19.00 - 12.00</option>
-                                        <option value="20.00 - 12.00">20.00 - 12.00</option>
+                                        <c:forEach var="row" items="${requestScope.period}">
+                                            <option value="${row}">${row}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
 
@@ -150,8 +147,9 @@
                     <br>
 
                     <div class="row" style="background: #D3D3D320">
-                        <label style="font-size: 1.5em; margin-left: 2%;padding-top: 1%">Total Price:_____________Baht</label>
-
+                        <label style="font-size: 1.5em; margin-left: 2%;padding-top: 1%">Total Price: <input disabled="" id="total_cost" type="text" value="${optional_price}"> Baht</label>
+                        <input id="cost" type="hidden" value="${optional_price}">
+                        <input id="price" type="hidden" value="${price}">
                     </div>
 
                     <br>
