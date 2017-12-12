@@ -19,6 +19,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Reserve;
+import model.ReserveAdd;
+import model.ReserveTime;
 import model.RightToRecive;
 import model.RightToRecives;
 
@@ -26,8 +29,8 @@ import model.RightToRecives;
  *
  * @author khunach
  */
-@WebServlet(name = "getEditRTR", urlPatterns = {"/getEditRTR"})
-public class getEditRTR extends HttpServlet {
+@WebServlet(name = "getReserve", urlPatterns = {"/getReserve"})
+public class getReserve extends HttpServlet {
 
     private Connection conn;
 
@@ -41,23 +44,34 @@ public class getEditRTR extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); 
         try (PrintWriter out = response.getWriter()) {
-            Statement stmt = conn.createStatement();
-            String space_id = request.getParameter("id");
-            RequestDispatcher pg = request.getRequestDispatcher("editRightToRecive.jsp");
+           Statement stmt = conn.createStatement();
+            String id = request.getParameter("id");
+            String rd = request.getParameter("");
+            RequestDispatcher pg = request.getRequestDispatcher(rd);
             ResultSet rs = stmt.executeQuery("SELECT *"
-                    + "FROM space_list  "
-                    + "WHERE Space_ID='"+space_id+"';");
-            RightToRecives righttorecives = new RightToRecives();
-            out.println("123");
-            out.println(space_id);
-            while(rs.next()){
-                RightToRecive righttorecive = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getNString("Space_Text"));
-                righttorecives.add(righttorecive);
-                out.println(righttorecive.getSpace_text());
+                    + "FROM reserve_space  "
+                    + "WHERE Reserve_ID='"+id+"';");
+            rs.next();
+            Reserve reserve = new Reserve(rs.getInt("Reserve_ID"), rs.getString("Username"), rs.getInt("Space_ID"), rs.getInt("Package_ID"), rs.getString("Reserve_Time"), rs.getInt("Reserve_Price"), rs.getString("Reserve_Status"));
+            rs.close();
+            rs = stmt.executeQuery("SELECT *"
+                    + "FROM reserve_space_time  "
+                    + "WHERE Reserve_ID='"+id+"';");
+            while (rs.next()){
+                ReserveTime reservetime = new ReserveTime(rs.getInt("Reserve_Time_ID"), rs.getInt("Reserve_ID"), rs.getString("Reserve_Time_FirstHour"), rs.getString("Reserve_Time_LastHour"), rs.getInt("Reserve_Size"), rs.getInt("Package_ID"));
+                reserve.addReservetimes(reservetime);
             }
             rs.close();
-            request.setAttribute("RTR", righttorecives);
-            request.setAttribute("id", space_id);
+            rs = stmt.executeQuery("SELECT *"
+                    + "FROM reserve_additional"
+                    + "WHERE Reserve_ID='"+id+"';");
+            while (rs.next()){
+                ReserveAdd reserveadd = new ReserveAdd(rs.getInt("Reserve_Add_ID"), rs.getInt("Package_List_ID"), rs.getInt("Reserve_ID"));
+                reserve.addReserveadds(reserveadd);
+            }
+            rs.close();
+            request.setAttribute("reserve", reserve);
+            request.setAttribute("id", id);
             pg.forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(getEditRTR.class.getName()).log(Level.SEVERE, null, ex);
