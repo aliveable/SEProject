@@ -19,6 +19,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Include;
+import model.Includes;
 import model.PackageInfo;
 
 /**
@@ -82,8 +84,23 @@ public class PackageInformationServlet extends HttpServlet {
                     pg = request.getRequestDispatcher("AuthenError.jsp");
                 }
                 rs.close();
+                sql = "SELECT * FROM package_list WHERE Package_ID = " + package_id + ";";
+                rs = stmt.executeQuery(sql);
+                Includes inc = new Includes();
+                Includes opt = new Includes();
+                while (rs.next()){
+                    if (rs.getInt("Package_List_Price") == 0) {
+                    Include include = new Include(rs.getInt("Package_List_ID"), rs.getInt("Package_ID"), rs.getString("Package_Text"));
+                    inc.add(include);
+                } else {
+                    Include include = new Include(rs.getInt("Package_List_ID"), rs.getInt("Package_ID"), rs.getString("Package_Text"), rs.getInt("Package_List_Price"));
+                    opt.add(include);
+                }
+                }
+                request.setAttribute("inc", inc);
+                request.setAttribute("opt", opt);
                 pg.forward(request, response);
-
+            
             }
         } catch (SQLException ex) {
             Logger.getLogger(PackageInformationServlet.class.getName()).log(Level.SEVERE, null, ex);

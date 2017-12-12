@@ -51,12 +51,11 @@ public class editInc extends HttpServlet {
                 String id = request.getParameter("packageid");
                 String text = request.getParameter("package_text");
                 String price = request.getParameter("package_list_price");
-                String max = request.getParameter("package_list_max");
                 String package_list_id = request.getParameter("packagelistid");
                 if (price.equals("0")){
                     stmt.executeUpdate("Update package_list SET Package_Text=N'"+text+"' WHERE Package_List_ID='"+package_list_id+"';");
                 } else {
-                    stmt.executeUpdate("Update package_list SET Package_Text=N'"+text+"', Package_List_Price='"+price+"', Package_List_Max='"+max+" WHERE Package_List_ID='"+package_list_id+"';");
+                    stmt.executeUpdate("Update package_list SET Package_Text=N'"+text+"', Package_List_Price='"+price+"' WHERE Package_List_ID='"+package_list_id+"';");
                 }
                 RequestDispatcher pg = request.getRequestDispatcher("editPackage?id="+id);
                 pg.forward(request, response);

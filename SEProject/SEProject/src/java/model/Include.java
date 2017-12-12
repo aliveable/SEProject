@@ -10,14 +10,12 @@ public class Include {
     private int package_id;
     private String package_text;
     private int package_list_price = 0;
-    private int package_list_max = 0;
 
-    public Include(int package_list_id, int package_id, String package_text, int package_list_price, int package_list_max) {
+    public Include(int package_list_id, int package_id, String package_text, int package_list_price) {
         this.package_list_id = package_list_id;
         this.package_id = package_id;
         this.package_text = package_text;
         this.package_list_price = package_list_price;
-        this.package_list_max = package_list_max;
     }
 
     public Include(int package_list_id, int package_id, String package_text) {
@@ -56,13 +54,5 @@ public class Include {
 
     public void setPackage_list_price(int package_list_price) {
         this.package_list_price = package_list_price;
-    }
-
-    public int getPackage_list_max() {
-        return package_list_max;
-    }
-
-    public void setPackage_list_max(int package_list_max) {
-        this.package_list_max = package_list_max;
     }
 }
