@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,39 +16,44 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.PackageInfo;
 
-/**
- *
- * @author khunach
- */
-@WebServlet(name = "editPackage", urlPatterns = {"/editPackage"})
-public class editPackage extends HttpServlet {
+@WebServlet(name = "EditPackagePicture", urlPatterns = {"/EditPackagePicture"})
+public class EditPackagePicture extends HttpServlet {
 
     private Connection conn;
 
     @Override
-    public void init() {
+    public void init() throws ServletException {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-                Statement stmt = conn.createStatement();
-                HttpSession session = request.getSession();
-            RequestDispatcher pg = request.getRequestDispatcher("EditPackage.jsp");
-            String id;
-            id = request.getParameter("id");
-            ResultSet rs = stmt.executeQuery("SELECT * From package where Package_ID='" + id + "';");
-            rs.next();
-            PackageInfo packageItem = new PackageInfo(rs.getInt("Package_ID"), rs.getString("Package_Name"), rs.getString("Package_Desc"), rs.getString("Package_Price"), rs.getString("Package_LimitTime_Modify"), rs.getString("Package_OpenHour"), rs.getString("Package_LastHour"), rs.getString("Package_Size"));
-            rs.close();
-            request.setAttribute("package", packageItem);
-            session.setAttribute("package", packageItem);
-            pg.forward(request, response); 
-            } catch (SQLException ex) {
-                Logger.getLogger(editPackage.class.getName()).log(Level.SEVERE, null, ex);
+
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+
+            HttpSession session = request.getSession();
+            PackageInfo packageItem = (PackageInfo) session.getAttribute("package");
+            Statement stmt = conn.createStatement();
+
+            String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Packagee_ID = " + packageItem.getPackage_id() + ";";
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            String[] pics = new String[5];
+            int i = 0;
+            while (rs.next()) {
+                pics[i] = rs.getString("Package_Pic_Path");
+                i++;
             }
+            rs.close();
+            packageItem.setPics(pics);
+
+            RequestDispatcher rd = request.getRequestDispatcher("editPackagePicture.jsp");
+            rd.forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -21,6 +21,7 @@ public class PackageInfo {
     private String close;
     private String size;
     private int package_id;
+    private String[] pics;
 
     public PackageInfo() {
     }
@@ -101,5 +102,23 @@ public class PackageInfo {
     public void setPackage_id(int package_id) {
         this.package_id = package_id;
     }    
+    
+    public String[] getPics() {
+        return pics;
+    }
+
+    public void setPics(String[] pics) {
+        this.pics = pics;
+    }
+    
+    public int contPics() {
+        int i = 0;
+        for(String pic: pics) {
+            if(pic != null) {
+                i++;
+            }
+        }
+        return i;
+    }
     
 }

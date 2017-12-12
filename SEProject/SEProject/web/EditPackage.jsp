@@ -168,15 +168,15 @@
                     <hr>
                     <div class="container-gallery" style="overflow-y: scroll; max-height: 850px">
 
-                        <c:forEach var="pic" items="${sessionScope.desc.getPics()}">
+                        <c:forEach var="pic" items="${sessionScope.package.getPics()}">
                             <img src="${pic}">
                         </c:forEach>
                     </div>
 
                     <div class="container" style="float: left">
                         <div class="form-group"  >
-                            <form action="" method="post">
-                                <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${sessionScope.ids}">Edit</button>
+                            <form action="EditPackagePicture" method="post">
+                                <button type="submit" class="btn btn-success" style="margin-top: 1%">Edit</button>
                             </form>
                         </div>
                     </div>
