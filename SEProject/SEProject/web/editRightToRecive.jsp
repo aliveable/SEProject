@@ -60,13 +60,16 @@
             <div>
                 <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
                     <form action="editRTR?spacelistid=${row.space_list_id}&id=${row.space_id}" method="post">
-                <div class="row" style="margin-top: 1%">
-                    <div class="col-md-7" style="">
-                        <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="${row.space_text}">
-                    </div>
-                    <button type="submit" class="btn btn-success" style="margin-left: 2%">update</button>
-                    <a type="button" class="btn btn-success text-center" style="margin-left: 2%" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">remove</a>
-                </div> 
+                        
+                        <div class="row text-center" style="margin-top: 1%;text-align: center">
+                            <div class="col-md-7" style="">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="${row.space_text}">
+                            </div>
+
+                            <button type="submit" class="btn btn-success" style="width: 17%;font-size: 1.8em">Update</button>
+                            <a role="button" class="btn btn-success text-center" style="margin-left: 2%;padding-top: 1.5%;width: 17%;font-size: 1.7em" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">Remove</a>
+                        </div> 
+                        
                     </form>
                 </c:forEach>
             </div>
@@ -78,9 +81,9 @@
                     </div>
                 </div>
                 <br>
-            <div class="">
+                <div class="row" style="margin-left: -2%">
                 <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%">add Item</button>
-                <a type="button" class="btn btn-success" style="margin-left: 2%" href="./MyServiceInformation?id=${requestScope.id}">back</a>
+                <a role="button" class="btn btn-success" style="margin-left: 2%" href="./MyServiceInformation?id=${requestScope.id}">back</a>
             </div>
             <br>
                 </form>
