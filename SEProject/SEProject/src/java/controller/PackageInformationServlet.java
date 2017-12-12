@@ -93,7 +93,7 @@ public class PackageInformationServlet extends HttpServlet {
                     Include include = new Include(rs.getInt("Package_List_ID"), rs.getInt("Package_ID"), rs.getString("Package_Text"));
                     inc.add(include);
                 } else {
-                    Include include = new Include(rs.getInt("Package_List_ID"), rs.getInt("Package_ID"), rs.getString("Package_Text"), rs.getInt("Package_List_Price"), rs.getInt("Package_List_Max"));
+                    Include include = new Include(rs.getInt("Package_List_ID"), rs.getInt("Package_ID"), rs.getString("Package_Text"), rs.getInt("Package_List_Price"));
                     opt.add(include);
                 }
                 }

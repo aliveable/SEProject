@@ -43,12 +43,11 @@ public class newInc extends HttpServlet {
                 String id = request.getParameter("packageid");
                 String text = request.getParameter("package_text");
                 String price = request.getParameter("package_list_price");
-                String max = request.getParameter("package_list_max");
                 if (price.equals("0")){
-                    stmt.executeUpdate("Insert INTO package_list (Package_ID, Package_Text, Package_List_Price, Package_List_Max) VALUES('"+id+"', N'"+text+"', 0, 0);");
+                    stmt.executeUpdate("Insert INTO package_list (Package_ID, Package_Text, Package_List_Price) VALUES('"+id+"', N'"+text+"', 0);");
                     out.println("yes");
                 } else {
-                    stmt.executeUpdate("Insert INTO package_list (Package_ID, Package_Text, Package_List_Price, Package_List_Max) VALUES('"+id+"', N'"+text+"', '"+price+"', '"+max+"');");
+                    stmt.executeUpdate("Insert INTO package_list (Package_ID, Package_Text, Package_List_Price) VALUES('"+id+"', N'"+text+"', '"+price+"');");
                     out.println("no");
                 }
                 RequestDispatcher pg = request.getRequestDispatcher("editPackage?id="+id);

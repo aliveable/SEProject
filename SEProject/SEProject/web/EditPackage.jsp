@@ -244,10 +244,7 @@
                                     </div>
                                     <div class="col-md-7" style="">
                                         <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="${row.package_list_price}">
-                                    </div>
-                                    <div class="col-md-7" style="">
-                                        <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_max" placeholder="" id="package_list_max" value="${row.package_list_max}">
-                                    </div>
+                                    </div> 
                                     <button type="submit" class="btn btn-success" style="width: 17%;font-size: 1.8em">Update</button>
                                     <a role="button" class="btn btn-success text-center" style="margin-left: 2%;padding-top: 1.5%;width: 17%;font-size: 1.7em" href="removeInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}">Remove</a>
                                 </div> 
@@ -263,9 +260,6 @@
                             </div>
                             <div class="col-md-7" style="">
                                 <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="${row.package_list_price}">
-                            </div>
-                            <div class="col-md-7" style="">
-                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_max" placeholder="" id="package_list_max" value="${row.package_list_max}">
                             </div>
                         </div>
                         <br>
