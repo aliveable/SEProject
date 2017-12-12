@@ -206,29 +206,23 @@
                                             <div class="col-lg-2">
                                                 <h2>Message</h2>
                                             </div>
-                                            <div class="col-lg-7" style="">
-                                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
+                                            <div class="col-lg-6" style="">
+                                                <input pattern="{1,100}"style="font-size: 1.3em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
                                             </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="container" style="padding-top: 1%">
-                                        <input pattern="{1,100}"style="font-size: 1em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_price" placeholder="" id="package_list_price" value="">
-                                    </div>
-
-                                    <div class="container col-lg-12">
-                                        <div class="row" style="float: right;padding-top: 1%">
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-2">
                                                 <button type="submit" class="btn btn-success" style=";font-size: 1.8em">Update</button>
                                             </div>
 
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-2">
                                                 <a role="button" class="btn btn-success text-center" style="margin-left: 2%;font-size: 1.8em;height: 100%" href="removeInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}">Remove</a>
                                             </div>
-
                                         </div>
-
                                     </div>
+                                    <div class="container" style="padding-top: 1%">
+                                        <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_price" placeholder="" id="package_list_price" value="">
+                                    </div>
+
+                                    
 
 
                                 </div> 
@@ -247,17 +241,18 @@
                                             <h2>Message</h2>
                                         </div>
                                         <div class="col-lg-7" style="">
-                                            <input pattern="{1,100}"style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="">
+                                            <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="">
+                                        </div>
+                                        <div class="col-g-2">
+                                            <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%;font-size: 1.5em">add Item</button>
                                         </div>
                                     </div>
                                 </div>
-          
-                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_price" placeholder="" id="package_list_price" value="">
+                                
+                                
                             </div>
                             <br>
-                            <div class="row" style="margin-left: -2%">
-                                <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%">add Item</button>
-                            </div>
+                            
                             <br>
                         </div>
                     </form>
@@ -269,7 +264,7 @@
                 <div id="addItemContainerOptional" class="container" style="background: #D3D3D320">
                     <h1 style="padding-top: 1%;">Optional</h1>
                     <hr>
-                    <div>
+                    <div class="container">
                         <c:forEach var="row" items="${sessionScope.options.getIncludes()}">
                             <form action="editInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}" method="post">
 
@@ -278,35 +273,29 @@
                                         <div class="col-lg-2">
                                             <h2>Message</h2>
                                         </div>
-                                        <div class="col-lg-6" style="">
-                                            <input pattern="{1,100}"style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
+                                        <div class="col-lg-4" style="">
+                                            <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
                                         </div>
 
 
 
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-2" style="">
                                             <h2>Amount</h2>
                                         </div>
-                                        <div class="col-lg-2" style="">
-                                            <input pattern="{1,100}"style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="${row.package_list_price}">
+                                        <div class="col-lg-2" style="margin-left: -2%;padding-left: -2%">
+                                            <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="${row.package_list_price}">
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <button type="submit" class="btn btn-success" style="font-size:1em;height: 100%">Update</button>
                                         </div>
 
+                                        <div class="col-lg-1" style="">
+                                            <a role="button" class="btn btn-success text-center" style="height: 100%;margin-left: 2%;padding-top: 22.5%;font-size: 1em" href="removeInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}">Remove</a>
+                                        </div>
 
                                     </div>
 
-                                            <div class="container col-lg-12">
-                                                <div class="row" style="float: right;padding-top: 1%">
-                                                    <div class="col-lg-5">
-                                                        <button type="submit" class="btn btn-success" style="font-size:1em">Update</button>
-                                                    </div>
-
-                                                    <div class="col-lg-5">
-                                                        <a role="button" class="btn btn-success text-center" style="height: 98%;margin-left: 2%;margin-top: 0.5%;font-size: 1em" href="removeInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}">Remove</a>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
+                                      
                                     </div> 
 
                             </form>
@@ -314,20 +303,23 @@
                     </div>
                     <br>
                     <form action="newInc?packageid=${package.package_id}" method="post">
-                        <div class="container col-lg-12" style="margin-top: 1%">
-                            <div class="row">
+                        <div class="col-lg-12" style="margin-top: 1%">
+                            <div class="row" style="margin-left: -2.5%">
                                 <div class="col-lg-2">
                                     <h2>Message</h2>
                                 </div>
-                                <div class="col-lg-6" style="">
+                                <div class="col-lg-4" style="">
                                     <input pattern="{1,100}"style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="">
                                 </div>
                             
                                 <div class="col-lg-2">
                                     <h2>Amount</h2>
                                 </div>
-                                <div class="col-lg-2" style="">
-                                    <input pattern="{1,100}"style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="">
+                                <div class="col-lg-2" style="margin-left: -3.3%;">
+                                    <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="">
+                                </div>
+                                <div class="col-g-2" style="padding-left: 1%">
+                                    <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%;width: 100%;height: 100%">add Item</button>
                                 </div>
                                  
                             </div>
@@ -335,7 +327,7 @@
                         </div>
                         <br>
                         <div class="row" style="margin-left: -2%">
-                            <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%">add Item</button>
+                            
                         </div>
                         <br>
                     </form>
