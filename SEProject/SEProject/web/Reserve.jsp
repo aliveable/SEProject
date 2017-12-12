@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Bootstrap Example</title>
+        <title>Reserve</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,10 +17,14 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        
+        
 
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0-RC3/css/bootstrap-datepicker.css" rel="stylesheet">
 
         <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 
@@ -43,6 +47,8 @@
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0-RC3/js/bootstrap-datepicker.js"></script>
 
         <script type="text/javascript" src="JS/CreatepackageModal.js"></script>
 
@@ -57,77 +63,123 @@
         <br>
         <br>
         <form action="CreateServiceServlet" method="POST" class="form-horizontal" role="form" id="createService">
-            <div class="container">
-                <h1> Reserve </h1>
 
-            </div>
-            <hr>
+
             <br>
-            <div class="container" style="border: 1px solid black">
-                <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;" >
+            <div class="container" style="border: 2px solid #D3D3D380">
+
+                <div class="container" style="margin-top: 1%;">
+                    <h1> Reserve </h1>
+                </div>
+                <hr>
+
+                <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;margin-right: 1%" >
+
                     <div class="row" style="margin-left: 1%"> 
+
                         <div>
                             <label style="font-size: 1.5em;">Select Date: </label>
                         </div>
+
                         <div style="padding-left: 1%">
-                            <input class="form-control" type="text" placeholder="Day">
+                            <input id="Day" class="form-control" type="text" placeholder="Day" data-provide="datepicker">
                         </div>
+
                         <div style="padding-left: 1%">
-                            <input class="form-control" type="text" placeholder="Month">
+                            <button id="addpackagecreate" type="submit" class="btn btn-success" >Select</button>
                         </div>
-                        <div style="padding-left: 1%">
-                            <input class="form-control" type="text" placeholder="Year">
-                        </div>
-                        <div style="padding-left: 1%">
-                        <button id="addpackagecreate" type="submit" class="btn btn-success" >Select</button>
-                        </div>
+
                     </div>
+
                 </div>
+
                 <br>
-                <div class="container" style="background: #D3D3D320">
-                    <div class="row">
-                        <div class="col-md-5">
+
+                <div class="container col-md-12" >
+
+                    <div class="row ">
+
+                        <div class="col-lg-5" style="background: #D3D3D320">
+
                             <h1>Select Time</h1>
                             <hr>
-                            <input type="radio" name="time" value="All-Day" />All-Day<br>
-                            <input type="radio" name="time" value="9.00-12.00" />9.00-12.00<br>
-                            <button id="addpackagecreate" type="submit" class="btn btn-success" >Select</button>  
+                            <div class="row">
+
+                                <div class="col-lg-5">
+                                    <select class="custom-select">
+                                        <option selected>Select time</option>
+                                        <option value="9:00 - 10:00">9:00 - 10:00</option>
+                                        <option value="10:00 - 11:00">10:00 - 11:00</option>
+                                        <option value="11.00 - 12.00">11.00 - 12.00</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <label style="font-size: 1.6em">People:</label>
+                                </div>
+
+                                <div class="container col-lg-4">
+                                    <input class="form-control" type="text">
+                                </div>
+
+                            </div>
+
+                            <div style="margin-top: 1%">
+                                <button id="addpackagecreate" type="submit" class="btn btn-success" >Select</button>
+                            </div>
+
                         </div>
-                        <br>
-                        <br>
-                        <div class="col-md-5" style="float: right; padding-left: 5%">
+                        <div class="col-lg-1"></div>
+
+                        <div class="col-lg-6" style="float: right;background: #D3D3D320;">
+
                             <h1>Selected Time</h1>
                             <hr>
-                            <div>
-                            <input type="radio" name="time" value="" style="font-size: 1.5em"/>All-Day 
-                            <button id="addpackagecreate" type="submit" class="btn btn-danger" style="float: right">Remove</button>
+                            <div class="container col-lg-12">
+                                <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1.5%">
+                                    <div class="col-lg-4">
+                                        <label style="font-size: 1.6em" >9:00 - 10:00</label> 
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label style="font-size: 1.6em">5</label> <label style="font-size: 1.6em">People</label> 
+
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <button  id="addpackagecreate" type="submit" class="btn btn-danger mr-right" style="float: right">Remove</button>
+                                    </div>
+                                </div>
                             </div>
+
+
                             <br>
-                            <div>
-                            <input type="radio" name="time" value="" style="font-size: 1.5em"/>9.00-12.00 
-                            <button id="addpackagecreate" type="submit" class="btn btn-danger" style="float: right">Remove</button>
-                            </div>
-                            <br>
-                            
+
                             <br>
                         </div>
 
                     </div>
                     <br>
                     <br>
-                    <div class="container" style="background: #D3D3D320">
-                        <label style="font-size: 1.5em">Total Price:_____________Baht</label>
-                        
+
+                    <div class="row" style="background: #D3D3D320">
+                        <label style="font-size: 1.5em; margin-left: 2%;padding-top: 1%">Total Price:_____________Baht</label>
+
                     </div>
+
                     <br>
                     <br>
                     <br>
+
                     <div class="container">
                         <button id="addpackagecreate" type="submit" class="btn btn-success" style="margin-left: 2%;float: right">Reserve</button>
                         <button id="addpackagecancel" type="button" class="btn btn-danger" style="margin-left: 2%;float: right">Cancel</button>
                     </div>
+
                     <br>
                     <br>
+
                 </div>
                 <!----------------------------------------------------------------------------------------------------------------------------->
 
@@ -278,6 +330,19 @@
                                     });
 
 
+        </script>
+        
+        <script type="text/javascript">
+            $(document).ready(function (){
+               
+                
+                $('#Date').datepicker({
+                    minViewMode: 0,
+                    format: 'DD/mm/yyyy'
+                });
+              
+            });
+            
         </script>
     </body>
 </html>
