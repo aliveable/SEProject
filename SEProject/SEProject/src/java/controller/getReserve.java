@@ -48,11 +48,16 @@ public class getReserve extends HttpServlet {
             String id = request.getParameter("id");
             String rd = request.getParameter("");
             RequestDispatcher pg = request.getRequestDispatcher(rd);
-            ResultSet rs = stmt.executeQuery("SELECT *"
-                    + "FROM reserve_space  "
+            ResultSet rs = stmt.executeQuery("SELECT r.Reserve_ID, r.Username, r.Space_ID, r.Package_ID, r.Reserve_Time, r.Reserve_Price, r.Reserve_Status, m.Firstname, m.Lastname, p.Package_Name, s.Space_Name"
+                    + "FROM ((reserve_space r JOIN member m ON (r.Username = m.Username)) JOIN space s ON (r.Space_ID = s.Space_ID)) JOIN package p ON (r.Package_ID = p.Package_ID)"
                     + "WHERE Reserve_ID='"+id+"';");
             rs.next();
-            Reserve reserve = new Reserve(rs.getInt("Reserve_ID"), rs.getString("Username"), rs.getInt("Space_ID"), rs.getInt("Package_ID"), rs.getString("Reserve_Time"), rs.getInt("Reserve_Price"), rs.getString("Reserve_Status"));
+            Reserve reserve = new Reserve(rs.getInt("Reserve_ID"), rs.getString("Username"), rs.getInt("Space_ID"), rs.getInt("Package_ID"), rs.getString("Reserve_Time"), rs.getInt("Reserve_Price"), rs.getString("Reserve_Status"), rs.getString("Firstname")+rs.getString("Lastname"), "", rs.getString("Space_Name"), rs.getString("Package_Name"));
+            rs.close();
+            rs = stmt.executeQuery("SELECT  m.Firstname, m.Lastname"
+                    + "FROM space s JOIN member m ON (s.Username = m.Username) "
+                    + "WHERE Space_ID='"+reserve.getSpace_id()+"';");
+            reserve.setPname(rs.getString("Firstname")+rs.getString("Lastname"));
             rs.close();
             rs = stmt.executeQuery("SELECT *"
                     + "FROM reserve_space_time  "

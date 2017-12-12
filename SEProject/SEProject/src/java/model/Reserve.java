@@ -20,10 +20,14 @@ public class Reserve {
     private String reserve_time;
     private int reserve_price;
     private String reserve_status;
+    private String name;
+    private String pname;
+    private String spacename;
+    private String packagename;
     private List<ReserveTime> reservetimes = new ArrayList<ReserveTime>();
     private List<ReserveAdd> reserveadds = new ArrayList<ReserveAdd>();
 
-    public Reserve(int reserve_id, String username, int space_id, int package_id, String reserve_time, int reserve_price, String reserve_status) {
+    public Reserve(int reserve_id, String username, int space_id, int package_id, String reserve_time, int reserve_price, String reserve_status, String name, String pname, String spacename, String packagename) {
         this.reserve_id = reserve_id;
         this.username = username;
         this.space_id = space_id;
@@ -31,8 +35,46 @@ public class Reserve {
         this.reserve_time = reserve_time;
         this.reserve_price = reserve_price;
         this.reserve_status = reserve_status;
+        this.name = name;
+        this.pname = pname;
+        this.spacename = spacename;
+        this.packagename = packagename;
+    }
+    
+    
+
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public String getSpacename() {
+        return spacename;
+    }
+
+    public void setSpacename(String spacename) {
+        this.spacename = spacename;
+    }
+
+    public String getPackagename() {
+        return packagename;
+    }
+
+    public void setPackagename(String packagename) {
+        this.packagename = packagename;
+    }
+    
     public int getReserve_id() {
         return reserve_id;
     }

@@ -5,7 +5,7 @@
  */
 package model;
 
-class ReserveAdd {
+public class ReserveAdd {
     private int reserve_add_id;
     private int package_list_id;
     private int reserve_id;
