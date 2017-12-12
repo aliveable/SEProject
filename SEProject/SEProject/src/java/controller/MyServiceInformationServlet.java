@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.PackageInfo;
+import model.PackageInfos;
 import model.RightToRecive;
 import model.RightToRecives;
 import model.ServiceDesc;
@@ -90,6 +92,17 @@ public class MyServiceInformationServlet extends HttpServlet {
                         i++;
                     }
                     rs.close();
+                    rs = stmt.executeQuery("SELECT Package_Name, Package_Price, Package_Desc, Package_ID FROM package WHERE Space_ID="+id+";");
+                    PackageInfos pkInfo = new PackageInfos();
+                while(rs.next()){
+                    PackageInfo info = new PackageInfo();
+                info.setName(rs.getString("Package_Name"));
+                info.setPrice(rs.getString("Package_Price"));
+                info.setPackage_id(rs.getInt("Package_ID"));
+                info.setDesc(rs.getString("Package_Desc"));
+                pkInfo.add(info);
+                }
+                    request.setAttribute("pkInfo", pkInfo);
                     desc.setPics(pics);
                     request.setAttribute("RTR", righttorecives);
                     session.setAttribute("desc", desc);

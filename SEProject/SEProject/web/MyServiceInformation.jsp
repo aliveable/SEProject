@@ -197,29 +197,64 @@
                         <div class="row">
 
                             <div  class="col col-lg-12" >
-                                <c:forEach var="row" begin="1" end="5">
-                                    <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
-                                        <div class="col-lg-3">
-                                            <img src="http://placekitten.com/220/200" value="1">
-                                        </div>
-                                        <div class="col-lg-9" style="background: #D3D3D330">
-                                            <br>
-                                            <li>Name  : <span>Test${row}</span></li>
-                                            <li>Price : <span>${row}$</span></li>
-                                            <div>
-                                                <label>Description</label>
-                                                <li>asdadsadadasdasdasd
-                                                    asdasdasdasd
-                                                    asdadsasdasd</li>
+                                <c:forEach var="row" items="${requestScope.pkInfo.getPkInfo()}">
+                                <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
+                                    <div class="col-lg-3">
+                                        <img src="http://placekitten.com/220/200" value="1">
+                                    </div>
+                                    <div class="col-lg-9" style="background: #D3D3D330">
+                                        <br>
+                                        <li>Name  : <span>${row.name}</span></li>
+                                        <li>Price : <span>${row.price}$</span></li>
+                                        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1.5%">
+                                            <label>Description</label>
+                                            <div style="max-height: 300px;overflow-y: scroll;">
+                                                <style>
+                                                    #toolbar {
+                                                        display: none;
+                                                    }
+                                                </style>
+
+                                                <div id="toolbar">
+                                                    <button class="ql-bold">Bold</button>
+                                                    <span class="ql-formats">
+                                                        <select class="ql-size">
+                                                            <option value="10px">Small</option>
+                                                            <option selected>Normal</option>
+                                                            <option value="18px">Large</option>
+                                                            <option value="32px">Huge</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- Create the editor container -->
+                                                <div id="editor${row.package_id}" style="height: 100px">
+                                                </div>
                                             </div>
+                                            <script>
+                                                var BackgroundClass = Quill.import('attributors/class/background');
+                                                var ColorClass = Quill.import('attributors/class/color');
+                                                var SizeStyle = Quill.import('attributors/style/size');
+                                                Quill.register(BackgroundClass, true);
+                                                Quill.register(ColorClass, true);
+                                                Quill.register(SizeStyle, true);
+                                                var quill = new Quill('#editor${row.package_id}', {
+                                                    modules: {
+                                                        toolbar: '#toolbar'
+                                                    },
+                                                    theme: 'snow'
+                                                });
+                                                quill.setContents(${row.desc});
+                                                quill.disable();
+                                            </script>
                                         </div>
-                                        <div class="container text-right" style="margin-top: 1%">
-                                            <button class="btn btn-success">Edit Package</button>
-                                        </div>
-                                        <hr>
+                                    </div>
+                                    <div class="container text-right" style="margin-top: 1%">
+                                        <a href="Edit?package=${row.package_id}" role="button" class="btn btn-success">Edit Package</a>
                                     </div>
                                     <hr>
-                                </c:forEach>
+                                </div>
+                                <hr>
+                            </c:forEach>
 
 
                             </div>
