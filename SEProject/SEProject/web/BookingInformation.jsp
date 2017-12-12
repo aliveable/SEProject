@@ -146,22 +146,13 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <h3>Booking Time       : 9:00 - 10:00</h3> 
+                                <h3>Who Book's                 : Viriya blabla</h3>
                             </div>
 
                         </div>
                     </div>
                     
-                    <div class="container col-lg-12" style="margin-bottom: 1%; margin-top: 1%">
-                        <div class="row">
-
-                            <div class="col-lg-6">
-                                <h3>Who Book's                 : Viriya blabla</h3>
-                            </div>
-                            
-
-                        </div>
-                    </div>
+                    
                     
                 </div>
             </div>
