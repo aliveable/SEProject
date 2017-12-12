@@ -321,7 +321,7 @@
             <br> 
             <div class="container text-right" >
                             <div class="form-group"  >
-                                <a href="CreatePackage.jsp" type="button" class="btn btn-success" style="">New Package</a>
+                                <a href="CreatePackage.jsp" role="button" class="btn btn-success" style="">New Package</a>
                             </div>
                         </div>
                   

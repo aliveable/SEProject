@@ -296,6 +296,7 @@
                                     <div class="container text-right" style="margin-top: 1%">
                                         <button class="btn btn-success">View Package</button>
                                     </div>
+                                    
                                 </div>
                                 <hr>
 
