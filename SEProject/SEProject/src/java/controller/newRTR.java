@@ -9,6 +9,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -37,12 +38,15 @@ public class newRTR extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            Statement stmt = conn.createStatement();
+            PreparedStatement stmt = null;
             HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
                 String space_id = request.getParameter("id");
                 String value = request.getParameter("item");
-                stmt.executeUpdate("Insert INTO space_list (Space_ID, Space_Text) VALUES('"+space_id+"', N'"+value+"');");
+                stmt = conn.prepareStatement("Insert INTO space_list (Space_ID, Space_Text) VALUES(?,?);"); 
+                    stmt.setString(1, space_id); 
+                    stmt.setString(2, value);
+                    stmt.executeUpdate();
                 out.println("yes");
                 RequestDispatcher pg = request.getRequestDispatcher("getEditRTR?id="+space_id);
                 pg.forward(request, response);

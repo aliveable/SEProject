@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -45,7 +46,7 @@ public class editInc extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            Statement stmt = conn.createStatement();
+            PreparedStatement stmt = null;
             HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
                 String id = request.getParameter("packageid");
@@ -53,9 +54,16 @@ public class editInc extends HttpServlet {
                 String price = request.getParameter("package_list_price");
                 String package_list_id = request.getParameter("packagelistid");
                 if (price.equals("0")){
-                    stmt.executeUpdate("Update package_list SET Package_Text=N'"+text+"' WHERE Package_List_ID='"+package_list_id+"';");
+                    stmt = conn.prepareStatement("Update package_list SET Package_Text=? WHERE Package_List_ID=?;"); 
+                    stmt.setString(1, text); 
+                    stmt.setString(2, package_list_id);
+                    stmt.executeUpdate();
                 } else {
-                    stmt.executeUpdate("Update package_list SET Package_Text=N'"+text+"', Package_List_Price='"+price+"' WHERE Package_List_ID='"+package_list_id+"';");
+                    stmt = conn.prepareStatement("Update package_list SET Package_Text=?, Package_List_Price=? WHERE Package_List_ID=?;"); 
+                    stmt.setString(1, text); 
+                    stmt.setString(2, price);
+                    stmt.setString(3, package_list_id);
+                    stmt.executeUpdate();
                 }
                 RequestDispatcher pg = request.getRequestDispatcher("editPackage?id="+id);
                 pg.forward(request, response);

@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,7 +40,7 @@ public class updatepackage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            Statement stmt = conn.createStatement();
+            PreparedStatement stmt = null;
             HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
                 String id = request.getParameter("id");
@@ -50,12 +51,17 @@ public class updatepackage extends HttpServlet {
                 String open_time = request.getParameter("open_time");
                 String close_time = request.getParameter("close_time");
                 String desc = request.getParameter("contents");
-                out.println(request.getParameter("contents"));
-                out.println("Update package SET Package_Name=N'"+name+"',Package_Desc=N'"+desc+"', Package_Price='"+price+"', Package_Size='"+max+"', "
-                            + "Package_LimitTime_Modify='"+before+"', Package_OpenHour='"+open_time+"', Package_LastHour='"+close_time+"'WHERE Package_ID='"+id+"';");
-                
-                stmt.executeUpdate("Update package SET Package_Name=N'"+name+"',Package_Desc=N'"+desc+"', Package_Price='"+price+"', Package_Size='"+max+"', "
-                            + "Package_LimitTime_Modify='"+before+"', Package_OpenHour='"+open_time+"', Package_LastHour='"+close_time+"'WHERE Package_ID='"+id+"';");
+                stmt = conn.prepareStatement("Update package SET Package_Name=?,Package_Desc=?, Package_Price=?, Package_Size=?, "
+                            + "Package_LimitTime_Modify=?, Package_OpenHour=?, Package_LastHour=? WHERE Package_ID=?;"); 
+                    stmt.setString(1, name); 
+                    stmt.setString(2, desc);
+                    stmt.setString(3, price);
+                    stmt.setString(4, max);
+                    stmt.setString(5, before);
+                    stmt.setString(6, open_time);
+                    stmt.setString(7, close_time);
+                    stmt.setString(8, id);
+                    stmt.executeUpdate();
                 RequestDispatcher pg = request.getRequestDispatcher("editPackage?id="+id);
                 pg.forward(request, response);
                       

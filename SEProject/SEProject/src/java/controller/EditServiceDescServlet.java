@@ -71,7 +71,7 @@ public class EditServiceDescServlet extends HttpServlet {
                 stmt.setString(6, province); 
                 stmt.setString(7, postal_code); 
                 stmt.setString(8, status); 
-                stmt.setString(9, id); 
+                stmt.setString(9, id);
                 stmt.executeUpdate(); 
                 out.println("<script>alert(\"Success\");location=\"./MyServiceInformation?id="+id+"\";</script>"); 
             } 

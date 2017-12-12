@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -37,17 +38,24 @@ public class newInc extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            Statement stmt = conn.createStatement();
+            PreparedStatement stmt = null;
             HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
                 String id = request.getParameter("packageid");
                 String text = request.getParameter("package_text");
                 String price = request.getParameter("package_list_price");
                 if (price.equals("0")){
-                    stmt.executeUpdate("Insert INTO package_list (Package_ID, Package_Text, Package_List_Price) VALUES('"+id+"', N'"+text+"', 0);");
+                    stmt = conn.prepareStatement("Insert INTO package_list (Package_ID, Package_Text, Package_List_Price) VALUES(?, ?, 0);"); 
+                    stmt.setString(1, id); 
+                    stmt.setString(2, text);
+                    stmt.executeUpdate();
                     out.println("yes");
                 } else {
-                    stmt.executeUpdate("Insert INTO package_list (Package_ID, Package_Text, Package_List_Price) VALUES('"+id+"', N'"+text+"', '"+price+"');");
+                    stmt = conn.prepareStatement("Insert INTO package_list (Package_ID, Package_Text, Package_List_Price) VALUES(?,?,?);"); 
+                    stmt.setString(1, id); 
+                    stmt.setString(2, text);
+                    stmt.setString(3, price);
+                    stmt.executeUpdate();
                     out.println("no");
                 }
                 RequestDispatcher pg = request.getRequestDispatcher("editPackage?id="+id);
