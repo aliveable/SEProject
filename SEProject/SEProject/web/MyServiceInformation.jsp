@@ -197,108 +197,30 @@
                         <div class="row">
 
                             <div  class="col col-lg-12" >
-
-                                <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
-                                    <div class="col-lg-3">
-                                        <img src="http://placekitten.com/220/200" value="1">
-                                    </div>
-                                    <div class="col-lg-9" style="background: #D3D3D330">
-                                        <br>
-
-                                        <li>Name  : <span>Test1</span></li>
-                                        <li>Price : <span>20$</span></li>
-
-                                        <div>
-                                            <label>Description</label>
-                                            <li>asdadsadadasdasdasd
-                                                asdasdasdasd
-                                                asdadsasdasd</li>
+                                <c:forEach var="row" begin="1" end="5">
+                                    <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
+                                        <div class="col-lg-3">
+                                            <img src="http://placekitten.com/220/200" value="1">
                                         </div>
-
-
-
-                                    </div>
-                                    <div class="container text-right" style="margin-top: 1%">
-                                        <button class="btn btn-success">View Package</button>
-                                    </div>
-
-                                </div>
-                                <hr>
-                                <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
-                                    <div class="col-lg-3">
-                                        <img src="http://placekitten.com/220/200" value="1">
-                                    </div>
-                                    <div class="col-lg-9" style="background: #D3D3D330">
-                                        <br>
-
-                                        <li>Name  : <span>Test1</span></li>
-                                        <li>Price : <span>20$</span></li>
-
-                                        <div>
-                                            <label>Description</label>
-                                            <li>asdadsadadasdasdasd
-                                                asdasdasdasd
-                                                asdadsasdasd</li>
+                                        <div class="col-lg-9" style="background: #D3D3D330">
+                                            <br>
+                                            <li>Name  : <span>Test${row}</span></li>
+                                            <li>Price : <span>${row}$</span></li>
+                                            <div>
+                                                <label>Description</label>
+                                                <li>asdadsadadasdasdasd
+                                                    asdasdasdasd
+                                                    asdadsasdasd</li>
+                                            </div>
                                         </div>
-
-                                    </div>
-                                    <div class="container text-right" style="margin-top: 1%">
-                                        <button class="btn btn-success">View Package</button>
-                                    </div>
-
-                                </div>
-
-                                <hr>
-                                <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
-                                    <div class="col-lg-3">
-                                        <img src="http://placekitten.com/220/200" value="1">
-                                    </div>
-                                    <div class="col-lg-9" style="background: #D3D3D330">
-                                        <br>
-
-                                        <li>Name  : <span>Test1</span></li>
-                                        <li>Price : <span>20$</span></li>
-
-                                        <div>
-                                            <label>Description</label>
-                                            <li>asdadsadadasdasdasd
-                                                asdasdasdasd
-                                                asdadsasdasd</li>
+                                        <div class="container text-right" style="margin-top: 1%">
+                                            <button class="btn btn-success">Edit Package</button>
                                         </div>
-
+                                        <hr>
                                     </div>
-                                    <div class="container text-right" style="margin-top: 1%">
-                                        <button class="btn btn-success">View Package</button>
-                                    </div>
+                                    <hr>
+                                </c:forEach>
 
-                                </div>
-                                <hr>
-                                <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
-                                    <div class="col-lg-3">
-                                        <img src="http://placekitten.com/220/200" value="1">
-                                    </div>
-                                    <div class="col-lg-9" style="background: #D3D3D330">
-                                        <br>
-
-                                        <li>Name  : <span>Test1</span></li>
-                                        <li>Price : <span>20$</span></li>
-
-                                        <div>
-                                            <label>Description</label>
-                                            <li>asdadsadadasdasdasd
-                                                asdasdasdasd
-                                                asdadsasdasd</li>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="container text-right" style="margin-top: 1%">
-                                        <button class="btn btn-success">View Package</button>
-                                    </div>
-                                    
-                                </div>
-                                <hr>
 
                             </div>
                         </div>

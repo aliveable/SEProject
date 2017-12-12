@@ -58,7 +58,6 @@ public class MyServiceInformationServlet extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 String id;
                 id = request.getParameter("id");
-                session.removeAttribute("serviceInformation_id");
                 ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
                         + "Space_Province, Space_PostalCode, Space_Status "
                         + "FROM space WHERE (Space_ID=" + id + " AND Username='" + session.getAttribute("username") + "');");
@@ -73,7 +72,6 @@ public class MyServiceInformationServlet extends HttpServlet {
                     desc.setProvince(rs.getString("Space_Province"));
                     desc.setStatus(rs.getString("Space_Status"));
                     desc.setSub_district(rs.getString("Space_SubDistrict"));
-
                     rs = stmt.executeQuery("SELECT *"
                             + "FROM space_list  "
                             + "WHERE Space_ID='" + id + "';");

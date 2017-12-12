@@ -8,11 +8,9 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -21,14 +19,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.PackageInfo;
 
 /**
  *
  * @author Amoeba
  */
-@WebServlet(name = "CreatePackageServlet", urlPatterns = {"/CreatePackageServlet"})
-public class CreatePackageServlet extends HttpServlet {
+@WebServlet(name = "PackageInformationServlet", urlPatterns = {"/PackageInformation"})
+public class PackageInformationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,28 +50,31 @@ public class CreatePackageServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-        PreparedStatement stmt = null;
-        HttpSession session = request.getSession();
+            Statement stmt = conn.createStatement();
+            RequestDispatcher pg = request.getRequestDispatcher("PackageInformation.jsp");
         try (PrintWriter out = response.getWriter()) {
-                stmt = conn.prepareStatement("INSERT INTO package "
-                        + "(Space_ID, Package_Name, Package_Desc, Package_Price, Package_Size, Package_LimitTime_Modify, Package_OpenHour, Package_LastHour)"
-                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                stmt.setInt(1, Integer.parseInt(request.getParameter("space_id")));
-                stmt.setString(2, request.getParameter("name"));
-                stmt.setString(3, request.getParameter("contents"));
-                stmt.setInt(4, Integer.parseInt(request.getParameter("price")));
-                stmt.setInt(5, Integer.parseInt(request.getParameter("max")));
-                stmt.setInt(6, Integer.parseInt(request.getParameter("before")));
-                stmt.setString(7, request.getParameter("open_time"));
-                stmt.setString(8, request.getParameter("close_time"));
-                stmt.executeUpdate();
-                response.sendRedirect("MyServiceInformation?id="+request.getParameter("space_id"));
-            }} catch (SQLException ex) {
-                Logger.getLogger(CreatePackageServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+            String package_id = request.getParameter("package");
+            ResultSet rs = stmt.executeQuery("SELECT Package_Name, Package_Desc, Package_Price, Package_Size, Package_LimitTime_Modify,"
+                    + " Package_OpenHour, Package_LastHour FROM package WHERE Package_ID="+package_id+";");
+            PackageInfo pkInfo = new PackageInfo();
+            if(rs.next()){
+                
+                pkInfo.setClose(rs.getString("Package_LastHour"));
+                pkInfo.setDesc(rs.getString("Package_Desc"));
+                pkInfo.setName(rs.getString("Package_Name"));
+                pkInfo.setOpen(rs.getString("Package_OpenHour"));
+                pkInfo.setPrice(rs.getString("Package_Price"));
+                pkInfo.setReserve_before(rs.getString("Package_LimitTime_Modify"));
+                pkInfo.setSize(rs.getString("Package_Size"));
+                request.setAttribute("pkInfo", pkInfo);
+            }else
+                pg = request.getRequestDispatcher("AuthenError.jsp");
+            rs.close();
+            pg.forward(request, response);
             
-        
+        }} catch (SQLException ex) {
+            Logger.getLogger(PackageInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

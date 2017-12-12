@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement; 
 import java.sql.ResultSet; 
 import java.sql.SQLException; 
+import java.sql.Statement;
 import java.util.logging.Level; 
 import java.util.logging.Logger; 
 import javax.servlet.RequestDispatcher; 
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse; 
 import javax.servlet.http.HttpSession; 
+import model.PackageInfo;
+import model.PackageInfos;
 import model.SpaceInfo; 
  
 /** 
@@ -50,20 +53,19 @@ public class SpaceInformationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8"); 
         request.setCharacterEncoding("UTF-8"); 
         try { 
-            PreparedStatement stmt = null; 
+            Statement stmt = conn.createStatement(); 
             HttpSession session = request.getSession(); 
             RequestDispatcher pg = request.getRequestDispatcher("SpaceInformation.jsp"); 
             try (PrintWriter out = response.getWriter()) { 
                 String id = request.getParameter("id"); 
                  
-                stmt = conn.prepareStatement("SELECT s.Space_Name, s.Space_Address, s.Space_District, s.Space_SubDistrict, s.Space_Province, s.Space_Desc, " 
+                ResultSet rs = stmt.executeQuery("SELECT s.Space_Name, s.Space_Address, s.Space_District, s.Space_SubDistrict, s.Space_Province, s.Space_Desc, " 
                         + "m.Firstname, m.Lastname, m.Phone, m.Email, m.Address, m.District, m.SubDistrict, m.Province, m.PostalCode " 
                         + "FROM space s JOIN member m ON (m.Username = s.Username )" 
-                        + "WHERE Space_ID=?;");                 
-                stmt.setString(1, id);                 
-                ResultSet rs = stmt.executeQuery(); 
-                rs.next(); 
+                        + "WHERE Space_ID="+id+";");       
                 SpaceInfo spInfo = new SpaceInfo(); 
+                PackageInfos pkInfo = new PackageInfos();
+                if(rs.next()){               
                 spInfo.setAddress(rs.getString("Space_Address")); 
                 spInfo.setDesc(rs.getString("Space_Desc")); 
                 spInfo.setDistrict(rs.getString("Space_District")); 
@@ -79,8 +81,20 @@ public class SpaceInformationServlet extends HttpServlet {
                 spInfo.setProvider_sub_district(rs.getString("SubDistrict")); 
                 spInfo.setProvince(rs.getString("Space_Province")); 
                 spInfo.setSub_district(rs.getString("Space_SubDistrict")); 
-                request.setAttribute("spInfo", spInfo); 
-                rs.close(); 
+                request.setAttribute("spInfo", spInfo);
+                rs = stmt.executeQuery("SELECT Package_Name, Package_Price, Package_Desc, Package_ID FROM package WHERE Space_ID="+id+";");             
+                while(rs.next()){
+                    PackageInfo info = new PackageInfo();
+                info.setName(rs.getString("Package_Name"));
+                info.setPrice(rs.getString("Package_Price"));
+                info.setPackage_id(rs.getInt("Package_ID"));
+                info.setDesc(rs.getString("Package_Desc"));
+                pkInfo.add(info);
+                }
+                request.setAttribute("pkInfo", pkInfo);
+                }else
+                    pg = request.getRequestDispatcher("AuthenError.jsp");
+                rs.close();      
                 pg.forward(request, response); 
             } 
         } catch (SQLException ex) { 

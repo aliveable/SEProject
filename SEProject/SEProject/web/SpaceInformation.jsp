@@ -190,147 +190,94 @@
                     </form>
 
                 </div>
-                        <br>
+                <br>
             </div>
-            
-            
             <br>
-
             <div class="container" style="background: #D3D3D320;padding-top: 1%;">
                 <div class="container">
                     <h2>Package</h2>
 
                 </div>
                 <hr>
-
                 <div class="container" >
                     <div class="row" style="overflow-y: scroll;max-height: 450px;">
 
                         <div  class="col col-lg-12" >
 
-                            <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
-                                <div class="col-lg-3">
-                                    <img src="http://placekitten.com/220/200" value="1">
-                                </div>
-                                <div class="col-lg-9" style="background: #D3D3D330">
-                                    <br>
-
-                                    <li>Name  : <span>Test1</span></li>
-                                    <li>Price : <span>20$</span></li>
-
-                                    <div>
-                                        <label>Description</label>
-                                        <li>asdadsadadasdasdasd
-                                            asdasdasdasd
-                                            asdadsasdasd</li>
+                            <c:forEach var="row" items="${requestScope.pkInfo.getPkInfo()}">
+                                <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
+                                    <div class="col-lg-3">
+                                        <img src="http://placekitten.com/220/200" value="1">
                                     </div>
+                                    <div class="col-lg-9" style="background: #D3D3D330">
+                                        <br>
+                                        <li>Name  : <span>${row.name}</span></li>
+                                        <li>Price : <span>${row.price}$</span></li>
+                                        <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;padding-bottom: 1.5%">
+                                            <label>Description</label>
+                                            <div style="max-height: 300px;overflow-y: scroll;">
+                                                <style>
+                                                    #toolbar {
+                                                        display: none;
+                                                    }
+                                                </style>
 
-
-
-                                </div>
-                                <div class="container text-right" style="margin-top: 1%">
-                                    <button class="btn btn-success">View Package</button>
-                                </div>
-
-                            </div>
-                            <hr>
-                            <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
-                                <div class="col-lg-3">
-                                    <img src="http://placekitten.com/220/200" value="1">
-                                </div>
-                                <div class="col-lg-9" style="background: #D3D3D330">
-                                    <br>
-
-                                    <li>Name  : <span>Test1</span></li>
-                                    <li>Price : <span>20$</span></li>
-
-                                    <div>
-                                        <label>Description</label>
-                                        <li>asdadsadadasdasdasd
-                                            asdasdasdasd
-                                            asdadsasdasd</li>
+                                                <div id="toolbar">
+                                                    <button class="ql-bold">Bold</button>
+                                                    <span class="ql-formats">
+                                                        <select class="ql-size">
+                                                            <option value="10px">Small</option>
+                                                            <option selected>Normal</option>
+                                                            <option value="18px">Large</option>
+                                                            <option value="32px">Huge</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <!-- Create the editor container -->
+                                                <div id="editor${row.package_id}" style="height: 100px">
+                                                </div>
+                                            </div>
+                                            <script>
+                                                var BackgroundClass = Quill.import('attributors/class/background');
+                                                var ColorClass = Quill.import('attributors/class/color');
+                                                var SizeStyle = Quill.import('attributors/style/size');
+                                                Quill.register(BackgroundClass, true);
+                                                Quill.register(ColorClass, true);
+                                                Quill.register(SizeStyle, true);
+                                                var quill = new Quill('#editor${row.package_id}', {
+                                                    modules: {
+                                                        toolbar: '#toolbar'
+                                                    },
+                                                    theme: 'snow'
+                                                });
+                                                quill.setContents(${row.desc});
+                                                quill.disable();
+                                            </script>
+                                        </div>
                                     </div>
-
-                                </div>
-                                <div class="container text-right" style="margin-top: 1%">
-                                    <button class="btn btn-success">View Package</button>
-                                </div>
-
-                            </div>
-
-                            <hr>
-                            <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
-                                <div class="col-lg-3">
-                                    <img src="http://placekitten.com/220/200" value="1">
-                                </div>
-                                <div class="col-lg-9" style="background: #D3D3D330">
-                                    <br>
-
-                                    <li>Name  : <span>Test1</span></li>
-                                    <li>Price : <span>20$</span></li>
-
-                                    <div>
-                                        <label>Description</label>
-                                        <li>asdadsadadasdasdasd
-                                            asdasdasdasd
-                                            asdadsasdasd</li>
+                                    <div class="container text-right" style="margin-top: 1%">
+                                        <a href="PackageInformation?package=${row.package_id}" role="button" class="btn btn-success">View Package</a>
                                     </div>
-
+                                    <hr>
                                 </div>
-                                <div class="container text-right" style="margin-top: 1%">
-                                    <button class="btn btn-success">View Package</button>
-                                </div>
-
-                            </div>
-                            <hr>
-                            <div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1%; padding-bottom: 1%; padding-right: 1%">
-                                <div class="col-lg-3">
-                                    <img src="http://placekitten.com/220/200" value="1">
-                                </div>
-                                <div class="col-lg-9" style="background: #D3D3D330">
-                                    <br>
-
-                                    <li>Name  : <span>Test1</span></li>
-                                    <li>Price : <span>20$</span></li>
-
-                                    <div>
-                                        <label>Description</label>
-                                        <li>asdadsadadasdasdasd
-                                            asdasdasdasd
-                                            asdadsasdasd</li>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="container text-right" style="margin-top: 1%">
-                                    <button class="btn btn-success">View Package</button>
-                                </div>
-                            </div>
-                            <hr>
+                                <hr>
+                            </c:forEach>
 
                         </div>
-                        
+
                     </div>
-                    
-                    
+
+
                 </div>
-               
+
             </div>
             <br>
             <br> 
-            <div class="container text-right" >
-                            <div class="form-group"  >
-                                <a href="CreatePackage.jsp" role="button" class="btn btn-success" style="">New Package</a>
-                            </div>
-                        </div>
-                  
-                  
         </div>                     
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script src='JS/gallery.js'></script>
         <script>
-            $('#pak1').css("border", "3px solid bule");
+                                                $('#pak1').css("border", "3px solid bule");
         </script>
         <script>
 
@@ -382,6 +329,8 @@
             quill.setContents(${requestScope.spInfo.getDesc()});
             quill.disable();
         </script>
+
+
         <br>
     </body>
 </html>
