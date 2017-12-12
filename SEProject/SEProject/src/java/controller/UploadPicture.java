@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -38,57 +39,83 @@ public class UploadPicture extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        HttpSession session = request.getSession();
-        ServiceDesc desc = (ServiceDesc) session.getAttribute("desc");
+        try (PrintWriter out = response.getWriter()) {
 
-        String folderPath = "ServicePicture";
-        String realPath = getServletContext().getRealPath("/") + folderPath + File.separator ;
+            HttpSession session = request.getSession();
+            ServiceDesc desc = (ServiceDesc) session.getAttribute("desc");
 
-        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-        if (!isMultipart) {
-            //out.println("dose not contain multipart content");
-            return;
-        }
+            String folderPath = "ServicePicture";
+            String realPath = getServletContext().getRealPath("/") + folderPath + File.separator;
 
-        File picturePath = new File(realPath);
-        if (!picturePath.exists()) {
-            picturePath.mkdirs();
-        }
-
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-
-        ServletFileUpload upload = new ServletFileUpload(factory);
-        upload.setFileSizeMax(MAX_FILE_SIZE);
-
-        try {
-            List<FileItem> fileItems = upload.parseRequest(request);
-            Iterator<FileItem> iter = fileItems.iterator();
-
-            Statement stmt = conn.createStatement();
-
-            int i = 0;
-            while (iter.hasNext()) {
-                FileItem fi = (FileItem) iter.next();
-
-                if (!fi.isFormField()) {
-                    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                    String fileName = fi.getName();
-                    String[] fileType = fileName.split("[.]");
-                    String filePath = timeStamp + i + "." + fileType[fileType.length - 1];
-
-                    file = new File(realPath + filePath);
-                    fi.write(file);
-
-                    String sql = "INSERT INTO space_pic VALUES (" + desc.getId() + ", '" + folderPath + "/" + filePath + "');";
-                    stmt.executeUpdate(sql);
-                    i++;
-                }
+            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+            if (!isMultipart) {
+                out.println("<script>");
+                out.println("alert('Dose not contain multipart content');");
+                out.println("location='EditServicePicture';");
+                out.println("</script>");
+                return;
             }
-            response.sendRedirect("MyServiceInformation?id="+desc.getId());
-        } catch (FileUploadBase.FileSizeLimitExceededException ex) {
-            //out.println("too large");
-        } catch (Exception ex) {
-            Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
+
+            if (desc.contPics() > 5) {
+                out.println("<script>");
+                out.println("alert('You can upload only 5 picture per place');");
+                out.println("location='EditServicePicture';");
+                out.println("</script>");
+                return;
+            }
+
+            File picturePath = new File(realPath);
+            if (!picturePath.exists()) {
+                picturePath.mkdirs();
+            }
+
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+
+            ServletFileUpload upload = new ServletFileUpload(factory);
+            upload.setFileSizeMax(MAX_FILE_SIZE);
+
+            try {
+                List<FileItem> fileItems = upload.parseRequest(request);
+
+                if (fileItems.size() + desc.contPics() > 5) {
+                    out.println("<script>");
+                    out.println("alert('You can upload only 5 picture per place');");
+                    out.println("location='EditServicePicture';");
+                    out.println("</script>");
+                    return;
+                }
+
+                Iterator<FileItem> iter = fileItems.iterator();
+
+                Statement stmt = conn.createStatement();
+
+                int i = 0;
+                while (iter.hasNext()) {
+                    FileItem fi = (FileItem) iter.next();
+
+                    if (!fi.isFormField()) {
+                        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                        String fileName = fi.getName();
+                        String[] fileType = fileName.split("[.]");
+                        String filePath = timeStamp + i + "." + fileType[fileType.length - 1];
+
+                        file = new File(realPath + filePath);
+                        fi.write(file);
+
+                        String sql = "INSERT INTO space_pic VALUES (" + desc.getId() + ", '" + folderPath + "/" + filePath + "');";
+                        stmt.executeUpdate(sql);
+                        i++;
+                    }
+                }
+                response.sendRedirect("MyServiceInformation?id=" + desc.getId());
+            } catch (FileUploadBase.FileSizeLimitExceededException ex) {
+                out.println("<script>");
+                out.println("alert('Some of your picture size is larger than 5 MB');");
+                out.println("location='EditServicePicture';");
+                out.println("</script>");
+            } catch (Exception ex) {
+                Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

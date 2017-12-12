@@ -149,7 +149,7 @@
                             <ul>
                                 <c:forEach var="row" items="${requestScope.RTR.getRightToRecives()}">
                                     <li>${row.space_text}</li>
-                                </c:forEach>
+                                    </c:forEach>
                             </ul>
                         </div>
                         <br>
@@ -164,14 +164,16 @@
                         <div class="container-gallery" style="overflow-y: scroll; max-height: 400px">
 
                             <c:forEach var="pic" items="${sessionScope.desc.getPics()}">
-                                <img src="${pic}">
+                                <c:if test = "${pic != null}">
+                                    <img src="${pic}">
+                                </c:if>
                             </c:forEach>
 
                         </div>
                         <div class="container" style="float: left">
                             <div class="form-group"  >
                                 <form action="EditServicePicture" method="post">
-                                    <button type="submit" class="btn btn-success" style="margin-top: 1%" name="id" value="${sessionScope.ids}">Edit</button>
+                                    <button type="submit" class="btn btn-success" style="margin-top: 1%">Edit</button>
                                 </form>
                             </div>
                         </div>

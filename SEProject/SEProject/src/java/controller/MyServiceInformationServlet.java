@@ -61,44 +61,42 @@ public class MyServiceInformationServlet extends HttpServlet {
                 session.removeAttribute("serviceInformation_id");
                 ResultSet rs = stmt.executeQuery("SELECT Space_ID, Space_Name, Space_Desc, Space_Address, Space_District, Space_SubDistrict, "
                         + "Space_Province, Space_PostalCode, Space_Status "
-                        + "FROM space WHERE Space_ID=" + id + ";");
-                rs.next();
-                ServiceDesc desc = new ServiceDesc();
-                desc.setAddress(rs.getString("Space_Address"));
-                desc.setDesc(rs.getString("Space_Desc"));
-                desc.setDistrict(rs.getString("Space_District"));
-                desc.setId(rs.getInt("Space_ID"));
-                desc.setName(rs.getString("Space_Name"));
-                desc.setPostal_code(rs.getString("Space_PostalCode"));
-                desc.setProvince(rs.getString("Space_Province"));
-                desc.setStatus(rs.getString("Space_Status"));
-                desc.setSub_district(rs.getString("Space_SubDistrict"));
+                        + "FROM space WHERE (Space_ID=" + id + " AND Username='" + session.getAttribute("username") + "');");
+                if (rs.next()) {
+                    ServiceDesc desc = new ServiceDesc();
+                    desc.setAddress(rs.getString("Space_Address"));
+                    desc.setDesc(rs.getString("Space_Desc"));
+                    desc.setDistrict(rs.getString("Space_District"));
+                    desc.setId(rs.getInt("Space_ID"));
+                    desc.setName(rs.getString("Space_Name"));
+                    desc.setPostal_code(rs.getString("Space_PostalCode"));
+                    desc.setProvince(rs.getString("Space_Province"));
+                    desc.setStatus(rs.getString("Space_Status"));
+                    desc.setSub_district(rs.getString("Space_SubDistrict"));
 
-                rs = stmt.executeQuery("SELECT *"
-                        + "FROM space_list  "
-                        + "WHERE Space_ID='" + id + "';");
-                RightToRecives righttorecives = new RightToRecives();
-                while (rs.next()) {
-                    RightToRecive righttorecive = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getNString("Space_Text"));
-                    righttorecives.add(righttorecive);
-                }
-                rs.close();
-
-                String sql = "SELECT Space_Pic_Path FROM space_pic WHERE Space_ID = " + desc.getId() + ";";
-
-                rs = stmt.executeQuery(sql);
-
-                String[] pics = new String[5];
-                int i = 0;
-                while (rs.next()) {
-                    pics[i] = rs.getString("Space_Pic_Path");
-                    i++;
-                }
-                rs.close();
-                desc.setPics(pics);
-
-                request.setAttribute("RTR", righttorecives);
-                session.setAttribute("desc", desc);
+                    rs = stmt.executeQuery("SELECT *"
+                            + "FROM space_list  "
+                            + "WHERE Space_ID='" + id + "';");
+                    RightToRecives righttorecives = new RightToRecives();
+                    while (rs.next()) {
+                        RightToRecive righttorecive = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getNString("Space_Text"));
+                        righttorecives.add(righttorecive);
+                    }
+                    rs.close();
+                    String sql = "SELECT Space_Pic_Path FROM space_pic WHERE Space_ID = " + desc.getId() + ";";
+                    rs = stmt.executeQuery(sql);
+                    String[] pics = new String[5];
+                    int i = 0;
+                    while (rs.next()) {
+                        pics[i] = rs.getString("Space_Pic_Path");
+                        i++;
+                    }
+                    rs.close();
+                    desc.setPics(pics);
+                    request.setAttribute("RTR", righttorecives);
+                    session.setAttribute("desc", desc);                    
+                }else
+                    pg = request.getRequestDispatcher("AuthenError.jsp");
                 pg.forward(request, response);
             }
         } catch (SQLException ex) {

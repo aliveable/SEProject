@@ -104,6 +104,14 @@ public class ServiceDesc {
         this.pics = pics;
     }
     
-    
+    public int contPics() {
+        int i = 0;
+        for(String pic: pics) {
+            if(pic != null) {
+                i++;
+            }
+        }
+        return i;
+    }
     
 }

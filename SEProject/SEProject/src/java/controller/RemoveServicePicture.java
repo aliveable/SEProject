@@ -1,13 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.ServiceDesc;
 
-@WebServlet(urlPatterns = {"/EditServicePicture"})
-public class EditServicePicture extends HttpServlet {
+@WebServlet(urlPatterns = {"/RemoveServicePicture"})
+public class RemoveServicePicture extends HttpServlet {
 
     private Connection conn;
 
@@ -28,31 +27,23 @@ public class EditServicePicture extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-        try {
-            response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            try {
+                HttpSession session = request.getSession();
+                ServiceDesc desc = (ServiceDesc) session.getAttribute("desc");
 
-            HttpSession session = request.getSession();
-            ServiceDesc desc = (ServiceDesc) session.getAttribute("desc");
-            Statement stmt = conn.createStatement();
+                Statement stmt = conn.createStatement();
 
-            String sql = "SELECT Space_Pic_Path FROM space_pic WHERE Space_ID = " + desc.getId() + ";";
+                String sql = "DELETE FROM space_pic WHERE Space_Pic_Path = '" + request.getParameter("path") + "';";out.println(sql);
 
-            ResultSet rs = stmt.executeQuery(sql);
+                stmt.executeUpdate(sql);out.println("pass5<br>");
 
-            String[] pics = new String[5];
-            int i = 0;
-            while (rs.next()) {
-                pics[i] = rs.getString("Space_Pic_Path");
-                i++;
+                response.sendRedirect("EditServicePicture");
+            } catch (SQLException ex) {
+                Logger.getLogger(RemoveServicePicture.class.getName()).log(Level.SEVERE, null, ex);
             }
-            rs.close();
-            desc.setPics(pics);
-
-            RequestDispatcher rd = request.getRequestDispatcher("editServicePicture.jsp");
-            rd.forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(EditServicePicture.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
