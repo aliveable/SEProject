@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.PackageInfo;
 import model.PackageInfos;
+import model.RightToRecive;
+import model.RightToRecives;
 import model.ServiceDesc;
 import model.SpaceInfo;
 
@@ -123,7 +125,14 @@ public class SpaceInformationServlet extends HttpServlet {
 
                         info.setPics(pics2);
                     }
-
+                    
+                    rs = stmt.executeQuery("SELECT * FROM space_list WHERE Space_ID=" + id + ";");
+                    RightToRecives rtr = new RightToRecives();
+                    while (rs.next()){
+                        RightToRecive rtrs = new RightToRecive(rs.getInt("Space_List_ID"), rs.getInt("Space_ID"), rs.getString("Space_Text"));
+                        rtr.add(rtrs);
+                    }
+                    request.setAttribute("RTR", rtr);
                     request.setAttribute("pkInfo", pkInfo);
                 } else {
                     pg = request.getRequestDispatcher("AuthenError.jsp");

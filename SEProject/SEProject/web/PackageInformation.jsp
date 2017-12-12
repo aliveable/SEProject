@@ -122,10 +122,9 @@
                 <hr>
                 <div style="overflow-y: scroll; max-height: 300px">
                     <ul>
-                        <li>Test1</li>
-                        <li>Test2</li>
-                        <li>Test3</li>
-                        <li>Test4</li>
+                        <c:forEach var="var" items="${requestScope.inc.getIncludes()}">
+                        <li>${var.package_text}</li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -135,10 +134,9 @@
                 <hr>
                 <div style="overflow-y: scroll; max-height: 300px">
                     <ul>
-                        <li>Test1</li>
-                        <li>Test2</li>
-                        <li>Test3</li>
-                        <li>Test4</li>
+                        <c:forEach var="var" items="${requestScope.opt.getIncludes()}">
+                        <li>${var.package_text} ${var.package_list_price}</li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
