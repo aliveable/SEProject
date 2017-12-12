@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Bootstrap Example</title>
+        <title>My Service</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -62,7 +62,7 @@
                             <h2> <a href="CreateService.jsp">เพิ่มการให้บริการ</a> </h2>
                         </div>
                         <div class="col col-lg-6">
-                            <h2> <a href="#">ตรวจสอบหลักฐานและอนุมัติ</a> </h2>
+                            <h2> <a href="#">การจองและประวัติ</a> </h2>
                         </div>
                     </div>
                 </div>
