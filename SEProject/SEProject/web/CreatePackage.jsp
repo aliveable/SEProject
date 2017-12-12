@@ -128,13 +128,13 @@
                                 <div style="padding-left: 1%">
                                     <label style="font-size: 1.5em" >ชมก่อนถึงเวลา</label>
                                 </div>
-                                &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div class="row">
                                 <div>
                                     <label style="font-size: 1.5em">รองรับได้สูงสุด</label>
                                 </div>
                                 <div style="padding-left: 1%">
                                     <input class="form-control" type="number" name="max" min="1" value="1">
-
                                 </div>
                                 <div style="padding-left: 1%">
                                     <label style="font-size: 1.5em">คน</label>

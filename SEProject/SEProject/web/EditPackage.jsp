@@ -56,20 +56,19 @@
         <div class="container" style="border: 2px solid #D3D3D380;padding-bottom: 1%">
             <div class="container text-center">
                 <h1> Edit Package </h1>
-
             </div>
-
             <hr>
             <br>
             <div class="container" style=";padding-bottom: 1%">
-
+                <form action="updatepackage" method="post" method="POST" class="form-horizontal" role="form" id="updatePackage">
+                    <input type="hidden" name="id" value="${sessionScope.package.getPackage_id()}">
                 <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;" >
                     <div class="row" style="margin-left: 1%"> 
                         <div>
                             <label style="font-size: 1.5em;">Package Name: </label>
                         </div>
                         <div style="padding-left: 1%">
-                            <input class="form-control" type="text" value="${package.name}">
+                            <input class="form-control" type="text" name="name" value="${package.name}">
                         </div>
                     </div>
                 </div>
@@ -161,13 +160,17 @@
                                     <label style="font-size: 1.5em"></label>
                                 </div>
                             </div>
+                                    <div class="container">            
+                    <button id="addpackagecreate" type="submit" class="btn btn-success" style="margin-left: 2%;float: right">Update</button>
+                </div> 
                         </div>
+                    </form>
                 <br>
                 <div class="container" style="background: #D3D3D320">
                     <label style="font-size: 1.5em;padding-top: 1%">Gallery</label>
                     <hr>
                     <div class="container-gallery" style="overflow-y: scroll; max-height: 850px">
-
+                    
                         <c:forEach var="pic" items="${sessionScope.package.getPics()}">
                             <img src="${pic}">
                         </c:forEach>
@@ -189,14 +192,38 @@
                 <div id="addItemContainer" class="container addinc" style="background: #D3D3D320">
                     <h1 style="padding-top: 1%;">Include</h1>
                     <hr>
-                    <div class="row" id="addItemContainer">
-
+                    <div>
+                        <c:forEach var="row" items="${sessionScope.includes.getIncludes()}">
+                    <form action="editInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}" method="post">
+                        
+                        <div class="row text-center" style="margin-top: 1%;text-align: center">
+                            <div class="col-md-7" style="">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
+                            </div>
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_price" placeholder="" id="package_list_price" value="0">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_max" placeholder="" id="package_list_max" value="0">
+                            <button type="submit" class="btn btn-success" style="width: 17%;font-size: 1.8em">Update</button>
+                            <a role="button" class="btn btn-success text-center" style="margin-left: 2%;padding-top: 1.5%;width: 17%;font-size: 1.7em" href="removeInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}">Remove</a>
+                        </div> 
+                        
+                    </form>
+                </c:forEach>
+            </div>
+                <br>
+                <form action="newInc?packageid=${package.package_id}" method="post">
+            <div class="row" style="margin-top: 1%">
+                    <div class="col-md-7" style="">
+                        <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="">
                     </div>
-
-                    <br>
-                    <div class="">
-                        <button id="additemincludebutton" type="button" class="btn btn-success" style="margin-left: 2%"> Add item</button>
-                    </div>
+                    <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_price" placeholder="" id="package_list_price" value="0">
+                    <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_max" placeholder="" id="package_list_max" value="0">
+                </div>
+                <br>
+                <div class="row" style="margin-left: -2%">
+                <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%">add Item</button>
+            </div>
+            <br>
+                </form>
                     <br>
                 </div>
 
@@ -205,26 +232,51 @@
                 <div id="addItemContainerOptional" class="container" style="background: #D3D3D320">
                     <h1 style="padding-top: 1%;">Optional</h1>
                     <hr>
-                    <div class="row" id="addItemContainerOptional">
-
-                    </div>
-
-                    <br>
-                    <div class="">
-                        <button id="additemoptional" type="button" class="btn btn-success" style="margin-left: 2%">Add item</button>
-                    </div>
-                    <br>
+                    <div>
+                <c:forEach var="row" items="${sessionScope.options.getIncludes()}">
+                    <form action="editInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}" method="post">
+                        
+                        <div class="row text-center" style="margin-top: 1%;text-align: center">
+                            <div class="col-md-7" style="">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
+                            </div>
+                            <div class="col-md-7" style="">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="${row.package_list_price}">
+                            </div>
+                            <div class="col-md-7" style="">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_max" placeholder="" id="package_list_max" value="${row.package_list_max}">
+                            </div>
+                            <button type="submit" class="btn btn-success" style="width: 17%;font-size: 1.8em">Update</button>
+                            <a role="button" class="btn btn-success text-center" style="margin-left: 2%;padding-top: 1.5%;width: 17%;font-size: 1.7em" href="removeInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}">Remove</a>
+                        </div> 
+                        
+                    </form>
+                </c:forEach>
+            </div>
+                <br>
+                <form action="newInc?packageid=${package.package_id}" method="post">
+            <div class="row" style="margin-top: 1%">
+                    <div class="col-md-7" style="">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
+                            </div>
+                            <div class="col-md-7" style="">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="${row.package_list_price}">
+                            </div>
+                            <div class="col-md-7" style="">
+                                <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_max" placeholder="" id="package_list_max" value="${row.package_list_max}">
+                            </div>
+                </div>
+                <br>
+                <div class="row" style="margin-left: -2%">
+                <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%">add Item</button>
+            </div>
+            <br>
+                </form>
                 </div>
                 <br>
                 <br>
-                <div class="container">
-                    <button id="addpackagecreate" type="submit" class="btn btn-success" style="margin-left: 2%;float: right">Update</button>
-
-                </div>    
-                <br>
-
+                <a role="button" class="btn btn-success" style="margin-left: 2%" href="./MyServiceInformation?id=${sessionScope.desc.getId()}">back</a>
             </div>
-
         </div>
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script src='JS/gallery.js'></script>
@@ -268,22 +320,28 @@
 
         <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
         <!-- Initialize Quill editor -->
-         <script>
-                var BackgroundClass = Quill.import('attributors/class/background');
-                var ColorClass = Quill.import('attributors/class/color');
-                var SizeStyle = Quill.import('attributors/style/size');
-                Quill.register(BackgroundClass, true);
-                Quill.register(ColorClass, true);
-                Quill.register(SizeStyle, true);
-                var quill = new Quill('#editor', {
-                    modules: {
-                        toolbar: '#toolbar'
-                    },
-                    theme: 'snow'
+        <script>
+            var BackgroundClass = Quill.import('attributors/class/background');
+            var ColorClass = Quill.import('attributors/class/color');
+            var SizeStyle = Quill.import('attributors/style/size');
+            Quill.register(BackgroundClass, true);
+            Quill.register(ColorClass, true);
+            Quill.register(SizeStyle, true);
+
+            var quill = new Quill('#editor', {
+                modules: {
+                    toolbar: '#toolbar'
+                },
+                placeholder: 'Example',
+                theme: 'snow'
+            });
+            quill.setContents(${package.desc});
+            $(document).ready(function () {
+                $("#updatePackage").submit(function () {
+                    $(this).append("<input type='hidden' name='contents' value='"+
+                         JSON.stringify(quill.getContents())+"' >");
                 });
-                quill.setContents(${package.desc});
-                quill.disable();
-            </script>
+            });
+        </script>
     </body>
-    <br>
 </html>
