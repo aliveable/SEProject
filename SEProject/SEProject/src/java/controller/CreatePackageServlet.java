@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,22 +54,21 @@ public class CreatePackageServlet extends HttpServlet {
         try {
         PreparedStatement stmt = null;
         HttpSession session = request.getSession();
-        try (PrintWriter out = response.getWriter()) {     
+        try (PrintWriter out = response.getWriter()) {
                 stmt = conn.prepareStatement("INSERT INTO package "
-                        + "(Space_ID, Package_Name, Package_Desc, Package_Price, Package_Size, Package_LimitTime_Modify, Package_LimitTime_Pay, Package_OpenHour, Package_LastHour)"
-                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        + "(Space_ID, Package_Name, Package_Desc, Package_Price, Package_Size, Package_LimitTime_Modify, Package_OpenHour, Package_LastHour)"
+                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 stmt.setInt(1, Integer.parseInt(request.getParameter("space_id")));
                 stmt.setString(2, request.getParameter("name"));
                 stmt.setString(3, request.getParameter("contents"));
                 stmt.setInt(4, Integer.parseInt(request.getParameter("price")));
                 stmt.setInt(5, Integer.parseInt(request.getParameter("max")));
                 stmt.setInt(6, Integer.parseInt(request.getParameter("before")));
-                stmt.setInt(7, Integer.parseInt(request.getParameter("under")));
-                stmt.setString(8, request.getParameter("open_time"));
-                stmt.setString(9, request.getParameter("close_time"));
+                stmt.setString(7, request.getParameter("open_time"));
+                stmt.setString(8, request.getParameter("close_time"));
                 stmt.executeUpdate();
-                session.setAttribute("serviceInformation_id", request.getParameter("space_id"));
-                response.sendRedirect("MyServiceInformation");                
+                RequestDispatcher pg = request.getRequestDispatcher("MyServiceInformation?id="+request.getParameter("space_id"));
+                pg.forward(request, response); 
             }} catch (SQLException ex) {
                 Logger.getLogger(CreatePackageServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -58,6 +58,7 @@
         <br>
         <div>
             <form action="CreatePackageServlet" method="POST" class="form-horizontal" role="form" id="createService">
+                <input type="hidden" name="space_id" value="${sessionScope.desc.getId()}">
                 <div class="container">
                     <h1> Create Package </h1>
                 </div>
@@ -70,7 +71,7 @@
                                 <label style="font-size: 1.5em;">Package Name: </label>
                             </div>
                             <div style="padding-left: 1%">
-                                <input class="form-control" type="text" name="name" >
+                                <input class="form-control" type="text" name="name" value="">
                             </div>
                         </div>
                     </div>
@@ -108,22 +109,11 @@
                                     <label style="font-size: 1.5em">ราคา: </label>
                                 </div>
                                 <div style="padding-left: 1%">
-                                    <input class="form-control" type="text" name="price" value="${sessionScope.desc.getId()}">
+                                    <input class="form-control" type="text" name="price" value="">
 
                                 </div>
                                 <div style="padding-left: 1%">
                                     <label style="font-size: 1.5em" >บาทต่อคนในหนึ่งชม </label>
-                                </div>
-                                &nbsp;&nbsp;&nbsp;
-                                <div>
-                                    <label style="font-size: 1.5em">ต้องชำระเงินภายใน</label>
-                                </div>
-                                <div style="padding-left: 1%">
-                                    <input class="form-control" type="number" name="under" min="1" value="1">
-
-                                </div>
-                                <div style="padding-left: 1%">
-                                    <label style="font-size: 1.5em" >ชม</label>
                                 </div>
                             </div>
 
@@ -184,120 +174,6 @@
                     </div>
                     <br> <br>
                     <br>
-                </div>
-                <!----------------------------------------------------------------------------------------------------------------------------->
-
-                <div class="modal fade" id="editmodalinclude" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="recipient-name" class="form-control-label">Privilage:</label>
-                                        <input type="text" class="form-control" id="recipient-name-include-edit">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Change</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal fade" id="additemincludemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="recipient-name" class="form-control-label">Privilege:</label>
-                                        <input type="text" class="form-control" id="recipient-name-include-add">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addItem()">Add</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-------------------------------------------------------------------------------------------------------------------------------->
-                <div class="modal fade" id="editmodaloptional" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label  class="form-control-label">Optional:</label>
-                                        <input type="text" class="form-control" id="recipient-name-edit">
-                                    </div>
-                                    <div class="form-group">
-                                        <label  class="form-control-label">Price:</label>
-                                        <input type="text" class="form-control" id="recipient-price-edit">
-                                    </div>
-                                    <div class="form-group">
-                                        <label  class="form-control-label">Max:</label>
-                                        <input type="text" class="form-control" id="recipient-max-edit">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Change</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="additemoptionalmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Optional:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Price:</label>
-                                    <input type="text" class="form-control" id="recipient-price">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-control-label">Max:</label>
-                                    <input type="text" class="form-control" id="recipient-max">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button onClick="addItemOptional()" id="addmodalbtn" type="submit" class="btn btn-success" data-dismiss="modal">Add</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </form>
         </div>

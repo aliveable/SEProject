@@ -94,10 +94,11 @@ public class MyServiceInformationServlet extends HttpServlet {
                     rs.close();
                     desc.setPics(pics);
                     request.setAttribute("RTR", righttorecives);
-                    session.setAttribute("desc", desc);                    
+                    session.setAttribute("desc", desc);
+                                     
                 }else
                     pg = request.getRequestDispatcher("AuthenError.jsp");
-                pg.forward(request, response);
+                pg.forward(request, response); 
             }
         } catch (SQLException ex) {
             Logger.getLogger(MyServiceInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
