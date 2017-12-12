@@ -49,7 +49,6 @@ public class editPackage extends HttpServlet {
             rs.next();
             PackageInfo packageItem = new PackageInfo(rs.getInt("Package_ID"), rs.getString("Package_Name"), rs.getString("Package_Desc"), rs.getString("Package_Price"), rs.getString("Package_LimitTime_Modify"), rs.getString("Package_OpenHour"), rs.getString("Package_LastHour"), rs.getString("Package_Size"));
             rs.close();
-            request.setAttribute("package", packageItem);
             session.setAttribute("package", packageItem);
             pg.forward(request, response); 
             } catch (SQLException ex) {

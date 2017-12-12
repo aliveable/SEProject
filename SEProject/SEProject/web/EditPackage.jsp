@@ -143,7 +143,7 @@
                                     <label style="font-size: 1.5em">เวลาเปิดทำการ</label>
                                 </div>
                                 <div style="padding-left: 1%">
-                                    <input class="form-control" type="time" name="open_time" value="package.open">
+                                    <input class="form-control" type="time" name="open_time" value="${package.open}">
 
                                 </div>
                                 <div style="padding-left: 1%">
@@ -154,7 +154,7 @@
                                     <label style="font-size: 1.5em">เวลาปิดทำการ</label>
                                 </div>
                                 <div style="padding-left: 1%">
-                                    <input class="form-control" type="time" name="close_time" value="package.close">
+                                    <input class="form-control" type="time" name="close_time" value="${package.close}">
 
                                 </div>
                                 <div style="padding-left: 1%">
@@ -268,29 +268,22 @@
 
         <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
         <!-- Initialize Quill editor -->
-        <script>
-            var BackgroundClass = Quill.import('attributors/class/background');
-            var ColorClass = Quill.import('attributors/class/color');
-            var SizeStyle = Quill.import('attributors/style/size');
-            Quill.register(BackgroundClass, true);
-            Quill.register(ColorClass, true);
-            Quill.register(SizeStyle, true);
-
-            var quill = new Quill('#editor', {
-                modules: {
-                    toolbar: '#toolbar'
-                },
-                placeholder: 'Example',
-                theme: 'snow'
-            });
-            quill.setContents(${requestScope.package.desc});
-            $(document).ready(function () {
-                $("#createService").submit(function () {
-                    $(this).append("<input type='hidden' name='contents' value='"+
-                         JSON.stringify(quill.getContents())+"' />");
+         <script>
+                var BackgroundClass = Quill.import('attributors/class/background');
+                var ColorClass = Quill.import('attributors/class/color');
+                var SizeStyle = Quill.import('attributors/style/size');
+                Quill.register(BackgroundClass, true);
+                Quill.register(ColorClass, true);
+                Quill.register(SizeStyle, true);
+                var quill = new Quill('#editor', {
+                    modules: {
+                        toolbar: '#toolbar'
+                    },
+                    theme: 'snow'
                 });
-            });
-        </script>
+                quill.setContents(${package.desc});
+                quill.disable();
+            </script>
     </body>
     <br>
 </html>
