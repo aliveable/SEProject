@@ -135,7 +135,7 @@
                         <br>
                         <div class="container" style="float: left">                            
                             <div class="form-group"  >
-                                <a type="button" href="./EditServiceDesc.jsp" class="btn btn-success" style="margin-top: 1%">Edit</a>
+                                <a role="button" href="./EditServiceDesc.jsp" class="btn btn-success" style="margin-top: 1%">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -303,7 +303,7 @@
                         </div>
                         <div class="container" style="float: left">
                             <div class="form-group"  >
-                                <a href="CreatePackage.jsp" type="button" class="btn btn-success" style="margin-top: 1%;margin-left: -3%;margin-bottom: 20px">New Package</a>
+                                <a href="CreatePackage.jsp" role="button" class="btn btn-success" style="margin-top: 1%;margin-left: -3%;margin-bottom: 20px">New Package</a>
                             </div>
                         </div>
 
