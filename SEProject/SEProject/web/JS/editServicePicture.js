@@ -13,6 +13,6 @@ $(document).ready(function () {
 });
 
 function removeConfirm(value) {
-    var name = value.split(".");
-    return confirm("Are you sure you want to remove " + name[0]);
+    var name = value.split("/");
+    return confirm("Are you sure you want to remove " + name[1]);
 }
