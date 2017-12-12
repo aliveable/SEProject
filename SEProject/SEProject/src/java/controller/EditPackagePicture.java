@@ -38,9 +38,9 @@ public class EditPackagePicture extends HttpServlet {
                 PackageInfo packageItem = (PackageInfo) session.getAttribute("package");
                 Statement stmt = conn.createStatement();
 
-                String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Package_ID = " + packageItem.getPackage_id() + ";";out.println(sql+"0");
+                String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Package_ID = " + packageItem.getPackage_id() + ";";
 
-                ResultSet rs = stmt.executeQuery(sql);out.println(sql+"1");
+                ResultSet rs = stmt.executeQuery(sql);
 
                 String[] pics = new String[5];
                 int i = 0;

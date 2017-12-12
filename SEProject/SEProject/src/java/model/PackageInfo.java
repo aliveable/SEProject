@@ -13,6 +13,7 @@ import java.util.List;
  * @author Amoeba
  */
 public class PackageInfo {
+
     private String name;
     private String desc;
     private String price;
@@ -25,7 +26,7 @@ public class PackageInfo {
 
     public PackageInfo() {
     }
-    
+
     public PackageInfo(int package_id, String name, String desc, String price, String reserve_before, String open, String close, String size) {
         this.name = name;
         this.desc = desc;
@@ -36,8 +37,6 @@ public class PackageInfo {
         this.size = size;
         this.package_id = package_id;
     }
-    
-    
 
     public String getName() {
         return name;
@@ -93,7 +92,7 @@ public class PackageInfo {
 
     public void setSize(String size) {
         this.size = size;
-    }  
+    }
 
     public int getPackage_id() {
         return package_id;
@@ -101,24 +100,31 @@ public class PackageInfo {
 
     public void setPackage_id(int package_id) {
         this.package_id = package_id;
-    }    
-    
+    }
+
     public String[] getPics() {
         return pics;
+    }
+
+    public String getPics(int i) {
+        if (i < 0 || i > pics.length - 1) {
+            i = 0;
+        }
+        return pics[i];
     }
 
     public void setPics(String[] pics) {
         this.pics = pics;
     }
-    
+
     public int contPics() {
         int i = 0;
-        for(String pic: pics) {
-            if(pic != null) {
+        for (String pic : pics) {
+            if (pic != null) {
                 i++;
             }
         }
         return i;
     }
-    
+
 }

@@ -35,13 +35,14 @@ public class editPackage extends HttpServlet {
     public void init() {
         conn = (Connection) getServletContext().getAttribute("connection");
     }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-                Statement stmt = conn.createStatement();
-                HttpSession session = request.getSession();
+            Statement stmt = conn.createStatement();
+            HttpSession session = request.getSession();
             RequestDispatcher pg = request.getRequestDispatcher("EditPackage.jsp");
             String id;
             id = request.getParameter("id");
@@ -49,11 +50,23 @@ public class editPackage extends HttpServlet {
             rs.next();
             PackageInfo packageItem = new PackageInfo(rs.getInt("Package_ID"), rs.getString("Package_Name"), rs.getString("Package_Desc"), rs.getString("Package_Price"), rs.getString("Package_LimitTime_Modify"), rs.getString("Package_OpenHour"), rs.getString("Package_LastHour"), rs.getString("Package_Size"));
             rs.close();
-            session.setAttribute("package", packageItem);
-            pg.forward(request, response); 
-            } catch (SQLException ex) {
-                Logger.getLogger(editPackage.class.getName()).log(Level.SEVERE, null, ex);
+
+            String sql = "SELECT Package_Pic_Path FROM package_pic WHERE Package_ID = " + packageItem.getPackage_id() + ";";
+            rs = stmt.executeQuery(sql);
+            String[] pics = new String[5];
+            int i = 0;
+            while (rs.next()) {
+                pics[i] = rs.getString("Package_Pic_Path");
+                i++;
             }
+            rs.close();
+            packageItem.setPics(pics);
+
+            session.setAttribute("package", packageItem);
+            pg.forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(editPackage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

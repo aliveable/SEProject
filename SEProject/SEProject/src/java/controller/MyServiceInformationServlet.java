@@ -102,6 +102,24 @@ public class MyServiceInformationServlet extends HttpServlet {
                         info.setDesc(rs.getString("Package_Desc"));
                         pkInfo.add(info);
                     }
+                    rs.close();
+
+                    for (PackageInfo info : pkInfo.getPkInfo()) {
+                        String sql2 = "SELECT Package_Pic_Path FROM package_pic WHERE Package_ID = " + info.getPackage_id() + ";";
+
+                        rs = stmt.executeQuery(sql2);
+
+                        String[] pics2 = new String[5];
+                        int j = 0;
+                        while (rs.next()) {
+                            pics2[j] = rs.getString("Package_Pic_Path");
+                            j++;
+                        }
+                        rs.close();
+                        
+                        info.setPics(pics2);
+                    }
+
                     request.setAttribute("pkInfo", pkInfo);
                     desc.setPics(pics);
                     request.setAttribute("RTR", righttorecives);
