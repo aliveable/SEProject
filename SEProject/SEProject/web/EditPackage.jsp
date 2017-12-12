@@ -54,7 +54,7 @@
         <br>
         <br>
         <div class="container" style="border: 2px solid #D3D3D380;padding-bottom: 1%">
-            <div class="container text-center">
+            <div class="container text-center" style="padding-top: 1%;">
                 <h1> Edit Package </h1>
             </div>
             <hr>
@@ -166,8 +166,10 @@
                     </div>
                 </form>
                 <br>
+                <br>
+                <hr>
                 <div class="container" style="background: #D3D3D320">
-                    <label style="font-size: 1.5em;padding-top: 1%">Gallery</label>
+                    <label style="font-size: 1.8em;padding-top: 1%">Gallery</label>
                     <hr>
                     <div class="container-gallery" style="overflow-y: scroll; max-height: 850px">
 
@@ -211,6 +213,7 @@
                             </form>
                         </c:forEach>
                     </div>
+                   
                     <br>
                     <form action="newInc?packageid=${package.package_id}" method="post">
                         <div class="row" style="margin-top: 1%">
@@ -239,13 +242,13 @@
                             <form action="editInc?packagelistid=${row.package_list_id}&packageid=${row.package_id}" method="post">
 
                                 <div class="row text-center" style="margin-top: 1%;text-align: center">
-                                    <div class="col-md-7" style="">
+                                    <div class="col-md-4" style="">
                                         <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
                                     </div>
-                                    <div class="col-md-7" style="">
+                                    <div class="col-md-4" style="">
                                         <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="${row.package_list_price}">
                                     </div>
-                                    <div class="col-md-7" style="">
+                                    <div class="col-md-4" style="">
                                         <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_max" placeholder="" id="package_list_max" value="${row.package_list_max}">
                                     </div>
                                     <button type="submit" class="btn btn-success" style="width: 17%;font-size: 1.8em">Update</button>
@@ -258,13 +261,13 @@
                     <br>
                     <form action="newInc?packageid=${package.package_id}" method="post">
                         <div class="row" style="margin-top: 1%">
-                            <div class="col-md-7" style="">
+                            <div class="col-md-4" style="">
                                 <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
                             </div>
-                            <div class="col-md-7" style="">
+                            <div class="col-md-4" style="">
                                 <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="${row.package_list_price}">
                             </div>
-                            <div class="col-md-7" style="">
+                            <div class="col-md-4" style="">
                                 <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="package_list_max" placeholder="" id="package_list_max" value="${row.package_list_max}">
                             </div>
                         </div>
@@ -277,9 +280,13 @@
                 </div>
                 <br>
                 <br>
-                <a role="button" class="btn btn-success" style="margin-left: 2%" href="./MyServiceInformation?id=${sessionScope.desc.getId()}">back</a>
+                <div class="row">
+                    <a role="button" class="btn btn-success" style="margin-left: 2%" href="./MyServiceInformation?id=${sessionScope.desc.getId()}">back</a>
+                </div>
+                
             </div>
         </div>
+            <br>
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script src='JS/gallery.js'></script>
         <script>
