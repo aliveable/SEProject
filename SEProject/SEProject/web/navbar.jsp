@@ -72,7 +72,7 @@
                                                 <a style="color: white" href="./MyService" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Service</a>
                                             </div>
                                             <div>
-                                                <a style="color: white" href="./Services" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
+                                                <a style="color: white" href="./getOurServiceTable" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Use our service</a>
                                             </div>
                                             <div>
                                                 <a style="color: white"href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Message</a>
