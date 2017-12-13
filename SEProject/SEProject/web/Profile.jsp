@@ -50,17 +50,17 @@
 
 
     <!--Update Info 2 side-->
-    <div class="col-lg-12" id="disp">
-        <div class="row">
-            <div class="col-lg-6 col-md-offset-1" id="alignpersonalinfo">
+    <div class="container col-lg-6 d-flex" id="disp" style="background: #D3D3D320;margin-top: 3%;margin-bottom: 3%">
+        <div class="row justify-content-center align-self-center">
+            <div class="col-lg-12 vertical-center" id="alignpersonalinfo">
 
-                <div class="col-lg-10" id="infopadtop">
+                <div class="col-lg-12 text-center" id="infopadtop">
                     <h1 >Personal info</h1>
                 </div>
 
                 <hr>
 
-                <div class="row col-lg-12">
+                <div class="row col-lg-12"  >
                     <!-- left column -->
 
                     <!-- edit form column -->
@@ -118,7 +118,7 @@
                             <input hidden="" type="text" name="sub_district" value="${requestScope.sub_district}">
                             <input hidden="" type="text" name="province" value="${requestScope.province}">
                             <input hidden="" type="text" name="postal_code" value="${requestScope.postal_code}">
-                            <div id="butmargindown">
+                            <div  class="form-group" id="butmargindown" style="">
                                 <button type="submit" name="test" class="btn btn-success">Edit Profile</button>
                             </div>
                         </form>
@@ -127,49 +127,6 @@
 
                 </div>
 
-            </div>
-
-            <div class="col-lg-6 col-md-offset-1" id="alignpersonalinfo" style="padding-top: 0.4%">
-                <div class="col-lg-10" id="infopadtop">
-                    <h1>Usage History</h1>
-                </div>
-
-                <div class="row">
-                    <div class="container">
-                        <div class="row col-lg-12">
-                            <div class="container" id="tablelength">
-                                <div class="row">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover" id="profile-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Space Name</th>
-                                                    <th>Space Address</th>
-                                                    <th>Name</th>
-                                                    <th>ดูรายละเอียด</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach var="row" items="${requestScope.services.getServices()}">
-                                                    <tr>
-                                                        <td>${row.space_id}</td>
-                                                        <td>${row.space_name}</td>
-                                                        <td>${row.space_address}</td>
-                                                        <td>${row.name}</td>
-                                                        <td><a type="button" href="SpaceInformation?id=${row.space_id}" class="btn btn-success">ดูประวัติ</a></td>
-                                                    </tr>
-                                                </c:forEach>    
-                                            </tbody>
-                                        </table>   
-                                    </div>
-                                    <hr>
-                                </div>   
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
