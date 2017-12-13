@@ -39,6 +39,7 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="JS/editProfile.js"></script>
 
     </head>
 
@@ -62,7 +63,7 @@
                     <div class="col-md-9 personal-info">
                         <h3>Personal info</h3>
 
-                        <form action="EditProfileServlet" method="POST" id="submit" name="editprofile">
+                        <form action="EditProfileServlet" method="POST" id="submit" name="editprofile" onsubmit="return checkEmptyInput()">
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">First name:</label>
                                 <div class="col-lg-8">
