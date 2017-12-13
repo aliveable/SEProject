@@ -1,4 +1,4 @@
-function checkEmptyInput(item) {
+function checkEmptyInputi(item) {
     if($(item).parent().parent().children('.col-md-6').children('#space_text').val() === '') {
         return getAlert();
     }

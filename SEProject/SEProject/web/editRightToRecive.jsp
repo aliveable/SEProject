@@ -73,7 +73,7 @@
                                         <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="${row.space_text}">
                                     </div>
                                     <div class="col-lg-2">
-                                        <button type="submit" class="btn btn-success" style=";font-size: 1.8em" onclick="return checkEmptyInput(this)">Update</button>
+                                        <button type="submit" class="btn btn-success" style=";font-size: 1.8em" onclick="return checkEmptyInputi(this)">Update</button>
                                     </div>
                                     <div class="col-lg-2">
                                         <a role="button" class="btn btn-success text-center" style="margin-left: 2%;height: 82%;font-size: 1.8em" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">Remove</a>

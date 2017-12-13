@@ -212,7 +212,7 @@
                                                 <input pattern="{1,100}"style="font-size: 1.3em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
                                             </div>
                                             <div class="col-lg-2">
-                                                <button type="submit" class="btn btn-success" style=";font-size: 1.8em" onclick="return checkEmptyInput2(item)">Update</button>
+                                                <button type="submit" class="btn btn-success" style=";font-size: 1.8em" onclick="return checkEmptyInput2(this)">Update</button>
                                             </div>
 
                                             <div class="col-lg-2">
@@ -289,7 +289,7 @@
                                             <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="${row.package_list_price}">
                                         </div>
                                         <div class="col-lg-1">
-                                            <button type="submit" class="btn btn-success" style="font-size:1em;height: 100%">Update</button>
+                                            <button type="submit" class="btn btn-success" style="font-size:1em;height: 100%" onclick="return checkEmptyInputi3(this)">Update</button>
                                         </div>
 
                                         <div class="col-lg-1" style="">
@@ -306,7 +306,7 @@
                     </div>
                     <br>
                     <form action="newInc?packageid=${package.package_id}" method="post">
-                        <div class="col-lg-12" style="margin-top: 1%">
+                        <div class="col-lg-12 optionalinput" style="margin-top: 1%">
                             <div class="row" style="margin-left: -2.5%">
                                 <div class="col-lg-2">
                                     <h2>Message</h2>
@@ -322,7 +322,7 @@
                                     <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_list_price" placeholder="" id="package_list_price" value="">
                                 </div>
                                 <div class="col-g-2" style="padding-left: 1%">
-                                    <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%;width: 100%;height: 100%">add Item</button>
+                                    <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%;width: 100%;height: 100%" onclick="return checkEmptyInput3()">add Item</button>
                                 </div>
                                  
                             </div>

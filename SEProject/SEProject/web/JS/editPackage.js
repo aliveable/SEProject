@@ -1,29 +1,43 @@
 function checkEmptyInput() {
-    if($('[name="name"]').val() === '') {
+    if ($('[name="name"]').val() === '') {
         return getAlert();
-    } else if($('[name="price"]').val() === '') {
+    } else if ($('[name="price"]').val() === '') {
         return getAlert();
-    } else if($('[name="before"]').val() === '') {
+    } else if ($('[name="before"]').val() === '') {
         return getAlert();
-    } else if($('[name="max"]').val() === '') {
+    } else if ($('[name="max"]').val() === '') {
         return getAlert();
-    } else if($('[name="open_time"]').val() === '') {
+    } else if ($('[name="open_time"]').val() === '') {
         return getAlert();
-    } else if($('[name="close_time"]').val() === '') {
+    } else if ($('[name="close_time"]').val() === '') {
         return getAlert();
     }
 }
 
-function checkEmptyInput2(item) {
-    if($(item).parent().parent().children('.col-md-6').children('#space_text').val() === '') {
+function checkEmptyInputi2(item) {
+    if ($(item).parent().parent().children('.col-lg-6').children('#package_text').val() === '') {
         return getAlert();
     }
-    alert();
-    return false;
 }
 
 function checkEmptyInput2() {
-    if($('.includeinput #package_text').val() === '') {
+    if ($('.includeinput #package_text').val() === '') {
+        return getAlert();
+    }
+}
+
+function checkEmptyInputi3(item) {
+    if ($(item).parent().parent().children('.col-lg-4').children('#package_text').val() === '') {
+        return getAlert();
+    } else if ($(item).parent().parent().children('.col-lg-2').children('#package_list_price').val() === '') {
+        return getAlert();
+    }
+}
+
+function checkEmptyInput3() {
+    if ($('.optionalinput #package_text').val() === '') {
+        return getAlert();
+    } else if ($('.optionalinput #package_list_price').val() === '') {
         return getAlert();
     }
 }
