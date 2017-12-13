@@ -12,8 +12,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -56,7 +59,7 @@ public class ReserveInsertServlet extends HttpServlet {
             PreparedStatement stmt = null;
             HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/yyyy/dd HH:mm:ss");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
                 int total_price = Integer.parseInt(request.getParameter("cost"));
                 String[] periods = request.getParameterValues("period");
@@ -68,16 +71,30 @@ public class ReserveInsertServlet extends HttpServlet {
                 boolean canReserve = true;
                 ResultSet rs;
                 for (int i = 0; i < periods.length; i++) {
-                    stmt = conn.prepareStatement("SELECT Package_LimitTime_Modify before FROM package WHERE Package_ID="+package_id+";");
+                    stmt = conn.prepareStatement("SELECT Package_LimitTime_Modify before FROM package WHERE Package_ID=" + package_id + ";");
                     rs = stmt.executeQuery();
                     rs.next();
                     int before = rs.getInt("before");
-                    String hour = Integer.toString((Integer.parseInt(dateTime.substring(11, 13)) + before + 1) % 24);
-                     String reserve_time = dateTime.substring(0, 11) + hour + dateTime.substring(13);
-                        String limit_reserve = date + " " + periods[i];
-                    if (hour.length() == 1) {
-                        hour = "0" + hour;
+                    int hour = (Integer.parseInt(dateTime.substring(11, 13)) + before + 1);
+                    String dt = dateTime.substring(0, 11);
+                    while (hour - 24 >= 0) {
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                        try {
+                            c.setTime(sdf.parse(dateTime.substring(0, 10)));
+                            c.add(Calendar.DATE, 1);
+                            dt = sdf.format(c.getTime());
+                        } catch (ParseException ex) {
+                            Logger.getLogger(ReserveInsertServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        hour = Integer.max(0, hour - 24);
                     }
+                    String hours = Integer.toString(hour);
+                    if (hours.length() == 1) {
+                        hours = "0" + hours;
+                    }
+                    String reserve_time = dt +" "+ hours + dateTime.substring(13, 16);
+                    String limit_reserve = date + " " + periods[i].substring(0, 5);
                     if (reserve_time.compareTo(limit_reserve) > 0) {
                         rs.close();
                         canReserve = false;
@@ -138,7 +155,7 @@ public class ReserveInsertServlet extends HttpServlet {
                         }
                     }
                     rs.close();
-                    //out.println("<script>alert(\"Success\");location=\"./getReserve?id="+reserve_id+"\";</script>");
+                    out.println("<script>alert(\"Success\");location=\"./getReserve?id="+reserve_id+"\";</script>");
                 }
             }
         } catch (SQLException ex) {
