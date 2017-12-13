@@ -45,6 +45,8 @@
 
         <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
         <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+        
+        <script type="text/javascript" src="JS/editPackage.js"></script>
 
     </head>
     <body>
@@ -60,7 +62,7 @@
             <hr>
             <br>
             <div class="container" style=";padding-bottom: 1%">
-                <form action="updatepackage" method="post" method="POST" class="form-horizontal" role="form" id="updatePackage">
+                <form action="updatepackage" method="post" method="POST" class="form-horizontal" role="form" id="updatePackage" onsubmit="return checkEmptyInput()">
                     <input type="hidden" name="id" value="${sessionScope.package.getPackage_id()}">
                     <div class="container" style="margin-top: 2%;background: #D3D3D320;padding-top: 1%;" >
                         <div class="row" style="margin-left: 1%"> 
@@ -210,7 +212,7 @@
                                                 <input pattern="{1,100}"style="font-size: 1.3em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="${row.package_text}">
                                             </div>
                                             <div class="col-lg-2">
-                                                <button type="submit" class="btn btn-success" style=";font-size: 1.8em">Update</button>
+                                                <button type="submit" class="btn btn-success" style=";font-size: 1.8em" onclick="return checkEmptyInput2(item)">Update</button>
                                             </div>
 
                                             <div class="col-lg-2">
@@ -233,7 +235,7 @@
 
                     <br>
                     <form action="newInc?packageid=${package.package_id}" method="post">
-                        <div class="container col-lg-12">
+                        <div class="container col-lg-12 includeinput">
                             <div class="row" style="margin-top: 1%">
                                 <div class="container ">
                                     <div class="row">
@@ -244,7 +246,7 @@
                                             <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="text" name="package_text" placeholder="" id="package_text" value="">
                                         </div>
                                         <div class="col-g-2">
-                                            <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%;font-size: 1.5em">add Item</button>
+                                            <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%;font-size: 1.5em" onclick="return checkEmptyInput2()">add Item</button>
                                         </div>
                                     </div>
                                 </div>
