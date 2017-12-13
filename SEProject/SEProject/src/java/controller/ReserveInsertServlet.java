@@ -84,12 +84,14 @@ public class ReserveInsertServlet extends HttpServlet {
                         out.println(dateTime);
                         before = Integer.parseInt(dateTime.substring(11, 13))+before+1;
                         if ((now_size + Integer.parseInt(size[i])) > max_size) {
-                            out.println("<script>alert(\"" + date + " " + periods[i] + " is not enough\");location=\"./PackageInformation?package=" + package_id + "\";</script>");
+                            rs.close();
                             canReserve = false;
+                            out.println("<script>alert(\"" + date + " " + periods[i] + " is not enough\");location=\"./PackageInformation?package=" + package_id + "\";</script>");
                             break;
                         }else if(before > Integer.parseInt(periods[i].substring(0, 2))){
-                            out.println("<script>alert(\"" + date + " " + periods[i] + " is time up to reserve\");location=\"./PackageInformation?package=" + package_id + "\";</script>");
+                            rs.close();
                             canReserve = false;
+                            out.println("<script>alert(\"" + date + " " + periods[i] + " is time up to reserve\");location=\"./PackageInformation?package=" + package_id + "\";</script>");                 
                             break;
                         }
                             
@@ -131,6 +133,7 @@ public class ReserveInsertServlet extends HttpServlet {
                         stmt.setInt(2, reserve_id);
                         stmt.executeUpdate();
                     }
+                    rs.close();
                     out.println("<script>alert(\"Success\");location=\"./getReserve?id="+reserve_id+"\";</script>");
                 }
             }
