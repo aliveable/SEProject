@@ -44,7 +44,7 @@
 
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
-
+        <script type="text/javascript" src="JS/createPackage.js"></script>
 
     </head>
 
@@ -57,7 +57,7 @@
         <br>
         <br>
         <div>
-            <form action="CreatePackageServlet" method="POST" class="form-horizontal" role="form" id="createService">
+            <form action="CreatePackageServlet" method="POST" class="form-horizontal" role="form" id="createService" onsubmit="return checkEmptyInput()">
                 <input type="hidden" name="space_id" value="${sessionScope.desc.getId()}">
                 <div class="container">
                     <h1> Create Package </h1>
@@ -185,27 +185,27 @@
         <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
         <!-- Initialize Quill editor -->
         <script>
-                                    var BackgroundClass = Quill.import('attributors/class/background');
-                                    var ColorClass = Quill.import('attributors/class/color');
-                                    var SizeStyle = Quill.import('attributors/style/size');
-                                    Quill.register(BackgroundClass, true);
-                                    Quill.register(ColorClass, true);
-                                    Quill.register(SizeStyle, true);
+            var BackgroundClass = Quill.import('attributors/class/background');
+            var ColorClass = Quill.import('attributors/class/color');
+            var SizeStyle = Quill.import('attributors/style/size');
+            Quill.register(BackgroundClass, true);
+            Quill.register(ColorClass, true);
+            Quill.register(SizeStyle, true);
 
-                                    var quill = new Quill('#editor', {
-                                        modules: {
-                                            toolbar: '#toolbar'
-                                        },
-                                        placeholder: 'Example',
-                                        theme: 'snow'
-                                    });
+            var quill = new Quill('#editor', {
+                modules: {
+                    toolbar: '#toolbar'
+                },
+                placeholder: 'Example',
+                theme: 'snow'
+            });
 
-                                    $(document).ready(function () {
-                                        $("#createService").submit(function () {
-                                            $(this).append("<input type='hidden' name='contents' value='" +
-                                                    JSON.stringify(quill.getContents()) + "' />");
-                                        });
-                                    });
+            $(document).ready(function () {
+                $("#createService").submit(function () {
+                    $(this).append("<input type='hidden' name='contents' value='" +
+                            JSON.stringify(quill.getContents()) + "' />");
+                });
+            });
 
 
         </script>
