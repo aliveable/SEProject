@@ -40,6 +40,20 @@ public class Reserve {
         this.spacename = spacename;
         this.packagename = packagename;
     }
+
+    public Reserve(int reserve_id, String username, int space_id, int package_id, String reserve_time, int reserve_price, String reserve_status, String name, String spacename, String packagename) {
+        this.reserve_id = reserve_id;
+        this.username = username;
+        this.space_id = space_id;
+        this.package_id = package_id;
+        this.reserve_time = reserve_time;
+        this.reserve_price = reserve_price;
+        this.reserve_status = reserve_status;
+        this.name = name;
+        this.pname = "";
+        this.spacename = spacename;
+        this.packagename = packagename;
+    }
     
     
 

@@ -68,21 +68,23 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Space Name</th>
-                                                    <th>Space Address</th>
-                                                    <th>Name</th>
+                                                    <th>package Name</th>
+                                                    <th>Time</th>
+                                                    <th>Price<th>
                                                     <th>ดูรายละเอียด</th>
                                                     <th>ยกเลิก</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach var="row" items="${requestScope.services.getServices()}">
+                                                <c:forEach var="row" items="${requestScope.reserves.getReserves()}">
                                                     <tr>
-                                                        <td>${row.space_id}</td>
-                                                        <td>${row.space_name}</td>
-                                                        <td>${row.space_address}</td>
-                                                        <td>${row.name}</td>
-                                                        <td><a role="button" href="SpaceInformation?id=${row.space_id}" class="btn btn-success">ดูประวัติ</a></td>
-                                                        <td><a role="button" href="SpaceInformation?id=${row.space_id}" class="btn btn-success">ยกเลิก</a></td>
+                                                        <td>${row.reserve_id}</td>
+                                                        <td>${row.spacename}</td>
+                                                        <td>${row.packagename}</td>
+                                                        <td>${row.reserve_time}</td>
+                                                        <td>${row.reserve_price}</td>
+                                                        <td><a role="button" href="getReserve?id=${row.reserve_id}" class="btn btn-success">ดูประวัติ</a></td>
+                                                        <td><a role="button" href="removebook?id=${row.reserve_id}" class="btn btn-success">ยกเลิก</a></td>
                                                     </tr>
                                                 </c:forEach>    
                                             </tbody>
