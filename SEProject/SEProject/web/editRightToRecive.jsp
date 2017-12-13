@@ -45,6 +45,8 @@
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        
+        <script type="text/javascript" src="JS/editRTR.js"></script>
 
     </head>
     <body>
@@ -71,7 +73,7 @@
                                         <input pattern="{1,100}"style="font-size: 1.8em;overflow-x: scroll" class="form-control" type="text" name="item" placeholder="" id="space_text" value="${row.space_text}">
                                     </div>
                                     <div class="col-lg-2">
-                                        <button type="submit" class="btn btn-success" style=";font-size: 1.8em">Update</button>
+                                        <button type="submit" class="btn btn-success" style=";font-size: 1.8em" onclick="return checkEmptyInput(this)">Update</button>
                                     </div>
                                     <div class="col-lg-2">
                                         <a role="button" class="btn btn-success text-center" style="margin-left: 2%;height: 82%;font-size: 1.8em" href="removeRTR?spacelistid=${row.space_list_id}&id=${row.space_id}">Remove</a>
@@ -89,7 +91,7 @@
             <br>
             <div class="container" style="background: #D3D3D320;padding-top: 2%">
                 <form action="newRTR?id=${requestScope.id}" method="post">
-                <div class="row" style="margin-top: 1%">
+                <div class="row inputhere" style="margin-top: 1%">
                     <div class="container col-lg-12">
                         <div class="row">
                             <div class="col-lg-2">
@@ -107,7 +109,7 @@
                 </div>
                 <br>
                 <div class="row" style="margin-left: -2%">
-                    <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%">add Item</button>
+                    <button id="additem" type="submit" class="btn btn-success" style="margin-left: 2%" onclick="return checkEmptyInput()">add Item</button>
                     <a role="button" class="btn btn-success" style="margin-left: 2%" href="./MyServiceInformation?id=${requestScope.id}">back</a>
                 </div>
                 <br>

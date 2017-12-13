@@ -39,6 +39,7 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        
         <script type="text/javascript" src="JS/editProfile.js"></script>
 
     </head>

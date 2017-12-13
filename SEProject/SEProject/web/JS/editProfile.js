@@ -15,8 +15,6 @@ function checkEmptyInput() {
         return getAlert();
     } else if($('#postal_code').val() === '') {
         return getAlert();
-    } else {
-        return true;
     }
 }
 
