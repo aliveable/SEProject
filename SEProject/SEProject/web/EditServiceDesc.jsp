@@ -42,6 +42,8 @@
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        
+        <script type="text/javascript" src="JS/editServiceDesc.js"></script>
 
     </head>
 
@@ -53,7 +55,7 @@
 
         <br>
         <br>
-        <form action="EditServiceDescServlet" method="POST" class="form-horizontal" role="form" id="createService">
+        <form action="EditServiceDescServlet" method="POST" class="form-horizontal" role="form" id="createService" onsubmit="return checkEmptyInput()">
             <div class="container" style="background: #D3D3D320">
                 <div class="form-group" >
                     <h1 style="padding-top: 2%">Edit Service</h1>
