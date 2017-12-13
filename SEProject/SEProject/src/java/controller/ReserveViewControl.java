@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.PackageInfo;
 
 /**
@@ -50,11 +51,11 @@ public class ReserveViewControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");       
-        request.setCharacterEncoding("UTF-8");
-        
+        request.setCharacterEncoding("UTF-8"); 
         try {
                 Statement stmt = conn.createStatement();
                 RequestDispatcher pg = request.getRequestDispatcher("Reserve.jsp");
+                HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             String id = request.getParameter("id");
             ResultSet rs = stmt.executeQuery("SELECT Package_Price, Package_OpenHour, Package_LastHour FROM package WHERE Package_ID="+id+";");
@@ -90,7 +91,8 @@ public class ReserveViewControl extends HttpServlet {
             rs.next();
             request.setAttribute("optional_price", optional_price);
             request.setAttribute("period", period);
-            request.setAttribute("price", pkInfo.getPrice());          
+            request.setAttribute("price", pkInfo.getPrice());
+            session.setAttribute("optional", optionals);
             pg.forward(request, response);
         }} catch (SQLException ex) {
             Logger.getLogger(ReserveViewControl.class.getName()).log(Level.SEVERE, null, ex);

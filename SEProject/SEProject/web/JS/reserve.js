@@ -21,10 +21,11 @@ function addReserve() {
     var html = '<div class="row" style="border: 2px solid #D3D3D3f0;padding-top: 1.5%">\n' +
             '<div class="col-lg-4">\n' +
             '   <label id="label-time" style="font-size: 1.5em" >' + $('.custom-select').val() + '</label>\n' +
+            '<input type="hidden" id="period" name="period" value="'+$('.custom-select').val()+'">\n' +
             '</div>\n' +
             '<div id="data" class="col-lg-4">\n' +
             '   <label style="font-size: 1.5em">' + $('#input-people').val() + '</label> <label style="font-size: 1.6em">People</label>\n' +
-            '<input type="hidden" id="people" value="'+$('#input-people').val()+'">\n' +
+            '<input type="hidden" id="people" name="people" value="'+$('#input-people').val()+'">\n' +
             '</div>\n' +
             '<div class="col-lg-4">\n' +
             '   <button id="removepackage" type="button" class="btn btn-danger mr-right" style="float: right">Remove</button>\n' +
