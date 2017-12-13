@@ -62,23 +62,10 @@
                         <div class="row">
 
                             <div class="col-lg-6">
-                                <h3>Id                 : S/N123456</h3>
+                                <h3>Id                 : ${requestScope.reserve.reserve_id}</h3>
                             </div>
                             <div class="col-lg-6">
-                                <h3>Space              : Roy's Home</h3> 
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="container col-lg-12" style="margin-bottom: 1%; margin-top: 1%">
-                        <div class="row">
-
-                            <div class="col-lg-6">
-                                <h3>Service Provider   : Jittakan Kaewchaiya</h3>
-                            </div>
-                            <div class="col-lg-6">
-                                <h3>Package Name       : Premium Package</h3> 
+                                <h3>Space              : ${requestScope.reserve.spacename}</h3> 
                             </div>
 
                         </div>
@@ -88,16 +75,30 @@
                         <div class="row">
 
                             <div class="col-lg-6">
-                                <h3>Total price   : 1,000 $</h3>
+                                <h3>Service Provider   : ${requestScope.reserve.pname}</h3>
                             </div>
                             <div class="col-lg-6">
-                                <h3>Booking Time       : 9:00 - 10:00</h3> 
+                                <h3>Package Name       : ${requestScope.reserve.packagename}</h3> 
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="container col-lg-12" style="margin-bottom: 1%; margin-top: 1%">
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <h3>Total price   : ${requestScope.reserve.reserve_price} $</h3>
+                            </div>
+                            <div class="col-lg-6">
+                                <h3>Booking Time       : ${requestScope.reserve.reserve_time}</h3> 
                             </div>
 
                         </div>
                     </div>
                     
                     <div class="container col-lg-12"style="margin-bottom: 1%; margin-top: 1%">
+                        
                         <div class="row">
                             
                             <div class="container col-lg-6">
@@ -106,10 +107,9 @@
                                     <h3>Can Book Through   : </h3>
                                 </div>
                                 <div>
-                                    <ul>
-                                        <li style="font-size: 1.5em">10:00 - 11:00</li>
-                                        <li style="font-size: 1.5em">11:00 - 12:00</li>
-                                        <li style="font-size: 1.5em">12:00 - 13:00</li>
+                                    <ul><c:forEach var="row" items="${requestScope.reserve.getReservetimes()}">
+                                        <li style="font-size: 1.5em">${row.reserve_time_firsthour} - ${row.reserve_time_lasthour}</li>
+                                        </c:forEach>
                                     </ul>
                                 </div>
                             </div>
@@ -120,15 +120,15 @@
                                     <h3>People at a time   : </h3>
                                 </div>
                                 <div>
-                                    <ul>
-                                        <li style="font-size: 1.5em">10</li>
-                                        <li style="font-size: 1.5em">5</li>
-                                        <li style="font-size: 1.5em">25</li>
+                                    <ul><c:forEach var="row" items="${requestScope.reserve.getReservetimes()}">
+                                        <li style="font-size: 1.5em">${row.reserve_size}</li>
+                                        </c:forEach>
                                     </ul>
                                 </div>
                             </div>
 
                         </div>
+                        
                     </div>
                     
                     <div class="container col-lg-12" style="margin-bottom: 1%; margin-top: 1%">
@@ -138,15 +138,15 @@
                                     <h3>Include  : </h3>
                                 </div>
                                 <div>
+                                    <c:forEach var="row" items="${requestScope.reserve.getReserveadds()}">
                                     <ul>
-                                        <li style="font-size: 1.5em">Chair</li>
-                                        <li style="font-size: 1.5em">Projector</li>
-                                        <li style="font-size: 1.5em">Buffet</li>
+                                        <li style="font-size: 1.5em">${row.text}</li>
                                     </ul>
+                                    </c:forEach>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <h3>Who Book's                 : Viriya blabla</h3>
+                                <h3></h3>
                             </div>
 
                         </div>

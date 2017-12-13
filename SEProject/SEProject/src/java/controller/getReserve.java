@@ -45,18 +45,17 @@ public class getReserve extends HttpServlet {
         request.setCharacterEncoding("UTF-8"); 
         try (PrintWriter out = response.getWriter()) {
            Statement stmt = conn.createStatement();
-            String id = request.getParameter("id");
-            String rd = request.getParameter("");
-            RequestDispatcher pg = request.getRequestDispatcher(rd);
-            ResultSet rs = stmt.executeQuery("SELECT r.Reserve_ID, r.Username, r.Space_ID, r.Package_ID, r.Reserve_Time, r.Reserve_Price, r.Reserve_Status, m.Firstname, m.Lastname, p.Package_Name, s.Space_Name"
-                    + "FROM ((reserve_space r JOIN member m ON (r.Username = m.Username)) JOIN space s ON (r.Space_ID = s.Space_ID)) JOIN package p ON (r.Package_ID = p.Package_ID)"
-                    + "WHERE Reserve_ID='"+id+"';");
+            //String id = request.getParameter("id");
+            RequestDispatcher pg = request.getRequestDispatcher("BookingInformation.jsp");
+            String id = "41";
+            ResultSet rs = stmt.executeQuery("SELECT r.Reserve_ID, r.Username, r.Space_ID, r.Package_ID, r.Reserve_Time, r.Reserve_Price, r.Reserve_Status, m.Firstname, m.Lastname, p.Package_Name, s.Space_Name\n" +
+"                    FROM reserve_space r JOIN member m ON (r.Username = m.Username) JOIN space s ON (r.Space_ID = s.Space_ID) JOIN package p ON (r.Package_ID = p.Package_ID)\n" +
+"                    WHERE Reserve_ID="+id+";");
             rs.next();
             Reserve reserve = new Reserve(rs.getInt("Reserve_ID"), rs.getString("Username"), rs.getInt("Space_ID"), rs.getInt("Package_ID"), rs.getString("Reserve_Time"), rs.getInt("Reserve_Price"), rs.getString("Reserve_Status"), rs.getString("Firstname")+rs.getString("Lastname"), "", rs.getString("Space_Name"), rs.getString("Package_Name"));
             rs.close();
-            rs = stmt.executeQuery("SELECT  m.Firstname, m.Lastname"
-                    + "FROM space s JOIN member m ON (s.Username = m.Username) "
-                    + "WHERE Space_ID='"+reserve.getSpace_id()+"';");
+            rs = stmt.executeQuery("SELECT m.Firstname, m.Lastname FROM space s JOIN member m ON (s.Username = m.Username) WHERE Space_ID="+reserve.getSpace_id()+";");
+            rs.next();
             reserve.setPname(rs.getString("Firstname")+rs.getString("Lastname"));
             rs.close();
             rs = stmt.executeQuery("SELECT *"
@@ -67,11 +66,9 @@ public class getReserve extends HttpServlet {
                 reserve.addReservetimes(reservetime);
             }
             rs.close();
-            rs = stmt.executeQuery("SELECT *"
-                    + "FROM reserve_additional"
-                    + "WHERE Reserve_ID='"+id+"';");
+            rs = stmt.executeQuery("SELECT r.Reserve_Add_ID, r.Package_List_ID, r.Reserve_ID, p.Package_Text FROM reserve_additional r JOIN package_list p ON (r.Package_List_ID = p.Package_List_ID) WHERE Reserve_ID="+id+";");
             while (rs.next()){
-                ReserveAdd reserveadd = new ReserveAdd(rs.getInt("Reserve_Add_ID"), rs.getInt("Package_List_ID"), rs.getInt("Reserve_ID"));
+                ReserveAdd reserveadd = new ReserveAdd(rs.getInt("Reserve_Add_ID"), rs.getInt("Package_List_ID"), rs.getInt("Reserve_ID"), rs.getString("Package_Text"));
                 reserve.addReserveadds(reserveadd);
             }
             rs.close();
