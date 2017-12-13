@@ -159,7 +159,7 @@
 
                 <div class="row">
                     <div class="col-lg-6 my-auto">
-                        <h2>Connect to Start Bootstrap:</h2>
+                        <h2>Co-Working-Space Company</h2>
                     </div>
                     <div class="col-lg-6 my-auto">
                         <ul class="list-inline banner-social-buttons">
