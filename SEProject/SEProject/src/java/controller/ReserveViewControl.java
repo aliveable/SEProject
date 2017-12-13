@@ -80,6 +80,7 @@ public class ReserveViewControl extends HttpServlet {
             int optional_price=0;
             String where="WHERE ";
             String[] optionals = request.getParameterValues("optional");
+            if(optionals != null){
             for(String optional:optionals){
                 where +=" Package_List_ID="+optional+" OR";
             }
@@ -88,7 +89,8 @@ public class ReserveViewControl extends HttpServlet {
             while(rs.next()){
                 optional_price += rs.getInt("Package_List_Price");
             }
-            rs.next();
+            }
+            rs.close();
             request.setAttribute("optional_price", optional_price);
             request.setAttribute("period", period);
             request.setAttribute("price", pkInfo.getPrice());

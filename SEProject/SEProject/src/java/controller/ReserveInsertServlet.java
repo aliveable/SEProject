@@ -56,7 +56,7 @@ public class ReserveInsertServlet extends HttpServlet {
             PreparedStatement stmt = null;
             HttpSession session = request.getSession();
             try (PrintWriter out = response.getWriter()) {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/yyyy/dd HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
                 int total_price = Integer.parseInt(request.getParameter("cost"));
                 String[] periods = request.getParameterValues("period");
@@ -68,33 +68,38 @@ public class ReserveInsertServlet extends HttpServlet {
                 boolean canReserve = true;
                 ResultSet rs;
                 for (int i = 0; i < periods.length; i++) {
-
-                    stmt = conn.prepareStatement("SELECT SUM(p.Package_LimitTime_Modify)/COUNT(r.Reserve_Size) before,"
-                            + " SUM(p.Package_Size)/COUNT(r.Reserve_Size) pSize,"
+                    stmt = conn.prepareStatement("SELECT Package_LimitTime_Modify before FROM package WHERE Package_ID="+package_id+";");
+                    rs = stmt.executeQuery();
+                    rs.next();
+                    int before = rs.getInt("before");
+                    String hour = Integer.toString((Integer.parseInt(dateTime.substring(11, 13)) + before + 1) % 24);
+                     String reserve_time = dateTime.substring(0, 11) + hour + dateTime.substring(13);
+                        String limit_reserve = date + " " + periods[i];
+                    if (hour.length() == 1) {
+                        hour = "0" + hour;
+                    }
+                    if (reserve_time.compareTo(limit_reserve) == 1) {
+                        rs.close();
+                        canReserve = false;
+                        out.println("<script>alert(\"" + date + " " + periods[i] + " is time up to reserve\");location=\"./PackageInformation?package=" + package_id + "\";</script>");
+                        break;
+                    }
+                    stmt = conn.prepareStatement("SELECT SUM(p.Package_Size)/COUNT(r.Reserve_Size) pSize,"
                             + " SUM(Reserve_Size) rSize "
                             + "FROM reserve_space_time r"
                             + " JOIN package p ON (p.Package_ID = r.Package_ID)"
                             + " WHERE r.Package_ID=" + package_id + " AND Reserve_Time_FirstHour='" + date + " " + periods[i].substring(0, 5) + "'"
                             + " GROUP BY r.Package_ID;");
                     rs = stmt.executeQuery();
-                    if (rs.next()) {            
-                        int before = rs.getInt("before");
+                    if (rs.next()) {
                         int max_size = rs.getInt("pSize");
                         int now_size = rs.getInt("rSize");
-                        out.println(dateTime);
-                        before = Integer.parseInt(dateTime.substring(11, 13))+before+1;
                         if ((now_size + Integer.parseInt(size[i])) > max_size) {
                             rs.close();
                             canReserve = false;
                             out.println("<script>alert(\"" + date + " " + periods[i] + " is not enough\");location=\"./PackageInformation?package=" + package_id + "\";</script>");
                             break;
-                        }else if(before > Integer.parseInt(periods[i].substring(0, 2))){
-                            rs.close();
-                            canReserve = false;
-                            out.println("<script>alert(\"" + date + " " + periods[i] + " is time up to reserve\");location=\"./PackageInformation?package=" + package_id + "\";</script>");                 
-                            break;
                         }
-                            
                     }
                 }
                 if (canReserve) {
@@ -102,13 +107,11 @@ public class ReserveInsertServlet extends HttpServlet {
                             + " VALUES (?, ?, ?, ?, ?, ?)");
                     stmt.setString(1, (String) session.getAttribute("username"));
                     stmt.setInt(2, (int) session.getAttribute("space_id"));
-                    stmt.setInt(3, (int) session.getAttribute("package_id"));              
+                    stmt.setInt(3, (int) session.getAttribute("package_id"));
                     stmt.setString(4, dateTime);
                     stmt.setInt(5, total_price);
                     stmt.setString(6, "Ready");
-
                     stmt.executeUpdate();
-
                     stmt = conn.prepareStatement("SELECT Reserve_ID FROM reserve_space WHERE Username='"
                             + session.getAttribute("username") + "' AND Space_ID=" + session.getAttribute("space_id")
                             + " AND Package_ID=" + session.getAttribute("package_id") + " AND Reserve_Time='" + dateTime + "';");
@@ -125,16 +128,17 @@ public class ReserveInsertServlet extends HttpServlet {
                         stmt.setInt(5, package_id);
                         stmt.executeUpdate();
                     }
-
-                    for (String optional : optionals) {
-                        stmt = conn.prepareStatement("INSERT INTO reserve_additional (Package_List_ID, Reserve_ID)"
-                                + " VALUES (?, ?)");
-                        stmt.setInt(1, Integer.parseInt(optional));
-                        stmt.setInt(2, reserve_id);
-                        stmt.executeUpdate();
+                    if (optionals != null) {
+                        for (String optional : optionals) {
+                            stmt = conn.prepareStatement("INSERT INTO reserve_additional (Package_List_ID, Reserve_ID)"
+                                    + " VALUES (?, ?)");
+                            stmt.setInt(1, Integer.parseInt(optional));
+                            stmt.setInt(2, reserve_id);
+                            stmt.executeUpdate();
+                        }
                     }
                     rs.close();
-                    out.println("<script>alert(\"Success\");location=\"./getReserve?id="+reserve_id+"\";</script>");
+                    //out.println("<script>alert(\"Success\");location=\"./getReserve?id="+reserve_id+"\";</script>");
                 }
             }
         } catch (SQLException ex) {
