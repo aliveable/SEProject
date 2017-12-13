@@ -45,9 +45,8 @@ public class getReserve extends HttpServlet {
         request.setCharacterEncoding("UTF-8"); 
         try (PrintWriter out = response.getWriter()) {
            Statement stmt = conn.createStatement();
-            //String id = request.getParameter("id");
+            String id = request.getParameter("id");
             RequestDispatcher pg = request.getRequestDispatcher("BookingInformation.jsp");
-            String id = "41";
             ResultSet rs = stmt.executeQuery("SELECT r.Reserve_ID, r.Username, r.Space_ID, r.Package_ID, r.Reserve_Time, r.Reserve_Price, r.Reserve_Status, m.Firstname, m.Lastname, p.Package_Name, s.Space_Name\n" +
 "                    FROM reserve_space r JOIN member m ON (r.Username = m.Username) JOIN space s ON (r.Space_ID = s.Space_ID) JOIN package p ON (r.Package_ID = p.Package_ID)\n" +
 "                    WHERE Reserve_ID="+id+";");
