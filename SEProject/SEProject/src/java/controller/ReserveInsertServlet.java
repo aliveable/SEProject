@@ -78,7 +78,7 @@ public class ReserveInsertServlet extends HttpServlet {
                     if (hour.length() == 1) {
                         hour = "0" + hour;
                     }
-                    if (reserve_time.compareTo(limit_reserve) == 1) {
+                    if (reserve_time.compareTo(limit_reserve) > 0) {
                         rs.close();
                         canReserve = false;
                         out.println("<script>alert(\"" + date + " " + periods[i] + " is time up to reserve\");location=\"./PackageInformation?package=" + package_id + "\";</script>");
