@@ -59,7 +59,7 @@ public class ServicesServlet extends HttpServlet {
             ResultSet rs = stmt.executeQuery("SELECT s.Space_ID, s.Space_Name, s.Space_Address, s.Space_Province, s.Space_District, s.Space_SubDistrict,"
                     + " m.Firstname, m.Lastname "
                     + "FROM space s  "
-                    + "JOIN member m ON (m.Username = s.Username) WHERE s.Username !='"+session.getAttribute("username")+"';");
+                    + "JOIN member m ON (m.Username = s.Username) WHERE s.Username !='"+session.getAttribute("username")+"' AND Space_Status='complete';");
             ShowServices services = new ShowServices();
             while(rs.next()){
                 ShowService service = new ShowService();
