@@ -221,7 +221,7 @@
                                         </div>
                                     </div>
                                     <div class="container" style="padding-top: 1%">
-                                        <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_price" placeholder="" id="package_list_price" value="">
+                                        <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_price" placeholder="" id="package_list_price" value="0">
                                     </div>
 
                                     
@@ -257,6 +257,7 @@
                             
                             <br>
                         </div>
+                        <input pattern="{1,100}" style="font-size: 1em;overflow-x: scroll" class="form-control" type="hidden" name="package_list_price" placeholder="" id="package_list_price" value="0">
                     </form>
                     <br>
                 </div>

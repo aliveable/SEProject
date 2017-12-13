@@ -146,7 +146,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <h3></h3>
+                                <h3> Name : ${requestScope.reserve.name}</h3>
                             </div>
 
                         </div>

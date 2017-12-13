@@ -62,7 +62,7 @@
                             <h2> <a href="CreateService.jsp">เพิ่มการให้บริการ</a> </h2>
                         </div>
                         <div class="col col-lg-6">
-                            <h2> <a href="#">การจองและประวัติ</a> </h2>
+                            <h2> <a href="GetMyReserveService">การจองและประวัติ</a> </h2>
                         </div>
                     </div>
                 </div>
