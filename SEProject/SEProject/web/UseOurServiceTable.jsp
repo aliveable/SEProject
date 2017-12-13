@@ -72,7 +72,6 @@
                                                     <th>Time</th>
                                                     <th>Price<th>
                                                     <th>ดูรายละเอียด</th>
-                                                    <th>ยกเลิก</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

@@ -6,32 +6,9 @@
 $(document).ready(function () {
     
     $("#booking-table").DataTable({
-        order: [[0, "desc"]],
-        columnDefs: [
-            {
-                searchable: false,
-                targets: [4]
-            },
-            {
-                orderable: false,
-                targets: [4]
-            }
-        ]
+        order: [[0, "desc"]]
     });
     
-    $("#history-table").DataTable({
-        order: [[0, "desc"]],
-        columnDefs: [
-            {
-                searchable: false,
-                targets: [4]
-            },
-            {
-                orderable: false,
-                targets: [4]
-            }
-        ]
-    });
     
 });
 

@@ -50,78 +50,45 @@
         <br>
 
         <div class="container text-center">
-            <h1>Booking & History</h1>
+            <h1>Booking History</h1>
         </div>
         <hr>
 
         <div class="container col-lg-12">
             <div class="row">
-                <div class="col-lg-6 text-center">
-                    <h3>Booking</h3>
+                <div class="col-lg-12 text-center">
+
                     <div class="table-responsive">
                         <form action="MyServiceInformation" method="POST" class="form-horizontal" role="form" id="ViewInformation">
                             <table class="table table-hover" id="booking-table">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                                    <th>Space Name</th>
-                                                    <th>package Name</th>
-                                                    <th>Time</th>
-                                                    <th>Price<th>
-                                                    <th>ดูรายละเอียด</th>
+                                        <th>Space Name</th>
+                                        <th>package Name</th>
+                                        <th>Time</th>
+                                        <th>Price<th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <c:forEach var="row" items="${requestScope.reserves.getReserves()}">
+                                                <c:forEach var="row" items="${requestScope.reserves.getReserves()}">
                                                     <tr>
                                                         <td>${row.reserve_id}</td>
                                                         <td>${row.spacename}</td>
                                                         <td>${row.packagename}</td>
                                                         <td>${row.reserve_time}</td>
                                                         <td>${row.reserve_price}</td>
-                                                        <td><a role="button" href="getReserve?id=${row.reserve_id}" class="btn btn-success">ดูประวัติ</a></td>
+                                                        <td><a href="SpaceInformation?id=${row.reserve_id}" class="btn btn-success">ดูรายละเอียด</a></td>
                                                     </tr>
-                                                </c:forEach>
-                                </tbody>
+                                                </c:forEach>    
+                                            </tbody>
                             </table>   
                         </form>
 
                     </div>
                 </div>
-                <div class="col-lg-6 text-center">
-                    <h3>History</h3>
-                    <div class="table-responsive">
-                        <form action="MyServiceInformation" method="POST" class="form-horizontal" role="form" id="ViewInformation">
-                            <table class="table table-hover" id="history-table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Space Name</th>
-                                        <th>Space Address</th>
-                                        <th>Name</th>
-                                        <th>ดูรายละเอียด</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
 
-                                    <c:forEach var="row" items="${requestScope.my_service.getServices()}">
 
-                                        <tr>
-                                            <td>${row.space_id}</td>
-                                            <td>${row.space_name}</td>
-                                            <td>${row.space_address}</td>
-                                            <td>${row.name}</td>                                                      
-                                            <td><button class="btn btn-success" name="id" value="${row.space_id}" type="submit" style="float: right">ดูรายละเอียด</button></td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>   
-                        </form>
-
-                    </div>
-                </div>
-                
             </div>
         </div>
 
